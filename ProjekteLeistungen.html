@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<!--
+  TYPO3-READY FLUID TEMPLATE VERSION
+  ----------------------------------
+  Diese Datei ist so gebaut, dass sie:
+  1) als **statische HTML-Datei** (ohne CMS) sofort funktioniert (Dark Mode + DE/EN/ES via JS)
+  2) in **TYPO3** als **Fluid-Template** nutzbar ist:
+     - Texte kommen dann aus XLF-Übersetzungen via <f:translate>
+     - Sprachmenü kommt aus TypoScript (lib.languageMenu)
+     - Seitenlinks können mit <f:link.page> gesetzt werden
+-->
+<html lang="de" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>
+    <!-- TYPO3: Titel aus Übersetzungen -->
+    <f:translate key="page.title" default="Projekte & Leistungen – Doniman F. Peña Parra" />
+  </title>
+
+  <!-- 1) Webfont: Roboto (leicht, normal, fett) -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===============================
+       2) Design-Variablen (Light/Dark)
+       =============================== */
+    :root{
+      /* Light Theme */
+      --primary-color: #cc0033; /* Akzent / Links */
+      --deep-red: #7d212b;      /* Headlines / Marker */
+      --text-color: #1a1a1a;    /* Fließtext helles Theme */
+      --muted: #54616e;         /* Sekundärtext */
+      --light-gray: #f4f4f4;    /* Flächen (Header/Hero/Foot) */
+      --white: #fff;            /* Karten / Body-Hintergrund */
+
+      /* Dark Theme */
+      --dark-bg: #121212;       /* Body-Hintergrund dunkel */
+      --dark-text: #f4f4f4;     /* Textfarbe dunkel */
+      --dark-muted: #bbbbbb;    /* Sekundärtext dunkel */
+      --dark-card: #1e1e1e;     /* Karten/Flächen dunkel */
+
+      /* Layout */
+      --maxw: 1120px;
+      --padx: 24px;
+      --radius: 14px;
+      --shadow: 0 6px 18px rgba(0,0,0,.06);
+      --focus: 2px solid #0ea5e9; /* sichtbarer Fokusrahmen */
+    }
+
+    /* ===============================
+       3) Basislayout + Barrierefreiheit
+       =============================== */
+    html,body{ margin:0; }
+    body{
+      font-family: 'Roboto', system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+      color: var(--text-color);
+      background: var(--white);
+      line-height: 1.6;
+      transition: background .3s, color .3s;
+    }
+    /* Automatischer Dark Mode, falls im OS gewünscht */
+    @media (prefers-color-scheme: dark){ body{ background: var(--dark-bg); color: var(--dark-text); } }
+    /* Manuell gesetzter Dark Mode via Klasse */
+    body.dark{ background: var(--dark-bg); color: var(--dark-text); }
+
+    /* Fokus sichtbar für Tastaturnutzer */
+    a:focus, button:focus { outline: var(--focus); outline-offset: 2px; }
+
+    /* ===============================
+       4) Header + Navigation
+       =============================== */
+    header{
+      display:flex; justify-content:space-between; align-items:center;
+      padding:20px 40px; background:var(--light-gray);
+    }
+    body.dark header{ background: var(--dark-card); }
+    .logo{ height:80px; width:auto; }
+
+    nav{ display:flex; gap:30px; }
+    nav a{ text-decoration:none; font-weight:700; color:var(--primary-color); }
+    nav a:hover{ color:var(--deep-red); }
+
+    /* ===============================
+       5) Steuerleisten (Sprache/Theme)
+       =============================== */
+    .controls{ position: fixed; top: 16px; right: 16px; display:flex; gap:10px; z-index:10; }
+    .lang-switcher[role="group"] button,
+    .theme-toggle{ border:none; border-radius:999px; padding:6px 10px; font-weight:700; cursor:pointer; }
+    .lang-switcher button{ background: var(--primary-color); color:#fff; }
+    .theme-toggle{ background:#333; color:#fff; }
+
+    /* ===============================
+       6) Hero (Seitenkopf unter Header)
+       =============================== */
+    .hero{ background:var(--light-gray); }
+    body.dark .hero{ background: var(--dark-card); }
+    .hero-inner{ max-width:var(--maxw); margin:0 auto; padding:48px var(--padx) 24px; }
+    .headline{ margin:0 0 6px; color:var(--deep-red); font-size:clamp(28px,3.6vw+10px,46px); }
+    .subline{ margin:0; color:var(--muted); font-size:clamp(16px,.35vw+14px,18px); }
+    body.dark .subline{ color: var(--dark-muted); }
+
+    /* ===============================
+       7) Inhalt / Sektionen / Karten
+       =============================== */
+    .section{ max-width:var(--maxw); margin:0 auto; padding:28px var(--padx) 8px; }
+    .sec-head{ display:flex; align-items:center; gap:10px; margin:0 0 16px; }
+    .sec-dot{ width:12px; height:12px; border-radius:999px; background:var(--deep-red); }
+    .sec-title{ margin:0; color:var(--deep-red); font-size:clamp(20px,1.6vw,26px); font-weight:700; }
+
+    .grid{ display:grid; gap:18px; grid-template-columns: repeat(3,1fr); align-items:stretch; }
+    @media(max-width:1024px){ .grid{ grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:640px){ .grid{ grid-template-columns: 1fr; } }
+
+    .card{
+      background:#fff; border:1px solid rgba(0,0,0,.06);
+      border-radius:var(--radius); box-shadow:var(--shadow);
+      display:flex; flex-direction:column; overflow:hidden;
+    }
+    body.dark .card{ background: var(--dark-card); color: var(--dark-text); border-color: rgba(255,255,255,.08); }
+
+    .card img{ width:100%; aspect-ratio:16/9; object-fit:cover; }
+    .card .card-body{ padding:14px 16px; display:flex; flex-direction:column; gap:8px; }
+    .card h4{ margin:0; color:var(--primary-color); font-size:1.05rem; }
+    .card p{ margin:0; color:var(--muted); line-height:1.55; }
+    body.dark .card p{ color: var(--dark-muted); }
+
+    /* ===============================
+       8) Footer
+       =============================== */
+    footer{ margin-top:28px; text-align:center; padding:20px; background:var(--light-gray); color:#666; }
+    body.dark footer{ background: var(--dark-card); color: var(--dark-muted); }
+  </style>
+</head>
+<body>
+
+  <!-- ===============================
+       A) Steuerelemente (immer sichtbar)
+       - Theme Toggle (funktioniert immer)
+       - Sprachmenü:
+         • TYPO3: <f:cObject typoscriptObjectPath="lib.languageMenu" />
+         • Statisch: DE/EN/ES Buttons
+       =============================== -->
+  <div class="controls" aria-live="polite">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Dark Mode umschalten" title="Dark Mode">🌓</button>
+
+    <!-- TYPO3: Sprachmenü aus TypoScript, wird nur sichtbar, wenn TYPO3 läuft -->
+    <nav class="lang-switcher" role="group" aria-label="Sprachauswahl" id="typo3LangMenu" style="display:none">
+      <f:cObject typoscriptObjectPath="lib.languageMenu" />
+    </nav>
+
+    <!-- Statisch: Fallback-Sprachbuttons (nur sichtbar außerhalb von TYPO3) -->
+    <div class="lang-switcher" role="group" aria-label="Sprachauswahl" id="staticLangMenu" style="display:flex">
+      <button type="button" onclick="setLang('de')" aria-label="Sprache Deutsch">DE</button>
+      <button type="button" onclick="setLang('en')" aria-label="Sprache Englisch">EN</button>
+      <button type="button" onclick="setLang('es')" aria-label="Sprache Spanisch">ES</button>
+    </div>
+  </div>
+
+  <!-- ===============================
+       B) Kopfzeile mit Logo + Navigation
+       - TYPO3-Links via <f:link.page> (Fallback: #)
+       =============================== -->
+  <header role="banner">
+    <img src="Bombillo.png" class="logo" alt="Logo Doniman F. Peña Parra" />
+    <nav role="navigation" aria-label="Hauptnavigation">
+      <f:link.page pageUid="1" class="nav-link"><f:translate key="nav.main" default="Hauptseite"/></f:link.page>
+      <f:link.page pageUid="2" class="nav-link"><f:translate key="nav.about" default="Über mich"/></f:link.page>
+      <f:link.page pageUid="3" class="nav-link"><f:translate key="nav.modeling" default="Prozessmodellierung"/></f:link.page>
+      <!-- Fallback, falls außerhalb von TYPO3 gerendert wird -->
+      <noscript>
+        <a href="#">Hauptseite</a>
+        <a href="#">Über mich</a>
+        <a href="#">Prozessmodellierung</a>
+      </noscript>
+    </nav>
+  </header>
+
+  <!-- ===============================
+       C) Hero-Bereich (Seitenintro)
+       =============================== -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1 class="headline"><f:translate key="hero.headline" default="Projekte &amp; Leistungen"/></h1>
+      <p class="subline"><f:translate key="hero.subline" default="Power BI Dashboards · Datenmodell · GPT-Agenten · ITIL-Monitoring"/></p>
+    </div>
+  </section>
+
+  <!-- ===============================
+       D) Beispielsektion: Power BI Karten
+       =============================== -->
+  <section class="section" aria-labelledby="powerbi">
+    <div class="sec-head">
+      <span class="sec-dot" aria-hidden="true"></span>
+      <h2 id="powerbi" class="sec-title"><f:translate key="section.title" default="Power BI – Dashboards &amp; Berichte"/></h2>
+    </div>
+
+    <div class="grid" role="list">
+      <!-- Karte 1 -->
+      <article class="card" role="listitem">
+        <img src="Bild_5.png" alt="ITIL Practices – Beispielabbildung" />
+        <div class="card-body">
+          <h4><f:translate key="card1.title" default="Bewertung der ITIL® Practices"/></h4>
+          <p><f:translate key="card1.text" default="Reifegradbewertung verschiedener ITIL® Practices in Operation und Transition."/></p>
+        </div>
+      </article>
+
+      <!-- Karte 2 -->
+      <article class="card" role="listitem">
+        <img src="Bild_4.png" alt="Kapazität und Backlog – Diagramm" />
+        <div class="card-body">
+          <h4><f:translate key="card2.title" default="Kapazität &amp; Backlog"/></h4>
+          <p><f:translate key="card2.text" default="Verteilung der Arbeitskapazitäten auf Teams – Engpässe &amp; Visualisierung."/></p>
+        </div>
+      </article>
+
+      <!-- Karte 3 -->
+      <article class="card" role="listitem">
+        <img src="Bild_6.png" alt="DAX-Skripting – Symbolgrafik" />
+        <div class="card-body">
+          <h4><f:translate key="card3.title" default="DAX-Skripting"/></h4>
+          <p><f:translate key="card3.text" default="Berechnung &amp; Aggregation in Power BI zur datenbasierten Entscheidungsfindung."/></p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===============================
+       E) Fußzeile
+       =============================== -->
+  <footer role="contentinfo">
+    <span><f:translate key="footer" default="© 2025 Doniman F. Peña Parra – Projekte & Leistungen"/></span>
+  </footer>
+
+  <!-- ===============================
+       F) Interaktivität (Theme + i18n)
+       - toggleTheme(): toggelt Klasse 'dark' am Body (Dark Mode)
+       - translations + setLang(): statischer Fallback, wenn NICHT in TYPO3
+       - Auto-Erkennung: Wenn TYPO3-Render (window.TYPO3 o. ä.) erkannt wird,
+         werden die statischen Sprach-Buttons ausgeblendet und das TS-Menü gezeigt.
+       =============================== -->
+  <script>
+    // 1) Dark/Light Mode umschalten und Präferenz merken
+    function toggleTheme(){
+      const isDark = document.body.classList.toggle('dark');
+      try{ localStorage.setItem('pref-theme', isDark ? 'dark' : 'light'); }catch(e){}
+    }
+    (function(){
+      try{ const pref = localStorage.getItem('pref-theme'); if(pref === 'dark'){ document.body.classList.add('dark'); } }catch(e){}
+    })();
+
+    // 2) Statischer i18n-Fallback (nur außerhalb TYPO3 genutzt)
+    const translations = {
+      de: {
+        title: "Projekte & Leistungen – Doniman F. Peña Parra",
+        "nav.main": "Hauptseite",
+        "nav.about": "Über mich",
+        "nav.modeling": "Prozessmodellierung",
+        "hero.headline": "Projekte & Leistungen",
+        "hero.subline": "Power BI Dashboards · Datenmodell · GPT-Agenten · ITIL-Monitoring",
+        "section.title": "Power BI – Dashboards & Berichte",
+        "card1.title": "Bewertung der ITIL® Practices",
+        "card1.text": "Reifegradbewertung verschiedener ITIL® Practices in Operation und Transition.",
+        "card2.title": "Kapazität & Backlog",
+        "card2.text": "Verteilung der Arbeitskapazitäten auf Teams – Engpässe & Visualisierung.",
+        "card3.title": "DAX-Skripting",
+        "card3.text": "Berechnung & Aggregation in Power BI zur datenbasierten Entscheidungsfindung.",
+        footer: "© 2025 Doniman F. Peña Parra – Projekte & Leistungen"
+      },
+      en: {
+        title: "Projects & Services – Doniman F. Peña Parra",
+        "nav.main": "Main Page",
+        "nav.about": "About Me",
+        "nav.modeling": "Process Modeling",
+        "hero.headline": "Projects & Services",
+        "hero.subline": "Power BI Dashboards · Data Models · GPT Agents · ITIL Monitoring",
+        "section.title": "Power BI – Dashboards & Reports",
+        "card1.title": "Assessment of ITIL® Practices",
+        "card1.text": "Maturity assessment of various ITIL® practices in operations and transition.",
+        "card2.title": "Capacity & Backlog",
+        "card2.text": "Workforce distribution across teams – bottlenecks & visualization.",
+        "card3.title": "DAX Scripting",
+        "card3.text": "Calculation & aggregation in Power BI to support data-driven decisions.",
+        footer: "© 2025 Doniman F. Peña Parra – Projects & Services"
+      },
+      es: {
+        title: "Proyectos & Servicios – Doniman F. Peña Parra",
+        "nav.main": "Inicio",
+        "nav.about": "Sobre mí",
+        "nav.modeling": "Modelado de Procesos",
+        "hero.headline": "Proyectos & Servicios",
+        "hero.subline": "Dashboards Power BI · Modelos de datos · Agentes GPT · Monitoreo ITIL",
+        "section.title": "Power BI – Informes & Paneles",
+        "card1.title": "Evaluación de prácticas ITIL®",
+        "card1.text": "Evaluación del nivel de madurez de varias prácticas ITIL® en operación y transición.",
+        "card2.title": "Capacidad & Backlog",
+        "card2.text": "Distribución del trabajo en equipos – cuellos de botella y visualización.",
+        "card3.title": "DAX Scripting",
+        "card3.text": "Cálculo y agregación en Power BI para decisiones basadas en datos.",
+        footer: "© 2025 Doniman F. Peña Parra – Proyectos & Servicios"
+      }
+    };
+
+    function setLang(lang){
+      document.documentElement.lang = lang;
+      // Statische Texte austauschen (nur Fallback)
+      document.querySelectorAll('[data-i18n], .nav-link').forEach(() => {}); // Platzhalter: in Fluid nutzen wir <f:translate>
+      document.title = translations[lang].title;
+      try{ localStorage.setItem('pref-lang', lang); }catch(e){}
+      // Sichtbarkeit prüfen (wir bleiben im Fallback)
+      document.getElementById('staticLangMenu').style.display = 'flex';
+      document.getElementById('typo3LangMenu').style.display = 'none';
+    }
+
+    // 3) Erkennen, ob TYPO3 rendert: Wenn yes => TS-Sprachmenü anzeigen, Fallback verstecken
+    (function(){
+      const isTypo3 = typeof window.TYPO3 !== 'undefined' || document.querySelector('meta[name="generator"][content*="TYPO3"]');
+      if(isTypo3){
+        const l = document.getElementById('staticLangMenu'); if(l) l.style.display = 'none';
+        const t = document.getElementById('typo3LangMenu'); if(t) t.style.display = 'block';
+      } else {
+        // Fallback: letzte Sprache laden
+        let lang = 'de';
+        try{ lang = localStorage.getItem('pref-lang') || (navigator.language||'de').slice(0,2); }catch(e){}
+        if(!['de','en','es'].includes(lang)) lang = 'de';
+        setLang(lang);
+      }
+    })();
+  </script>
+</body>
+</html>
