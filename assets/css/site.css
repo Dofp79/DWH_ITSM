@@ -1,0 +1,126 @@
+/* ====== Globales Stylesheet: assets/css/site.css ====== */
+/* 0) Reset/Grundlagen (knapp) */
+:root{
+  /* Dataport-nahe Palette */
+  --brand-primary: #7d212b;   /* Linkfarbe, Headlines */
+  --brand-accent:  #9e292b;   /* Unterstreichung/Hover/Buttons */
+  --headline:      #3a424b;   /* H1..H3 */
+  --text-color:    #3a424b;   /* Fließtext */
+  --muted:         #54616e;   /* Sekundärtext */
+  --light-gray:    #f4f4f4;   /* helle Flächen */
+  --separator:     #eeeff1;   /* feine Trenner */
+  --white:         #fff;
+
+  --maxw: 1120px;
+  --padx: 24px;
+  --radius: 14px;
+  --shadow: 0 6px 18px rgba(0,0,0,.06);
+}
+/* Kompatibilitäts-Aliasse (alte Variablennamen weiter nutzbar) */
+:root{
+  --primary-color: var(--brand-primary);
+  --deep-red:     var(--brand-accent);
+}
+
+/* 1) Base */
+html,body{margin:0}
+body{
+  font-family: 'Roboto', system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  color: var(--text-color);
+  background: var(--white);
+  line-height: 1.55;
+}
+a:focus, button:focus{ outline:2px solid #1c527f; outline-offset:2px; }
+
+/* 2) Header & Nav */
+header{
+  display:flex; justify-content:space-between; align-items:center; gap:20px;
+  padding:20px 40px; background:var(--white); border-bottom:2px solid var(--separator);
+  flex-wrap:wrap;
+}
+.logo{ height:80px; width:auto; }
+nav{ display:flex; gap:30px; flex-wrap:wrap; }
+
+/* Linkstil im Dataport-Look (animierte Unterstreichung) */
+nav a, .Base-link{
+  color:var(--brand-primary); font-weight:700; text-decoration:none;
+  background-image:linear-gradient(90deg,var(--brand-accent),var(--brand-accent));
+  background-position:0 100%; background-repeat:no-repeat; background-size:0 1px;
+  transition: background-size .2s ease, color .2s ease;
+}
+nav a:hover, .Base-link:hover{ background-size:100% 1px; }
+
+/* 3) Hero */
+.hero{ background:var(--white); border-bottom:2px solid var(--separator); }
+.hero-inner{ max-width:var(--maxw); margin:0 auto; padding:48px var(--padx) 24px; }
+.headline{
+  margin:0 0 6px; color:var(--headline);
+  font-family:"Roboto Condensed", Roboto, Arial, sans-serif; font-weight:300;
+  font-size:clamp(28px,3.6vw+10px,46px);
+}
+.subline{ margin:0; color:var(--muted); font-size:clamp(16px,.35vw+14px,18px); }
+
+/* 4) Sections & Cards */
+.section{ max-width:var(--maxw); margin:0 auto; padding:28px var(--padx) 8px; }
+.sec-head{ display:flex; align-items:center; gap:10px; margin:0 0 16px; }
+.sec-dot{ width:12px; height:12px; border-radius:3px; background:var(--brand-accent); }
+.sec-title{
+  margin:0; color:var(--headline); font-family:"Roboto Condensed", Roboto, Arial, sans-serif;
+  font-weight:300; font-size:clamp(20px,1.6vw,26px);
+}
+.lead{ color:var(--muted); line-height:1.7; margin:0; }
+
+.grid{ display:grid; gap:18px; grid-template-columns: repeat(3,1fr); align-items:stretch; }
+.card{
+  background:#fff; border-bottom:2px solid var(--brand-accent);
+  border-radius:0 0 10px 10px; box-shadow:none;
+  display:flex; flex-direction:column; overflow:hidden;
+}
+.card img{ width:100%; aspect-ratio:16/9; object-fit:cover; cursor:zoom-in; }
+.card .card-body{ padding:14px 16px; display:flex; flex-direction:column; gap:8px; }
+.card h4{ margin:0; color:var(--brand-primary); font-size:1.05rem; font-weight:700; }
+.card p{ margin:0; color:var(--muted); line-height:1.55; }
+
+/* GPT-Agenten: dezenter Hover */
+#gpt-agents .card img{
+  cursor:pointer; transition: transform .25s ease, box-shadow .25s ease;
+}
+#gpt-agents .card img:hover{ transform:scale(1.05); box-shadow:0 6px 18px rgba(0,0,0,.25); }
+
+/* 5) Zweispalter & Listen */
+.two-col{ display:grid; gap:20px; grid-template-columns:1.1fr 1fr; }
+.two-col img{ width:100%; border-radius:12px; box-shadow:var(--shadow); }
+.checklist{ padding-left:18px; color:var(--muted); line-height:1.7; }
+.checklist li{ margin-bottom:6px; }
+
+/* 6) Lightbox (für Bildvergrößerung) */
+.lightbox{
+  position:fixed; inset:0; display:none; place-items:center;
+  background:rgba(0,0,0,.72); z-index:100; padding:24px;
+}
+.lightbox.is-open{ display:grid; }
+.lightbox img{ max-width:90vw; max-height:85vh; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.4); }
+.lightbox button{
+  position:absolute; top:16px; right:16px; background:#fff; border:0;
+  padding:6px 10px; border-radius:6px; cursor:pointer;
+}
+
+/* 7) Footer */
+footer{ margin-top:28px; text-align:center; padding:20px; background:var(--white); border-top:2px solid var(--separator); color:#666; }
+
+/* 8) Utilities */
+.u-visually-hidden{ position:absolute!important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap; }
+.u-visually-hidden:focus{ clip:auto; height:auto; width:auto; position:static; white-space:normal; }
+
+/* 9) Responsive */
+@media (max-width:1024px){
+  .grid{ grid-template-columns: repeat(2,1fr); }
+  .two-col{ grid-template-columns: 1fr; }
+}
+@media (max-width:640px){
+  .grid{ grid-template-columns: 1fr; }
+  header{ flex-direction:column; align-items:flex-start; padding:20px; }
+  nav{ flex-direction:column; gap:12px; margin-top:10px; }
+  .logo{ height:60px; }
+  .hero-inner{ padding:32px var(--padx); }
+}
