@@ -86,12 +86,17 @@
     }
 
     .image-section {
-      background: url("assets/img/BPMNMAP.png") no-repeat center center;
-      background-size: contain;
-      height: clamp(200px, 40vw, 300px);
+      text-align: center;
       border-top: 4px solid var(--deep-red);
+      background: none; /* Hintergrund entfernen */
     }
 
+    .image-section img {
+      max-width: 100%;
+      height: auto;
+      cursor: pointer; /* zeigt an: klickbar */
+    }
+    
     footer {
       text-align: center;
       font-size: 0.9em;
@@ -166,7 +171,9 @@
   </section>
 
   <!-- BILD -->
-  <section class="image-section"></section>
+  <section class="image-section">
+    <img src="Bild_1.0.0.png" alt="BPMN Diagramm" class="zoomable" />
+  </section>
 
   <!-- FOOTER -->
   <footer>
