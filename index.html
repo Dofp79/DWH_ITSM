@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bewerbung – Doniman F. Peña Parra</title>
 
-  <!-- Webfont (einfach gehalten; für DSGVO ideal: lokal hosten) -->
+  <!-- Webfont (einfach; für DSGVO ideal: lokal hosten) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
 
   <style>
@@ -13,11 +14,12 @@
        1) Design‑Variablen (Farben)
        =============================== */
     :root {
-      --primary-color: #cc0033; /* Links, Hauptakzent */
-      --accent-color:  #cc0033; /* identisch, falls später getrennt */
+      --primary-color: #cc0033; /* Linkfarbe / Hauptakzent */
+      --accent-color:  #cc0033; /* reserviert für spätere Trennung */
       --deep-red:      #7d212b; /* dunkler Akzent (Borders etc.) */
       --text-color:    #1a1a1a; /* Fließtext */
       --light-gray:    #f4f4f4; /* helle Flächen (Header/Hero/Footer) */
+      --focus-ring:    #1c527f; /* sichtbarer Tastatur-Fokus */
     }
 
     /* ===============================
@@ -30,6 +32,8 @@
       color: var(--text-color);
       line-height: 1.55;
     }
+    /* gut sichtbarer Fokus für A11y */
+    a:focus, button:focus { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
 
     /* ===============================
        3) Header + Navigation
@@ -163,8 +167,8 @@
        Toolbar: Ansicht steuern
        =============================== -->
   <div class="view-tools" role="group" aria-label="Ansicht">
-    <button type="button" id="fitBtn">Gesamtansicht</button>
-    <button type="button" id="realBtn">100% Größe</button>
+    <button type="button" id="fitBtn"  aria-pressed="false">Gesamtansicht</button>
+    <button type="button" id="realBtn" aria-pressed="false">100% Größe</button>
   </div>
 
   <!-- ===============================
@@ -226,12 +230,16 @@
     function enableFit(){
       computeFitHeight();
       document.body.classList.add('fit-to-screen');
+      fitBtn.setAttribute('aria-pressed','true');
+      realBtn.setAttribute('aria-pressed','false');
     }
 
     // Zurück zu 100% Bildgröße
     function disableFit(){
       document.body.classList.remove('fit-to-screen');
-      img.style.maxHeight = ''; // Sicherheitsreset (eigentlich nicht nötig, da per Klasse gesteuert)
+      img.style.maxHeight = ''; // Sicherheitsreset (eigentlich nicht nötig, wird per Klasse gesteuert)
+      fitBtn.setAttribute('aria-pressed','false');
+      realBtn.setAttribute('aria-pressed','true');
     }
 
     // Event‑Handler
