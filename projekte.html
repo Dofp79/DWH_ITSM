@@ -12,7 +12,6 @@
   <style>
     /* ===============================
        1) Design‑Variablen (global)
-       — identisch zu den anderen Seiten
        =============================== */
     :root{
       --primary-color: #cc0033;   /* Hauptakzent/Links */
@@ -27,34 +26,60 @@
       --padx:   24px;             /* Seitenabstand */
       --radius: 14px;             /* Kanten‑Radius (Cards) */
       --shadow: 0 6px 18px rgba(0,0,0,.06); /* zarte Schatten */
-      --focus:  #1c527f;          /* sichtbarer Tastatur‑Fokus */
+
+      /* Transparente Flächen vor dem Hintergrundbild (Lesbarkeit) */
+      --panel-bg: rgba(255,255,255,.92);
     }
 
     /* ===============================
-       2) Base / Typo / A11y‑Fokus
+       2) Globaler Seitenhintergrund
+       — zeigt netzt.png stets seitenfüllend
+       =============================== */
+
+    /* Variante A (empfohlen): Hintergrund über <html> */
+    html{
+      /* Pfad bei Bedarf anpassen (z. B. nur "netzt.png") */
+      background: url("assets/img/netzt.png") center center / cover no-repeat fixed;
+      /* cover = füllt den Viewport, „fixed“ = bleibt stehen beim Scrollen */
+    }
+
+    /* Fallback für alte Browser + sichere Basis */
+    body{ background: transparent; }
+
+    /* Optional: leichte Abdunklung für bessere Lesbarkeit von Text über dem Bild.
+       -> auskommentieren, falls nicht gewünscht. */
+    body::before{
+      content:"";
+      position:fixed; inset:0;        /* deckt gesamten Viewport */
+      background: rgba(255,255,255,.04); /* ganz leichte Aufhellung; für dunkle Bilder ggf. 0.08–0.12 wählen */
+      pointer-events:none; z-index:-1; /* klicks gehen „durch“ */
+    }
+
+    /* ===============================
+       3) Base / Typo / A11y‑Fokus
        =============================== */
     html,body{ margin:0; }
     body{
       font-family: 'Roboto', system-ui, Arial, sans-serif;
       color: var(--text-color);
-      background: var(--white);
       line-height: 1.55;
     }
-    a:focus, button:focus{ outline:2px solid var(--focus); outline-offset:2px; }
+    a:focus, button:focus{ outline:2px solid #1c527f; outline-offset:2px; }
 
     /* ===============================
-       3) Header & Navigation
-       — gleiche Optik wie auf der Bewerbungsseite
+       4) Header & Navigation
+       — liegen auf halbtransparentem Panel,
+         damit Text vor dem Hintergrund gut lesbar bleibt
        =============================== */
     header{
       display:flex; justify-content:space-between; align-items:center;
-      padding:20px 40px; background:var(--white); flex-wrap:wrap;
+      padding:20px 40px; flex-wrap:wrap;
+      background: var(--panel-bg);             /* halbtransparentes Panel über dem Hintergrund */
+      backdrop-filter: blur(2px);              /* leichte Unschärfe (unterstützte Browser) */
       border-bottom:2px solid var(--separator);
     }
     .logo{ height:80px; width:auto; }
     nav{ display:flex; gap:30px; flex-wrap:wrap; }
-
-    /* Links im Dataport‑Look: animierte Unterstreichung */
     nav a{
       text-decoration:none; font-weight:700; color:var(--primary-color);
       background-image:linear-gradient(90deg,var(--deep-red),var(--deep-red));
@@ -64,9 +89,14 @@
     nav a:hover{ color:var(--deep-red); background-size:100% 1px; }
 
     /* ===============================
-       4) Hero (Seitenkopf)
+       5) Hero (Seitenkopf)
+       — ebenfalls auf Panel für Lesbarkeit
        =============================== */
-    .hero{ background:var(--white); border-bottom:2px solid var(--separator); }
+    .hero{
+      background: var(--panel-bg);
+      backdrop-filter: blur(2px);
+      border-bottom:2px solid var(--separator);
+    }
     .hero-inner{ max-width:var(--maxw); margin:0 auto; padding:48px var(--padx) 24px; }
     .headline{
       margin:0 0 6px; color:var(--deep-red);
@@ -76,9 +106,16 @@
     .subline{ margin:0; color:var(--muted); font-size:clamp(16px,.35vw + 14px,18px); }
 
     /* ===============================
-       5) Sektionen / Cards / Grids
+       6) Sektionen / Cards / Grids
+       — Sektionen liegen ebenfalls auf Paneelen
        =============================== */
-    .section{ max-width:var(--maxw); margin:0 auto; padding:28px var(--padx) 8px; }
+    .section{
+      max-width:var(--maxw); margin:0 auto; padding:28px var(--padx) 8px;
+      background: var(--panel-bg); backdrop-filter: blur(2px);
+      border:1px solid rgba(0,0,0,.03);
+      border-radius: 12px;
+      margin-top: 16px;
+    }
     .sec-head{ display:flex; align-items:center; gap:10px; margin:0 0 16px; }
     .sec-dot{ width:12px; height:12px; border-radius:3px; background:var(--deep-red); }
     .sec-title{ margin:0; color:var(--deep-red); font-size:clamp(20px,1.6vw,26px); font-weight:700; }
@@ -91,8 +128,8 @@
     }
     .card{
       background:#fff;
-      border-bottom:2px solid var(--deep-red); /* wie andere Seite */
-      border-radius:0 0 10px 10px;             /* Dataport‑ähnliche Ecke */
+      border-bottom:2px solid var(--deep-red);
+      border-radius:0 0 10px 10px;
       box-shadow:none;
       display:flex; flex-direction:column; overflow:hidden;
     }
@@ -103,12 +140,10 @@
 
     /* Dezenter Hover für GPT‑Agenten‑Karten */
     #gpt-agents .card img{
-      cursor:pointer;
-      transition: transform .25s ease, box-shadow .25s ease;
+      cursor:pointer; transition: transform .25s ease, box-shadow .25s ease;
     }
     #gpt-agents .card img:hover{
-      transform: scale(1.05);
-      box-shadow: 0 6px 18px rgba(0,0,0,.25);
+      transform: scale(1.05); box-shadow: 0 6px 18px rgba(0,0,0,.25);
     }
 
     /* 2‑Spalten Layout */
@@ -120,7 +155,7 @@
     .checklist li{ margin-bottom:6px; }
 
     /* ===============================
-       6) Lightbox (Zoom ohne neues Tab)
+       7) Lightbox (Zoom ohne neues Tab)
        =============================== */
     .lightbox{
       position:fixed; inset:0; display:none; place-items:center;
@@ -129,20 +164,21 @@
     .lightbox.is-open{ display:grid; }
     .lightbox img{ max-width:90vw; max-height:85vh; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.4); }
     .lightbox button{
-      position:absolute; top:16px; right:16px;
-      background:#fff; border:0; padding:6px 10px; border-radius:6px; cursor:pointer;
+      position:absolute; top:16px; right:16px; background:#fff; border:0;
+      padding:6px 10px; border-radius:6px; cursor:pointer;
     }
 
     /* ===============================
-       7) Footer
+       8) Footer
        =============================== */
     footer{
       margin-top:28px; text-align:center; padding:20px;
-      background:var(--white); color:#666; border-top:2px solid var(--separator);
+      background: var(--panel-bg); backdrop-filter: blur(2px);
+      color:#666; border-top:2px solid var(--separator);
     }
 
     /* ===============================
-       8) Responsive
+       9) Responsive
        =============================== */
     @media(max-width:1024px){
       .grid{grid-template-columns:repeat(2,1fr);}
@@ -159,9 +195,7 @@
 </head>
 <body>
 
-  <!-- =====================================
-       Header: Logo + Hauptnavigation
-       ===================================== -->
+  <!-- Header: Logo + Hauptnavigation (liegt auf halbtransparentem Panel) -->
   <header>
     <img src="assets/img/DonimanLogo1.png" class="logo" alt="Logo Doniman F. Peña Parra">
     <nav aria-label="Hauptnavigation">
@@ -171,9 +205,7 @@
     </nav>
   </header>
 
-  <!-- =====================================
-       Hero: Seitenüberschrift + Untertitel
-       ===================================== -->
+  <!-- Hero (Panel über dem Hintergrund) -->
   <section class="hero">
     <div class="hero-inner">
       <h1 class="headline">Projekte &amp; Leistungen</h1>
@@ -181,9 +213,7 @@
     </div>
   </section>
 
-  <!-- =====================================
-       Section: Power BI – Dashboards
-       ===================================== -->
+  <!-- Section: Power BI – Dashboards -->
   <section class="section" id="powerbi">
     <div class="sec-head">
       <span class="sec-dot" aria-hidden="true"></span>
@@ -191,34 +221,24 @@
     </div>
 
     <div class="grid">
-      <!-- Card 1 -->
       <article class="card">
-        <!-- data-full = Pfad für Lightbox (Vollbild) -->
-        <img src="assets/img/ITIL_Monitoring.png"
-             alt="ITIL Practices"
-             data-full="assets/img/ITIL_Monitoring.png">
+        <img src="assets/img/ITIL_Monitoring.png" alt="ITIL Practices" data-full="assets/img/ITIL_Monitoring.png">
         <div class="card-body">
           <h4>Bewertung der ITIL® Practices</h4>
           <p>Reifegradbewertung verschiedener ITIL® Practices.</p>
         </div>
       </article>
 
-      <!-- Card 2 -->
       <article class="card">
-        <img src="assets/img/IT32ReferatKapa.png"
-             alt="Kapazität"
-             data-full="assets/img/IT32ReferatKapa.png">
+        <img src="assets/img/IT32ReferatKapa.png" alt="Kapazität" data-full="assets/img/IT32ReferatKapa.png">
         <div class="card-body">
           <h4>Kapazität &amp; Backlog</h4>
           <p>Kreisdiagramm der Teamkapazitäten und Engpässe.</p>
         </div>
       </article>
 
-      <!-- Card 3 -->
       <article class="card">
-        <img src="assets/img/Datenmodell.png"
-             alt="DAX"
-             data-full="assets/img/Datenmodell.png">
+        <img src="assets/img/Datenmodell.png" alt="DAX" data-full="assets/img/Datenmodell.png">
         <div class="card-body">
           <h4>DAX‑Skripting</h4>
           <p>Datenaggregation durch DAX‑Formeln im BI‑Kontext.</p>
@@ -227,9 +247,7 @@
     </div>
   </section>
 
-  <!-- =====================================
-       Section: Power BI – Datenmodell
-       ===================================== -->
+  <!-- Section: Power BI – Datenmodell -->
   <section class="section" id="datenmodell">
     <div class="sec-head">
       <span class="sec-dot" aria-hidden="true"></span>
@@ -237,12 +255,7 @@
     </div>
 
     <div class="two-col">
-      <!-- Bild links mit Lightbox‑Ziel -->
-      <img src="assets/img/Datenmodell_2.png"
-           alt="Power BI Datenmodell"
-           data-full="assets/img/Datenmodell_2.png">
-
-      <!-- Beschreibung rechts -->
+      <img src="assets/img/Datenmodell_2.png" alt="Power BI Datenmodell" data-full="assets/img/Datenmodell_2.png">
       <div>
         <p class="lead">Tabellen und Beziehungen im ITSM‑Kontext: Geräteverwaltung, Downtimes und KPIs.</p>
         <ul class="checklist">
@@ -254,9 +267,7 @@
     </div>
   </section>
 
-  <!-- =====================================
-       Section: Eigene GPT‑Agenten (Links extern)
-       ===================================== -->
+  <!-- Section: Eigene GPT‑Agenten (externe Links) -->
   <section class="section" id="gpt-agents">
     <div class="sec-head">
       <span class="sec-dot" aria-hidden="true"></span>
@@ -264,7 +275,6 @@
     </div>
 
     <div class="grid">
-      <!-- Agent 1 -->
       <article class="card">
         <a href="https://chatgpt.com/g/g-UYiBEofKD-itsm-standards-consultant" target="_blank" rel="noopener">
           <img src="assets/img/GPT_ITSM_StandardsConsultant.png" alt="ITSM Consultant">
@@ -275,7 +285,6 @@
         </div>
       </article>
 
-      <!-- Agent 2 -->
       <article class="card">
         <a href="https://chatgpt.com/g/g-6734f04e060c8190a7fadc8c552b0e6e-modellierung-betrieblichen-informationssystemen" target="_blank" rel="noopener">
           <img src="assets/img/GPT_ModellierungBetrieblicheInformationssystemen.png" alt="Modellierung">
@@ -286,7 +295,6 @@
         </div>
       </article>
 
-      <!-- Agent 3 -->
       <article class="card">
         <a href="https://chatgpt.com/g/g-68150f83fda081919d979c8418039ee5-dashboard-design" target="_blank" rel="noopener">
           <img src="assets/img/GPT_DashboardDesingn.png" alt="Dashboard Design">
@@ -299,55 +307,43 @@
     </div>
   </section>
 
-  <!-- =====================================
-       Lightbox‑Overlay (einmal je Seite)
-       ===================================== -->
+  <!-- Lightbox‑Overlay (einmal je Seite) -->
   <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Bildvergrößerung">
     <button type="button" id="lightboxClose" aria-label="Schließen">&#x2715;</button>
     <img id="lightboxImg" src="" alt="Vergrößertes Bild">
   </div>
 
-  <!-- =====================================
-       Footer
-       ===================================== -->
+  <!-- Footer (Panel über dem Hintergrund) -->
   <footer>&copy; 2025 Doniman F. Peña Parra – Bewerbung für Dataport</footer>
 
-  <!-- =====================================
-       JS: Lightbox (kompakt, kommentiert)
-       ===================================== -->
+  <!-- JS: Lightbox (kompakt) -->
   <script>
-    // Lightbox‑Elemente holen
+    // Lightbox‑Elemente
     const lb     = document.getElementById('lightbox');
     const lbImg  = document.getElementById('lightboxImg');
     const lbExit = document.getElementById('lightboxClose');
 
-    // Delegation: Klicks auf das Dokument abfangen
+    // Delegation: klickbare Bilder mit data-full in die Lightbox laden
     document.addEventListener('click', (e) => {
       const t = e.target;
-
-      // 1) Bildvergrößerung nur für Bilder mit data-full
-      //    (und NICHT, wenn das Bild in einem externen Link im #gpt-agents steckt)
       const isZoomable = t.matches('img[data-full]') && !t.closest('#gpt-agents a');
       if (isZoomable) {
         e.preventDefault();
         lbImg.src = t.dataset.full;
         lb.classList.add('is-open');
         lb.setAttribute('aria-hidden','false');
-        lbExit.focus(); // Tastaturfokus auf Schließen
+        lbExit.focus();
         return;
       }
-
-      // 2) Schließen bei Klick auf Overlay oder X‑Button
-      const clickedOverlay = t === lb;
-      const clickedClose   = t === lbExit;
-      if (clickedOverlay || clickedClose) {
+      // Schließen: Klick auf Overlay oder auf X
+      if (t === lb || t === lbExit) {
         lb.classList.remove('is-open');
         lb.setAttribute('aria-hidden','true');
         lbImg.src = '';
       }
     });
 
-    // 3) ESC schließt die Lightbox
+    // ESC‑Taste schließt die Lightbox
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && lb.classList.contains('is-open')) {
         lb.classList.remove('is-open');
