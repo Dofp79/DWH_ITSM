@@ -2,147 +2,36 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bewerbung – Doniman F. Peña Parra</title>
-
-  <!-- Roboto-Schriftart -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
 
   <style>
-    /* ========= Farbvariablen ========= */
     :root {
-      --primary-color: #cc0033;
-      --accent-color: #cc0033;
-      --deep-red: #7d212b;
-      --text-color: #1a1a1a;
-      --light-gray: #f4f4f4;
+      --primary-color:#cc0033; --accent-color:#cc0033; --deep-red:#7d212b;
+      --text-color:#1a1a1a; --light-gray:#f4f4f4;
     }
-
-    /* ========= Basislayout ========= */
-    body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background-color: #fff;
-      color: var(--text-color);
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 40px;
-      background-color: var(--light-gray);
-      flex-wrap: wrap;
-    }
-
-    .logo {
-      height: clamp(60px, 8vw, 80px);
-    }
-
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-      padding-top: 10px;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: var(--primary-color);
-      font-weight: bold;
-      font-size: 1rem;
-    }
-
-    nav a:hover {
-      color: var(--deep-red);
-    }
-
-    .hero {
-      padding: 80px 40px 40px;
-      background-color: var(--light-gray);
-    }
-
-    .hero h1 {
-      font-size: clamp(1.8rem, 5vw, 2.6rem);
-      color: var(--primary-color);
-      font-weight: 500;
-      margin-bottom: 5px;
-    }
-
-    .hero h2 {
-      font-size: clamp(1.6rem, 4.5vw, 2.4rem);
-      color: var(--deep-red);
-      font-weight: 400;
-      margin-top: 0;
-    }
-
-    .description {
-      font-size: clamp(1rem, 2.5vw, 1.1rem);
-      line-height: 1.5;
-      color: #555;
-      margin-top: 10px;
-      max-width: 1000px;
-    }
-
-    .image-section {
-      text-align: center;
-      border-top: 4px solid var(--deep-red);
-      background: none; /* Hintergrund entfernen */
-    }
-
-    .image-section img {
-      max-width: 100%;
-      height: auto;
-      cursor: pointer; /* zeigt an: klickbar */
-    }
-    
-    footer {
-      text-align: center;
-      font-size: 0.9em;
-      color: #888;
-      padding: 10px;
-      background-color: var(--light-gray);
-    }
-
-    /* ========= Responsive Design ========= */
-    @media (max-width: 768px) {
-      header {
-        padding: 16px 20px;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      nav {
-        justify-content: flex-start;
-        gap: 12px;
-        padding-top: 10px;
-      }
-
-      .hero {
-        padding: 40px 20px 20px;
-        text-align: left;
-      }
-
-      .description {
-        font-size: 1rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .image-section {
-        height: 200px;
-        background-size: cover;
-      }
-
-      nav {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
+    html,body{margin:0}
+    body{font-family:'Roboto',sans-serif;background:#fff;color:var(--text-color);line-height:1.55}
+    header{display:flex;justify-content:space-between;align-items:center;gap:20px;
+      padding:20px 40px;background:var(--light-gray);flex-wrap:wrap}
+    .logo{height:clamp(60px,8vw,80px)}
+    nav{display:flex;flex-wrap:wrap;gap:20px;justify-content:center}
+    nav a{color:var(--primary-color);font-weight:700;text-decoration:none}
+    nav a:hover{color:var(--deep-red)}
+    .hero{padding:64px 40px 24px;background:var(--light-gray)}
+    .hero h1{font-size:clamp(1.8rem,5vw,2.6rem);color:var(--primary-color);margin:0 0 6px}
+    .hero h2{font-size:clamp(1.4rem,4vw,2.2rem);color:var(--deep-red);margin:10px 0 0;font-weight:400}
+    .description{font-size:clamp(1rem,2.5vw,1.1rem);color:#444;max-width:1000px;margin-top:10px}
+    .image-section{border-top:4px solid var(--deep-red);padding:16px 40px 24px}
+    .image-section figure{margin:0}
+    .image-section img{display:block;max-width:100%;height:auto;margin:0 auto}
+    .image-hint{color:#888;font-size:.95rem;text-align:center;margin-top:8px}
+    footer{text-align:center;font-size:.9em;color:#888;padding:12px;background:var(--light-gray)}
+    @media (max-width:768px){ header{padding:16px 20px;align-items:flex-start}
+      .hero{padding:40px 20px 20px} }
   </style>
 </head>
-
 <body>
 
   <!-- HEADER -->
@@ -158,21 +47,37 @@
 
   <!-- HERO -->
   <section class="hero">
-    <h2>Bewerbung als Prozessmanager ITSM Betrieb Steuern (w/m/d), Kennziffer: 10672-TX52</h2>
-    <div class="description">
-      Schön, dass ihr hier seid. Willkommen!
-    </div> 
-    <div class="description">
-      Diese Seite bietet einen kurzen Einblick in meine Arbeit im Bereich Measurement & Reporting nach ITIL® 4. Für eine faktenbasierte ITSM-Steuerung zeige ich, wie KPI-Design, Datenmodell/ETL und Dashboards mit BPMN-Prozessmodellen kombiniert werden – nachvollziehbar in einem transparenten Schritt-für-Schritt-Vorgehen.
-    </div>
-    <div class="description">
-      Mein Motto: Struktur trifft Leidenschaft, Prozesse optimieren, Menschen inspirieren.
-    </div>
+    <h1>Bewerbung als Prozessmanager ITSM Betrieb Steuern (w/m/d)</h1>
+    <h2>Kennziffer: 10672‑TX52</h2>
+    <p class="description">Schön, dass ihr hier seid. Willkommen!</p>
+    <p class="description">
+      Diese Seite bietet einen kurzen Einblick in meine Arbeit im Bereich Measurement & Reporting nach ITIL® 4.
+      Für eine faktenbasierte ITSM‑Steuerung zeige ich, wie KPI‑Design, Datenmodell/ETL und Dashboards mit
+      BPMN‑Prozessmodellen kombiniert werden – nachvollziehbar in einem transparenten Schritt‑für‑Schritt‑Vorgehen.
+    </p>
+    <p class="description">Mein Motto: Struktur trifft Leidenschaft, Prozesse optimieren, Menschen inspirieren.</p>
   </section>
 
-  <!-- BILD -->
-  <section class="image-section">
-    <img src="assets/img/BPMNMAP.png" alt="BPMN Diagramm" class="zoomable" />
+  <!-- BILD (sichtbar, nicht beschnitten, mit Fallback) -->
+  <section class="image-section" aria-labelledby="bpmnTitle">
+    <h2 id="bpmnTitle" class="u-visually-hidden">BPMN‑Übersicht</h2>
+    <figure>
+      <!-- VARIANTE A: Bild liegt in assets/img/ -->
+      <img
+        src="assets/img/BPMNMAP.png"
+        alt="BPMN‑Diagramm – Übersichtskarte der Prozessbausteine"
+        loading="eager" decoding="async"
+        onerror="
+          this.onerror=null;
+          this.src='assets/img/placeholder.png';
+          document.getElementById('imgError').hidden=false;
+        "
+      />
+      <!-- VARIANTE B (falls Bild neben der HTML liegt): src='BPMNMAP.png' -->
+      <figcaption class="image-hint" id="imgError" hidden>
+        Hinweis: Originalbild nicht gefunden. Prüfe Pfad/Schreibweise (<code>assets/img/BPMNMAP.png</code>).
+      </figcaption>
+    </figure>
   </section>
 
   <!-- FOOTER -->
@@ -180,5 +85,10 @@
     &copy; 2025 Doniman F. Peña Parra – Bewerbung für Dataport
   </footer>
 
+  <!-- A11y-Helferklasse (unsichtbar, aber fokussierbar) -->
+  <style>
+    .u-visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+    .u-visually-hidden:focus{clip:auto;height:auto;width:auto;position:static;white-space:normal}
+  </style>
 </body>
 </html>
