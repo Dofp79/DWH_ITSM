@@ -1,6 +1,5 @@
 <!-- =========================================================
      index.html — Dataport-Style Starter (komplett kommentiert)
-     Nutzt dein zentrales Stylesheet: assets/css/site.css
      ========================================================= -->
 <!DOCTYPE html>
 <html lang="de">
@@ -9,143 +8,224 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Start – Doniman F. Peña Parra</title>
 
-  <!-- Gemeinsames Stylesheet im Dataport-Look -->
+  <!-- Zentrales Stylesheet (dein Projektlook) -->
   <link rel="stylesheet" href="assets/css/site.css" />
 
   <style>
-    /* ======================================================
-       Add-on-Komponenten (klein & fokussiert)
-       -> Entweder hier lassen oder in assets/css/site.css übernehmen
-       ====================================================== */
+/* ======================================================
+   A) LOKALE WEBFONTS (Pfad korrigiert: assets/Webfonts/…)
+   ====================================================== */
+@font-face{
+  font-family:'Roboto';
+  font-style:normal; font-weight:400; font-display:swap;
+  src:url('assets/Webfonts/roboto-v19-latin-regular.woff2') format('woff2');
+}
+@font-face{
+  font-family:'Roboto';
+  font-style:normal; font-weight:700; font-display:swap;
+  src:url('assets/Webfonts/roboto-v19-latin-700.woff2') format('woff2');
+}
+@font-face{
+  font-family:'Roboto Condensed';
+  font-style:normal; font-weight:300; font-display:swap;
+  src:url('assets/Webfonts/roboto-condensed-v17-latin-300.woff2') format('woff2');
+}
+@font-face{
+  font-family:'Roboto Condensed';
+  font-style:normal; font-weight:700; font-display:swap;
+  src:url('assets/Webfonts/roboto-condensed-v17-latin-700.woff2') format('woff2');
+}
+/* Globale Anwendung der Schriften */
+body{ font-family:'Roboto', Arial, sans-serif; color:#3a424b; }
+h1,h2,h3{ font-family:'Roboto Condensed','Roboto',Arial,sans-serif; }
 
-    /* 1) Dezente rote Top-Border unter dem Header (Dataport-Anmutung) */
-    .page-topline { border-top: 4px solid var(--deep-red); }
+/* ======================================================
+   B) NAVIGATION (Dataport-Stil + Burger mobil)
+   ====================================================== */
 
-    /* 2) Sub-Headline im Hero (klein, grau) */
-    .hero .subhead {
-      margin: 10px 0 0;
-      color: var(--muted);
-      font-size: clamp(0.95rem, 0.6vw + 0.9rem, 1.05rem);
-    }
+/* Kopfzeile + rote Topline */
+.site-header{ 
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding:12px var(--padx,24px); background:#fff;
+  border-bottom:2px solid var(--separator,#eeeff1);
+  border-top:4px solid var(--deep-red,#7d212b);
+}
+.logo{ height:60px; width:auto; }
+.logo-link{ display:inline-flex; align-items:center; }
 
-    /* 3) „News/Press“-Teaser im Dataport-Stil:
-          - rote Unterkante
-          - Hover invertiert (weiß auf rot)
-          - rechter großer Iconpfeil (optional) */
-    .news-teaser {
-      background: #fff;
-      border-bottom: 2px solid var(--deep-red);
-      padding: 24px 16px;
-      display: grid;
-      grid-template-columns: 1fr auto; /* Text links, Icon rechts */
-      gap: 12px;
-      transition: background-color .2s ease, color .2s ease;
-    }
-    .news-teaser:hover { background: var(--deep-red); color: #fff; }
-    .news-teaser .teaser-meta { color: var(--muted); font-size: .9rem; margin-bottom: .5rem; }
-    .news-teaser:hover .teaser-meta { color: #fff; opacity: .9; }
-    .news-teaser .teaser-head {
-      margin: 0;
-      font-family: "Roboto Condensed", Roboto, Arial, sans-serif;
-      font-weight: 300;
-      color: var(--headline);
-      font-size: clamp(1.25rem, 1.1rem + 1vw, 1.8rem);
-      line-height: 1.15;
-    }
-    .news-teaser:hover .teaser-head { color: #fff; }
-    .news-teaser .teaser-icon {
-      align-self: center;
-      font-size: clamp(1.6rem, 1.2rem + 2vw, 2.4rem);
-      color: var(--deep-red);
-      transition: color .2s ease;
-    }
-    .news-teaser:hover .teaser-icon { color: #fff; }
+/* Desktop-Navigation */
+.mainnav{}
+.nav-list{
+  display:flex; align-items:center; gap:32px; list-style:none; margin:0; padding:0;
+}
+/* feiner Trenner links wie bei Dataport */
+.nav-list .nav-item:first-child{ padding-left:22px; position:relative; }
+.nav-list .nav-item:first-child::before{
+  content:""; position:absolute; left:0; top:50%; transform:translateY(-50%);
+  width:1px; height:18px; background:#cbd2d9;
+}
+.nav-link{
+  color: var(--headline,#3a424b); font-weight:700; text-decoration:none; position:relative; padding-bottom:2px;
+  background-image:linear-gradient(90deg,var(--deep-red,#7d212b),var(--deep-red,#7d212b));
+  background-repeat:no-repeat; background-size:0 1px; background-position:0 100%;
+  transition: background-size .2s ease, color .2s ease;
+}
+.nav-link::after{ content:" +"; color:var(--deep-red,#7d212b); } /* Plus-Suffix wie Dataport */
+.nav-link:hover{ background-size:100% 1px; }
 
-    /* 4) Hilfs-Container (Dataport nutzt ähnliche limit widths) */
-    .container { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--padx); }
+/* Burger-Schalter (mobil sichtbar) */
+.nav-toggle{
+  display:none; align-items:center; gap:8px; background:transparent; border:0;
+  color:var(--headline,#3a424b); font:700 1rem/1 'Roboto',system-ui,Arial; cursor:pointer;
+}
+.nav-toggle .icon rect{ fill: var(--deep-red,#7d212b); }
+.nav-toggle:focus{ outline:2px solid #1c527f; outline-offset:2px; }
+
+/* Mobile-Layout */
+@media (max-width: 980px){
+  .logo{ height:48px; }
+  .nav-toggle{ display:inline-flex; }           /* Burger einblenden */
+  .mainnav{
+    position:relative; width:100%;
+  }
+  /* Dropdown: push-down (überlagert NICHT den Inhalt) */
+  .nav-list{
+    display:none; flex-direction:column; align-items:flex-end; gap:14px;
+    padding:16px var(--padx,24px);
+    background:#fff; border-bottom:2px solid var(--separator,#eeeff1);
+    box-shadow:0 8px 24px rgba(0,0,0,.06);
+  }
+  .mainnav[data-open="true"] .nav-list{ display:flex; }
+  .nav-list .nav-item:first-child{ padding-left:0; }
+  .nav-list .nav-item:first-child::before{ display:none; }
+}
+
+/* Aktive Seite (optional) */
+.nav-link[aria-current="page"]{ color:var(--deep-red,#7d212b); }
+
+/* ======================================================
+   C) Seiten‑Spezifika (Hero, Cards, Teaser)
+   ====================================================== */
+.hero{ background:#fff; border-bottom:2px solid var(--separator,#eeeff1); }
+.hero-inner{ max-width:var(--maxw,1120px); margin:0 auto; padding:48px var(--padx,24px) 24px; }
+.headline{
+  margin:0 0 6px; color:var(--headline,#3a424b);
+  font-weight:300; font-size:clamp(28px,3.6vw+10px,46px);
+}
+.subhead{ margin:10px 0 0; color:var(--muted,#54616e); font-size:clamp(.95rem,.6vw + .9rem,1.05rem); }
+
+.container{ max-width:var(--maxw,1120px); margin:0 auto; padding:0 var(--padx,24px); }
+
+/* News/Press-Teaser im Dataport-Look */
+.news-teaser{
+  background:#fff; border-bottom:2px solid var(--deep-red,#7d212b);
+  padding:24px 16px; display:grid; grid-template-columns:1fr auto; gap:12px;
+  transition: background-color .2s ease, color .2s ease;
+}
+.news-teaser:hover{ background:var(--deep-red,#7d212b); color:#fff; }
+.news-teaser .teaser-meta{ color:var(--muted,#54616e); font-size:.9rem; margin-bottom:.5rem; }
+.news-teaser:hover .teaser-meta{ color:#fff; opacity:.9; }
+.news-teaser .teaser-head{
+  margin:0; font-weight:300; color:var(--headline,#3a424b);
+  font-size:clamp(1.25rem,1.1rem + 1vw,1.8rem); line-height:1.15;
+}
+.news-teaser:hover .teaser-head{ color:#fff; }
+.news-teaser .teaser-icon{ align-self:center; font-size:clamp(1.6rem,1.2rem + 2vw,2.4rem); color:var(--deep-red,#7d212b); }
+
+/* Footer */
+footer{ margin-top:28px; text-align:center; padding:20px; background:#fff; border-top:2px solid var(--separator,#eeeff1); color:#666; }
   </style>
 </head>
 
 <body>
-  <!-- =========================
-       Header (Logo + Navigation)
-       - basiert auf deinem site.css
-       - page-topline = rote Top-Linie
-       ========================= -->
-  <header class="page-topline">
-    <img src="assets/img/DonimanLogo1.png" class="logo" alt="Logo Doniman F. Peña Parra" />
-    <nav aria-label="Hauptnavigation">
-      <a href="index.html" aria-current="page">Start</a>
-      <a href="projekte.html">Projekte & Leistungen</a>
-      <a href="prozessmodellierung.html">Prozessmodellierung</a>
-      <a href="uebermich_1.0.0.html">Über mich</a>
+
+  <!-- =====================================================
+       HEADER (globaler Block)
+       - Desktop: Menü rechts
+       - Mobil : Burger öffnet Dropdown
+       ===================================================== -->
+  <header class="site-header">
+    <a class="logo-link" href="index.html" aria-label="Startseite">
+      <img src="assets/img/DonimanLogo1.png" alt="Logo Doniman F. Peña Parra" class="logo" />
+    </a>
+
+    <!-- Burger-Button -->
+    <button class="nav-toggle" id="navToggle" aria-controls="mainnav" aria-expanded="false">
+      <span class="nav-toggle-label">Menü</span>
+      <svg class="icon" width="28" height="18" viewBox="0 0 28 18" aria-hidden="true">
+        <rect x="0" y="0"  width="28" height="2" rx="1"></rect>
+        <rect x="0" y="8"  width="28" height="2" rx="1"></rect>
+        <rect x="0" y="16" width="28" height="2" rx="1"></rect>
+      </svg>
+    </button>
+
+    <!-- Navigation -->
+    <nav id="mainnav" class="mainnav" aria-label="Hauptnavigation" data-open="false">
+      <ul class="nav-list">
+        <li class="nav-item"><a class="nav-link" href="index.html" aria-current="page">Start</a></li>
+        <li class="nav-item"><a class="nav-link" href="projekte.html">Projekte & Leistungen</a></li>
+        <li class="nav-item"><a class="nav-link" href="prozessmodellierung.html">Prozessmodellierung</a></li>
+        <li class="nav-item"><a class="nav-link" href="uebermich_1.0.0.html">Über mich</a></li>
+      </ul>
     </nav>
   </header>
 
-  <!-- =========================
-       Hero-Bereich
-       - Headlines in Roboto Condensed (via site.css)
-       - Sub-Headline grau
-       ========================= -->
+  <!-- =====================================================
+       HERO
+       ===================================================== -->
   <section class="hero">
-    <div class="hero-inner container">
+    <div class="hero-inner">
       <h1 class="headline">Digitale Verwaltung gestalten</h1>
       <p class="subhead">ITSM · Datenmodelle · Dashboards · Prozessmanagement</p>
-      <!-- Primärer Dataport-Button (aus site.css -> .Base-button kannst du dort ergänzen, falls noch nicht vorhanden) -->
       <p style="margin-top:18px;">
-        <a class="Base-link" href="#projekte">Direkt zu Projekten</a>
+        <a class="nav-link" href="#projekte" style="background:none">Direkt zu Projekten</a>
       </p>
     </div>
   </section>
 
-  <!-- =========================
-       Section: Schwerpunkte (3 Cards im Grid)
-       - nutzt .section, .grid, .card aus site.css
-       ========================= -->
+  <!-- =====================================================
+       Schwerpunkte
+       ===================================================== -->
   <section class="section container" id="projekte">
     <div class="sec-head">
-      <span class="sec-dot" aria-hidden="true"></span>
-      <h2 class="sec-title">Leistungsschwerpunkte</h2>
+      <span class="sec-dot" aria-hidden="true" style="width:12px;height:12px;border-radius:3px;background:var(--deep-red,#7d212b)"></span>
+      <h2 class="sec-title" style="margin:0;font-weight:300">Leistungsschwerpunkte</h2>
     </div>
 
-    <div class="grid">
-      <!-- Card 1 -->
-      <article class="card">
-        <img src="assets/img/ITIL_Monitoring.png" alt="ITIL Monitoring" loading="lazy">
-        <div class="card-body">
-          <h4>ITIL® Monitoring</h4>
-          <p>Governance, KPIs, faktenbasierte Steuerung & Reports.</p>
+    <div class="grid" style="display:grid;gap:18px;grid-template-columns:repeat(3,1fr);align-items:stretch;">
+      <article class="card" style="background:#fff;border-bottom:2px solid var(--deep-red,#7d212b);border-radius:0 0 10px 10px;overflow:hidden;">
+        <img src="assets/img/ITIL_Monitoring.png" alt="ITIL Monitoring" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;">
+        <div class="card-body" style="padding:14px 16px">
+          <h4 style="margin:0;color:var(--deep-red,#7d212b)">ITIL® Monitoring</h4>
+          <p style="margin:6px 0 0;color:#54616e">Governance, KPIs, faktenbasierte Steuerung & Reports.</p>
         </div>
       </article>
 
-      <!-- Card 2 -->
-      <article class="card">
-        <img src="assets/img/Datenmodell.png" alt="Datenmodell" loading="lazy">
-        <div class="card-body">
-          <h4>Datenmodelle & ETL</h4>
-          <p>Saubere Domänenmodelle, robuste Pipelines, DAX.</p>
+      <article class="card" style="background:#fff;border-bottom:2px solid var(--deep-red,#7d212b);border-radius:0 0 10px 10px;overflow:hidden;">
+        <img src="assets/img/Datenmodell.png" alt="Datenmodell" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;">
+        <div class="card-body" style="padding:14px 16px">
+          <h4 style="margin:0;color:var(--deep-red,#7d212b)">Datenmodelle & ETL</h4>
+          <p style="margin:6px 0 0;color:#54616e">Saubere Domänenmodelle, robuste Pipelines, DAX.</p>
         </div>
       </article>
 
-      <!-- Card 3 -->
-      <article class="card">
-        <img src="assets/img/GPT_DashboardDesingn.png" alt="Dashboards" loading="lazy">
-        <div class="card-body">
-          <h4>Dashboards</h4>
-          <p>Barrierearme Visualisierungen, klare Stories, Pflegeleicht.</p>
+      <article class="card" style="background:#fff;border-bottom:2px solid var(--deep-red,#7d212b);border-radius:0 0 10px 10px;overflow:hidden;">
+        <img src="assets/img/GPT_DashboardDesingn.png" alt="Dashboards" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;">
+        <div class="card-body" style="padding:14px 16px">
+          <h4 style="margin:0;color:var(--deep-red,#7d212b)">Dashboards</h4>
+          <p style="margin:6px 0 0;color:#54616e">Barrierearme Visualisierungen, klare Stories, Pflegeleicht.</p>
         </div>
       </article>
     </div>
   </section>
 
-  <!-- =========================
-       Section: News/Teaser im Dataport-Look
-       - rote Unterkante, Hover invertiert
-       ========================= -->
+  <!-- =====================================================
+       News/Teaser
+       ===================================================== -->
   <section class="section container" aria-labelledby="newsTitle">
     <div class="sec-head">
-      <span class="sec-dot" aria-hidden="true"></span>
-      <h2 id="newsTitle" class="sec-title">Aktuelles</h2>
+      <span class="sec-dot" aria-hidden="true" style="width:12px;height:12px;border-radius:3px;background:var(--deep-red,#7d212b)"></span>
+      <h2 id="newsTitle" class="sec-title" style="margin:0;font-weight:300">Aktuelles</h2>
     </div>
 
     <a class="news-teaser" href="projekte.html#powerbi">
@@ -165,36 +245,35 @@
     </a>
   </section>
 
-  <!-- =========================
-       Section: Zweispalter mit Bild
-       ========================= -->
-  <section class="section container">
-    <div class="sec-head">
-      <span class="sec-dot" aria-hidden="true"></span>
-      <h2 class="sec-title">Datenmodell – Einblick</h2>
-    </div>
-
-    <div class="two-col">
-      <img src="assets/img/Datenmodell_2.png" alt="Beispiel Datenmodell" loading="lazy">
-      <div>
-        <p class="lead">
-          Geräteverwaltung, Downtimes, SLAs — sauber verbunden. 
-          Ergebnis: verlässliche KPIs für Steuerung & Transparenz.
-        </p>
-        <ul class="checklist">
-          <li><b>Faktentabellen:</b> Incidents, Downtimes, Deployments</li>
-          <li><b>Dimensionen:</b> Kalender, Service, CI, Standort</li>
-          <li><b>KPIs:</b> MTTI, MTTR, Verfügbarkeiten, Backlog‑Aging</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================
-       Footer (dezenter Trenner)
-       ========================= -->
   <footer>
     &copy; 2025 Doniman F. Peña Parra – im Dataport‑Stil
   </footer>
+
+  <!-- =====================================================
+       Menü‑Script (klein, barrierearm)
+       - toggelt data-open auf <nav>
+       - setzt aria-expanded auf dem Button
+       - schließt bei Klick außerhalb & ESC
+       ===================================================== -->
+  <script>
+    const btn = document.getElementById('navToggle');
+    const nav = document.getElementById('mainnav');
+
+    if (btn && nav){
+      const setOpen = (open) => {
+        btn.setAttribute('aria-expanded', String(open));
+        nav.setAttribute('data-open', String(open));
+      };
+      btn.addEventListener('click', () => {
+        const open = btn.getAttribute('aria-expanded') === 'true';
+        setOpen(!open);
+      });
+      window.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.site-header')) setOpen(false);
+      });
+      window.addEventListener('resize', () => { if (window.innerWidth > 980) setOpen(false); });
+    }
+  </script>
 </body>
 </html>
