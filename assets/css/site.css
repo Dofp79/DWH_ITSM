@@ -75,6 +75,57 @@ a:focus,button:focus{outline:2px solid #1c527f; outline-offset:2px;}
 .lightbox__close { right: .75rem; } .lightbox__zoom { right: 3.1rem; } .lightbox__zoom--out { right: 5.45rem; }
 body.lb-lock { overflow: hidden; }
 
+/* --- Diagramm-Varianten: keine Beschneidung, immer zentriert --- */
+.card img.diagram {
+  /* Für großformatige Diagramme (BPMN, Architektur) */
+  width: 100%;
+  height: auto;               /* kein erzwungenes 16:9 */
+  aspect-ratio: auto;
+  object-fit: contain;        /* nichts abschneiden */
+  background: #fff;
+  display: block;
+  margin: 0 auto;             /* sicher zentriert */
+}
+
+/* 1-spaltige Abschnitte: Karte optisch zentrieren */
+.grid.grid-1 {
+  justify-items: center;
+}
+.grid.grid-1 .card {
+  width: 100%;
+  max-width: var(--maxw);
+}
+
+/* Button-Zeile unter Diagrammen */
+.media-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 16px 0;
+  flex-wrap: wrap;
+}
+
+/* Buttons im Dataport-Look (verwendet bereits vorhandenes .btn-link) */
+.btn-link {
+  display: inline-block;
+  font-weight: 700;
+  text-decoration: none;
+  background: #fff;
+  color: var(--brand-primary);
+  border: 1px solid rgba(0,0,0,.08);
+  padding: 8px 12px;
+  border-radius: 10px;
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+.btn-link:hover{
+  color:#fff;
+  background: var(--brand-primary);
+  border-color: var(--brand-primary);
+}
+
+/* Kleiner Hinweis: Bilder mit Lightbox verhalten sich wie "zoom-in" */
+.card img[data-full] { cursor: zoom-in; }
+
 /* ===== HEADER & NAVIGATION ===== */
 .site-header{
   display:flex; align-items:center; justify-content:space-between; gap:16px;
