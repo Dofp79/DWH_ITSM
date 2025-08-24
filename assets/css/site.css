@@ -1,143 +1,84 @@
-/* ====== Globales Stylesheet im Dataport-Stil ====== */
+/* =========================================================
+   Globales Stylesheet im Dataport‑Stil
+   Pfad: assets/css/site.css
+   ========================================================= */
 
-/* Farb-/Layout-Variablen */
+/* ---------- Farb‑ & Layout‑Variablen ---------- */
 :root{
-  --brand-primary:#7d212b;      /* Links/Buttons */
-  --brand-accent:#9e292b;       /* Unterstreichung/Hover */
+  --brand-primary:#7d212b;      /* Links/Buttons, Akzent */
+  --brand-accent:#9e292b;       /* Hover/Unterstreichung */
   --headline:#3a424b;           /* H1..H3 */
   --text-color:#3a424b;         /* Fließtext */
   --muted:#54616e;              /* Sekundärtext */
   --light-gray:#f4f4f4;         /* helle Flächen */
   --separator:#eeeff1;          /* feine Trenner */
   --white:#fff;
-  --maxw:1120px; --padx:24px; --radius:14px;
+
+  --maxw:1120px;
+  --padx:24px;
+  --radius:14px;
   --shadow:0 6px 18px rgba(0,0,0,.06);
 }
 
-/* LOKALE WEBFONTS (Pfad: assets/Webfonts/...) */
-@font-face{ font-family:'Roboto'; font-style:normal; font-weight:400; font-display:swap;
-  src:url('../Webfonts/roboto-v19-latin-regular.woff2') format('woff2');}
-@font-face{ font-family:'Roboto'; font-style:normal; font-weight:700; font-display:swap;
-  src:url('../Webfonts/roboto-v19-latin-700.woff2') format('woff2');}
-@font-face{ font-family:'Roboto Condensed'; font-style:normal; font-weight:300; font-display:swap;
-  src:url('../Webfonts/roboto-condensed-v17-latin-300.woff2') format('woff2');}
-@font-face{ font-family:'Roboto Condensed'; font-style:normal; font-weight:700; font-display:swap;
-  src:url('../Webfonts/roboto-condensed-v17-latin-700.woff2') format('woff2');}
-
-/* Basistypo */
-html,body{margin:0}
-body{font-family:'Roboto',Arial,sans-serif;color:var(--text-color);background:#fff;line-height:1.55;}
-a:focus,button:focus{outline:2px solid #1c527f; outline-offset:2px;}
-
-/* Kontakt-Block (vor Footer) */
-.contact-block{
-  border-top: 2px solid var(--separator);
-  background: var(--white);
-  margin-top: 28px;
+/* ---------- Lokale Webfonts (Pfad: assets/Webfonts/...) ---------- */
+@font-face{
+  font-family:'Roboto';
+  font-style:normal; font-weight:400; font-display:swap;
+  src:url('../Webfonts/roboto-v19-latin-regular.woff2') format('woff2');
 }
-.contact-inner{
-  max-width: var(--maxw);
-  margin: 0 auto;
-  padding: 24px var(--padx);
+@font-face{
+  font-family:'Roboto';
+  font-style:normal; font-weight:700; font-display:swap;
+  src:url('../Webfonts/roboto-v19-latin-700.woff2') format('woff2');
 }
-.contact-title{
-  margin: 0 0 8px;
-  color: var(--headline);
-  font-family: "Roboto Condensed", Roboto, Arial, sans-serif;
-  font-weight: 300;
-  font-size: clamp(1.2rem, 0.7rem + 1.4vw, 1.6rem);
+@font-face{
+  font-family:'Roboto Condensed';
+  font-style:normal; font-weight:300; font-display:swap;
+  src:url('../Webfonts/roboto-condensed-v17-latin-300.woff2') format('woff2');
 }
-.contact-name{
-  margin: 0;
-  color: var(--headline);
-  font-weight: 700;
-  font-size: clamp(1.1rem, 0.7rem + 1.2vw, 1.4rem);
-}
-.contact-email{ margin: 6px 0 0; color: var(--muted); font-size: 1rem; }
-.contact-email a{
-  color: var(--brand-primary);
-  text-decoration: none;
-  background-image: linear-gradient(90deg,var(--brand-accent),var(--brand-accent));
-  background-position: 0 100%;
-  background-repeat: no-repeat;
-  background-size: 0 1px;
-  transition: background-size .2s ease;
-}
-.contact-email a:hover{ background-size: 100% 1px; }
-
-/* ===== Lightbox (global) ===== */
-.lightbox { position: fixed; inset: 0; z-index: 9999; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,.72); }
-.lightbox[aria-hidden="false"] { display: flex; }
-.lightbox__inner { position: relative; max-width: 96vw; max-height: 92vh; }
-.lightbox__img { max-width: 96vw; max-height: 92vh; object-fit: contain; transform-origin: center center; transition: transform .15s ease-out; cursor: zoom-out; }
-.lightbox__caption { margin-top: .5rem; color: #fff; text-align: center; font-size: .95rem; }
-.lightbox__close, .lightbox__zoom { position: absolute; top: .75rem; background: rgba(0,0,0,.55); color:#fff; border:0; border-radius:.6rem; padding:.5rem .6rem; cursor:pointer; }
-.lightbox__close { right: .75rem; } .lightbox__zoom { right: 3.1rem; } .lightbox__zoom--out { right: 5.45rem; }
-body.lb-lock { overflow: hidden; }
-
-/* --- Diagramm-Varianten: keine Beschneidung, immer zentriert --- */
-.card img.diagram {
-  /* Für großformatige Diagramme (BPMN, Architektur) */
-  width: 100%;
-  height: auto;               /* kein erzwungenes 16:9 */
-  aspect-ratio: auto;
-  object-fit: contain;        /* nichts abschneiden */
-  background: #fff;
-  display: block;
-  margin: 0 auto;             /* sicher zentriert */
+@font-face{
+  font-family:'Roboto Condensed';
+  font-style:normal; font-weight:700; font-display:swap;
+  src:url('../Webfonts/roboto-condensed-v17-latin-700.woff2') format('woff2');
 }
 
-/* 1-spaltige Abschnitte: Karte optisch zentrieren */
-.grid.grid-1 {
-  justify-items: center;
+/* ---------- Basistypo & Utilities ---------- */
+html,body{ margin:0; }
+body{
+  font-family:'Roboto', Arial, sans-serif;
+  color:var(--text-color);
+  background:#fff;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
-.grid.grid-1 .card {
-  width: 100%;
-  max-width: var(--maxw);
+a:focus, button:focus{ outline:2px solid #1c527f; outline-offset:2px; }
+
+.u-visually-hidden{
+  position:absolute!important; height:1px; width:1px; overflow:hidden;
+  clip:rect(1px,1px,1px,1px); white-space:nowrap;
+}
+.u-visually-hidden:focus{
+  clip:auto; height:auto; width:auto; position:static; white-space:normal;
 }
 
-/* Button-Zeile unter Diagrammen */
-.media-actions {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  padding: 10px 16px 0;
-  flex-wrap: wrap;
-}
-
-/* Buttons im Dataport-Look (verwendet bereits vorhandenes .btn-link) */
-.btn-link {
-  display: inline-block;
-  font-weight: 700;
-  text-decoration: none;
-  background: #fff;
-  color: var(--brand-primary);
-  border: 1px solid rgba(0,0,0,.08);
-  padding: 8px 12px;
-  border-radius: 10px;
-  transition: background-color .2s ease, color .2s ease, border-color .2s ease;
-}
-.btn-link:hover{
-  color:#fff;
-  background: var(--brand-primary);
-  border-color: var(--brand-primary);
-}
-
-/* Kleiner Hinweis: Bilder mit Lightbox verhalten sich wie "zoom-in" */
-.card img[data-full] { cursor: zoom-in; }
-
-/* ===== HEADER & NAVIGATION ===== */
+/* =========================================================
+   Header & Navigation
+   ========================================================= */
 .site-header{
   display:flex; align-items:center; justify-content:space-between; gap:16px;
   padding:12px var(--padx); background:#fff;
-  border-bottom:2px solid var(--separator); border-top:4px solid var(--brand-primary);
+  border-bottom:2px solid var(--separator);
+  border-top:4px solid var(--brand-primary);
 }
 .logo{ height:60px; width:auto; }
 .logo-link{ display:inline-flex; align-items:center; text-decoration:none; }
 
 /* Desktop-Menü */
 .mainnav{}
-.nav-list{ display:flex; align-items:center; gap:32px; list-style:none; margin:0; padding:0; }
+.nav-list{
+  display:flex; align-items:center; gap:32px; list-style:none; margin:0; padding:0;
+}
 .nav-list .nav-item:first-child{ padding-left:22px; position:relative; }
 .nav-list .nav-item:first-child::before{
   content:""; position:absolute; left:0; top:50%; transform:translateY(-50%);
@@ -153,15 +94,15 @@ body.lb-lock { overflow: hidden; }
 .nav-link:hover{ background-size:100% 1px; }
 .nav-link[aria-current="page"]{ color:var(--brand-primary); }
 
-/* Burger (mobil sichtbar) */
+/* Burger (mobil) */
 .nav-toggle{
   display:none; align-items:center; gap:8px; background:transparent; border:0; cursor:pointer;
   color:var(--headline); font:700 1rem/1 'Roboto',system-ui,Arial;
 }
 .nav-toggle .icon rect{ fill:var(--brand-primary); }
 
-/* MOBIL: Burger aktiv, Menü als Dropdown (push-down) */
-@media (max-width: 980px){
+/* Mobile Menü */
+@media (max-width:980px){
   .logo{ height:48px; }
   .nav-toggle{ display:inline-flex; }
   .mainnav{ position:relative; width:100%; }
@@ -175,73 +116,167 @@ body.lb-lock { overflow: hidden; }
   .nav-list .nav-item:first-child::before{ display:none; }
 }
 
-/* ===== HERO ===== */
+/* =========================================================
+   Hero
+   ========================================================= */
 .hero{ background:#fff; border-bottom:2px solid var(--separator); }
 .hero-inner{ max-width:var(--maxw); margin:0 auto; padding:48px var(--padx) 24px; }
-.headline{ margin:0 0 6px; color:var(--headline); font-family:'Roboto Condensed',Roboto,Arial,sans-serif; font-weight:300;
-  font-size:clamp(28px,3.6vw+10px,46px);}
-.subhead{ margin:10px 0 0; color:var(--muted); font-size:clamp(.95rem,.6vw + .9rem,1.05rem); }
+.headline{
+  margin:0 0 6px; color:var(--headline);
+  font-family:'Roboto Condensed', Roboto, Arial, sans-serif; font-weight:300;
+  font-size:clamp(28px,3.6vw + 10px,46px);
+}
+.subhead{ margin:10px 0 0; color:var(--muted); font-size:clamp(.95rem,.6vw+.9rem,1.05rem); }
 
-/* ===== SECTIONS & CARDS ===== */
+/* =========================================================
+   Sections, Grids & Cards
+   ========================================================= */
 .container{ max-width:var(--maxw); margin:0 auto; padding:0 var(--padx); }
 .section{ max-width:var(--maxw); margin:0 auto; padding:28px var(--padx) 8px; }
+
 .sec-head{ display:flex; align-items:center; gap:10px; margin:0 0 16px; }
 .sec-dot{ width:12px; height:12px; border-radius:3px; background:var(--brand-primary); }
-.sec-title{ margin:0; color:var(--headline); font-family:'Roboto Condensed',Roboto,Arial,sans-serif; font-weight:300; font-size:clamp(20px,1.6vw,26px); }
+.sec-title{
+  margin:0; color:var(--headline);
+  font-family:'Roboto Condensed', Roboto, Arial, sans-serif; font-weight:300;
+  font-size:clamp(20px,1.6vw,26px);
+}
 
+/* Grid */
 .grid{ display:grid; gap:18px; grid-template-columns:repeat(3,1fr); align-items:stretch; }
+@media (max-width:1024px){ .grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:640px){ .grid{ grid-template-columns:1fr; } }
 
-/* Basiskarte */
+/* Basis-Karte */
 .card{
   background:#fff; border-bottom:2px solid var(--brand-primary);
   border-radius:0 0 10px 10px; display:flex; flex-direction:column; overflow:hidden;
 }
 .card img{
   width:100%;
-  /* Einheitliches Seitenverhältnis und sauberes Cropping für ALLE Kartenbilder */
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+  aspect-ratio:16/9;           /* gleichmäßige Vorschaubilder */
+  object-fit:cover;
   display:block;
 }
 .card .card-body{ padding:14px 16px; }
 .card h4{ margin:0; color:var(--brand-primary); font-size:1.05rem; }
 
-/* ===========================================
-   NEU: Varianten für Karten
-   =========================================== */
+/* 1‑spaltige Abschnitte optisch zentriert */
+.grid.grid-1{ justify-items:center; }
+.grid.grid-1 .card{ width:100%; max-width:var(--maxw); }
 
-/* A) Zoom-Karten (Lightbox) – opt-in per Klasse .card--zoom */
+/* ---------- Varianten ---------- */
+/* A) Zoom-Karten (Lightbox): opt-in */
 .card--zoom img{ cursor: zoom-in; }
 
-/* B) Link-Karten (z.B. KI‑Agenten) – die ganze Karte ist klickbar,
-      KEIN Zoom-Cursor, schöner Hover/Fokus, keine Unterstreichung */
+/* B) Link-Karten (z.B. KI‑Agenten): ganze Karte klickbar, ohne Zoom */
 a.card.card--link{
-  text-decoration: none;
-  color: inherit;
+  text-decoration:none; color:inherit;
   transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
 }
-a.card.card--link img{ cursor: pointer; }        /* klarer „klickbar“-Hinweis */
+a.card.card--link img{ cursor:pointer; }
 a.card.card--link:hover,
 a.card.card--link:focus-visible{
   transform: translateY(-2px);
   box-shadow: 0 10px 26px rgba(0,0,0,.10);
   border-bottom-color: var(--brand-accent);
-  outline: none;
+  outline:none;
 }
 
-/* KI‑Agenten‑Section: dezenter spezieller Hover für Bilder */
-#ki-agents .card img{
-  transition: transform .25s ease, box-shadow .25s ease;
-}
+/* KI‑Agenten: dezenter Bild‑Hover */
+#ki-agents .card img{ transition: transform .25s ease, box-shadow .25s ease; }
 #ki-agents a.card:hover img,
 #ki-agents a.card:focus-visible img{
-  transform: scale(1.03);
-  box-shadow: 0 6px 18px rgba(0,0,0,.20);
+  transform:scale(1.03);
+  box-shadow:0 6px 18px rgba(0,0,0,.20);
 }
 
-/* RESPONSIVE GRIDS */
-@media (max-width:1024px){ .grid{ grid-template-columns:repeat(2,1fr); } }
-@media (max-width:640px){ .grid{ grid-template-columns:1fr; } }
+/* =========================================================
+   Diagramme (BPMN/Architektur) – immer zentriert, nicht beschnitten
+   ========================================================= */
+.card img.diagram{
+  width:100%;
+  height:auto;
+  aspect-ratio:auto;
+  object-fit:contain;
+  background:#fff;
+  display:block;
+  margin:0 auto;
+}
 
-/* ===== FOOTER ===== */
-footer{ margin-top:28px; text-align:center; padding:20px; background:#fff; border-top:2px solid var(--separator); color:#666; }
+/* Buttons unter Diagrammen (Dataport‑Look) */
+.media-actions{
+  display:flex; gap:10px; align-items:center;
+  padding:10px 16px 0; flex-wrap:wrap; justify-content:center;
+}
+.btn-link{
+  display:inline-block; font-weight:700; text-decoration:none;
+  background:#fff; color:var(--brand-primary);
+  border:1px solid rgba(0,0,0,.08);
+  padding:8px 12px; border-radius:10px;
+  transition:background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+.btn-link:hover{ color:#fff; background:var(--brand-primary); border-color:var(--brand-primary); }
+
+/* =========================================================
+   Lightbox (global)
+   ========================================================= */
+.lightbox{
+  position:fixed; inset:0; z-index:9999; display:none;
+  align-items:center; justify-content:center; background:rgba(0,0,0,.72);
+}
+.lightbox[aria-hidden="false"]{ display:flex; }
+.lightbox__inner{ position:relative; max-width:96vw; max-height:92vh; }
+.lightbox__img{
+  max-width:96vw; max-height:92vh; object-fit:contain;
+  transform-origin:center center; transition:transform .15s ease-out; cursor:zoom-out;
+}
+.lightbox__caption{ margin-top:.5rem; color:#fff; text-align:center; font-size:.95rem; }
+.lightbox__close,
+.lightbox__zoom{
+  position:absolute; top:.75rem; background:rgba(0,0,0,.55); color:#fff;
+  border:0; border-radius:.6rem; padding:.5rem .6rem; cursor:pointer;
+}
+.lightbox__close{ right:.75rem; }
+.lightbox__zoom{ right:3.1rem; }
+.lightbox__zoom--out{ right:5.45rem; }
+body.lb-lock{ overflow:hidden; }
+
+/* Hinweis: alle Kartenbilder mit data-full erhalten automatisch cursor:zoom-in
+   (ergänzend zu .card--zoom) */
+.card img[data-full]{ cursor:zoom-in; }
+
+/* =========================================================
+   Kontakt‑Block (immer vor dem Footer)
+   ========================================================= */
+.contact-block{
+  border-top:2px solid var(--separator);
+  background:var(--white);
+  margin-top:28px;
+}
+.contact-inner{ max-width:var(--maxw); margin:0 auto; padding:24px var(--padx); }
+.contact-title{
+  margin:0 0 8px; color:var(--headline);
+  font-family:"Roboto Condensed", Roboto, Arial, sans-serif;
+  font-weight:300; font-size:clamp(1.2rem, .7rem + 1.4vw, 1.6rem);
+}
+.contact-name{
+  margin:0; color:var(--headline); font-weight:700;
+  font-size:clamp(1.1rem, .7rem + 1.2vw, 1.4rem);
+}
+.contact-email{ margin:6px 0 0; color:var(--muted); font-size:1rem; }
+.contact-email a{
+  color:var(--brand-primary); text-decoration:none;
+  background-image:linear-gradient(90deg,var(--brand-accent),var(--brand-accent));
+  background-position:0 100%; background-repeat:no-repeat; background-size:0 1px;
+  transition:background-size .2s ease;
+}
+.contact-email a:hover{ background-size:100% 1px; }
+
+/* =========================================================
+   Footer
+   ========================================================= */
+footer{
+  margin-top:28px; text-align:center;
+  padding:20px; background:#fff; border-top:2px solid var(--separator); color:#666;
+}
