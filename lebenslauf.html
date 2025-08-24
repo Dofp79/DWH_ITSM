@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Profil & Lebenslauf – Doniman F. Peña Parra</title>
+
+  <!-- Globale Styles wie auf index/projekte -->
+  <link rel="stylesheet" href="assets/css/site.css" />
+  <!-- Seite nutzt auch die globalen JS-Helfer (E-Mail-Obfuskation, Lightbox, …) -->
+  <script src="assets/js/site.js" defer></script>
+
+  <style>
+    /* --- Seitenkleiner Stil: nur Layout-Helfer, Farben/Typo kommen aus site.css --- */
+
+    /* Container wie auf den anderen Seiten */
+    .container { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--padx); }
+
+    /* Intro-Grid: Text links, Portrait rechts */
+    .intro { display:grid; grid-template-columns: minmax(0,1.7fr) minmax(260px,.9fr); gap:28px; align-items:start; }
+    .intro .description { text-align: justify; hyphens:auto; -webkit-hyphens:auto; max-width:80ch; margin:0; }
+    .intro .portrait { width:100%; max-width:360px; height:auto; border-radius:12px; display:block; justify-self:center; }
+    @media (max-width:980px){ .intro{ grid-template-columns:1fr; } .intro .portrait{ justify-self:start; max-width:420px; } }
+
+    /* CV-Bereich */
+    .cv { border-top:4px solid var(--brand-accent, var(--deep-red)); padding:28px 0 36px; background:#fff; }
+    .cv-head { display:flex; align-items:center; gap:10px; margin-bottom:16px; }
+    .cv-dot { width:12px; height:12px; border-radius:3px; background:var(--brand-accent, var(--deep-red)); }
+    .cv-title { margin:0; color:var(--headline); font-family:"Roboto Condensed", Roboto, Arial, sans-serif; font-weight:300; font-size:clamp(20px,1.6vw,26px); }
+
+    /* Timeline + Info-Karten */
+    .timeline { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    @media (max-width:980px){ .timeline{ grid-template-columns:1fr; } }
+    .cv-card { background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:12px; padding:16px; box-shadow:var(--shadow); }
+    .cv-card h4 { margin:0 0 6px; color:var(--brand-primary, var(--primary-color)); font-size:1.05rem; }
+    .cv-meta { color:#8a8f95; font-size:.95rem; margin-bottom:8px; }
+    .cv-card p { margin:0; color:var(--muted); line-height:1.55; }
+
+    /* Skills/Certs/Sprachen */
+    .cv-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:22px; }
+    @media (max-width:980px){ .cv-grid{ grid-template-columns:1fr; } }
+    .cv-box { background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:12px; padding:14px 16px; box-shadow:var(--shadow); }
+    .cv-box h5 { margin:0 0 8px; color:var(--brand-primary, var(--primary-color)); font-size:1rem; }
+    .tags { display:flex; flex-wrap:wrap; gap:8px; }
+    .tag { border:1px solid rgba(0,0,0,.08); color:var(--deep-red); background:#fff; padding:6px 10px; border-radius:999px; font-size:.92rem; font-weight:700; }
+
+    /* Aktionen */
+    .cv-actions { margin-top:20px; display:flex; gap:12px; flex-wrap:wrap; }
+    .btn { background:var(--brand-primary, var(--primary-color)); color:#fff; border:0; border-radius:10px; padding:10px 16px; font-weight:700; text-decoration:none; display:inline-block; }
+    .btn:hover { background:var(--brand-accent, var(--deep-red)); }
+  </style>
+</head>
+<body>
+
+  <!-- Header mit Burger-Menü (globaler Markup wie index/projekte) -->
+  <header class="site-header">
+    <a class="logo-link" href="index.html" aria-label="Startseite">
+      <img src="assets/img/DoniLogo_1.0.0.png" alt="Logo Doniman F. Peña Parra" class="logo" />
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-controls="mainnav" aria-expanded="false">
+      <span>Menü</span>
+      <svg class="icon" width="28" height="18" viewBox="0 0 28 18" aria-hidden="true">
+        <rect x="0" y="0"  width="28" height="2" rx="1"></rect>
+        <rect x="0" y="8"  width="28" height="2" rx="1"></rect>
+        <rect x="0" y="16" width="28" height="2" rx="1"></rect>
+      </svg>
+    </button>
+
+    <nav id="mainnav" class="mainnav" aria-label="Hauptnavigation" data-open="false">
+      <ul class="nav-list">
+        <li class="nav-item"><a class="nav-link" href="index.html">Start</a></li>
+        <li class="nav-item"><a class="nav-link" href="projekte.html">Projekte & Leistungen</a></li>
+        <li class="nav-item"><a class="nav-link" href="prozessmodellierung.html">Prozessmodellierung</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner container">
+      <h1 class="headline">Profil & Lebenslauf</h1>
+      <p class="subline">UML/BPMN · ITIL v4 · Python · Power BI · Measurement & Reporting</p>
+    </div>
+  </section>
+
+  <!-- Intro: Profiltext + Portrait (Inhalt unverändert) -->
+  <main class="section container" role="main">
+    <div class="intro">
+      <section class="description" aria-labelledby="profiltext">
+        <h2 id="profiltext" class="u-visually-hidden">Profilbeschreibung</h2>
+
+        <p>Derzeit arbeite ich im Sachgebiet <strong>IT 322 (ITIL‑Management)</strong> der Abteilung
+        <strong>IT 3 – Service &amp; Betrieb</strong> der Polizei Hamburg, mit dem Schwerpunkt auf
+        <strong>Datenanalyse und Reporting</strong> sowie der Erstellung und Weiterentwicklung von
+        <strong>Dashboards und KPIs</strong> im Rahmen des <strong>ITIL‑v4‑Frameworks</strong>, um
+        Servicevereinbarungen und betriebliche Abläufe zu optimieren. Dadurch ist unsere Referatsstelle
+        in der Lage, <strong>Entwicklungs‑ und Trendanalysen</strong> durchzuführen.</p>
+
+        <p>Zusätzlich nutze ich <strong>UML</strong> und <strong>BPMN</strong>, um Geschäfts‑ und IT‑Prozesse
+        zu entwerfen, zu visualisieren und zu standardisieren. So entsteht ein gemeinsames Verständnis der
+        Workflows und eine belastbare Grundlage für skalierbare, wartbare Lösungen.</p>
+
+        <p>Parallel entwickle ich ein System zur <strong>Datenextraktion mit Python</strong> sowie
+        <strong>ETL‑Prozessen</strong>, die eine wichtige Rolle bei der Datenintegration in unserer
+        Abteilung <strong>IT 3 – Service &amp; Betrieb</strong> spielen.</p>
+
+        <p>Zudem habe ich bislang <strong>drei Fachinformatiker‑Umschüler</strong> als Praktikanten betreut und sie bei der
+        Entwicklung ihrer <strong>Projektprüfungen für die Handelskammer</strong> beraten und begleitet.</p>
+
+        <p>Um meine Aufgaben zu unterstützen, erweitere ich fortlaufend mein Wissen in
+        <strong>Künstlicher Intelligenz</strong> und automatisiere ausgewählte Aufgaben.</p>
+      </section>
+
+      <img
+        src="assets/img/portrait.jpg"
+        alt="Porträt von Doniman F. Peña Parra"
+        class="portrait"
+        loading="lazy">
+    </div>
+  </main>
+
+  <!-- Lebenslauf -->
+  <section class="cv">
+    <div class="container">
+      <div class="cv-head">
+        <span class="cv-dot" aria-hidden="true"></span>
+        <h3 class="cv-title">Lebenslauf</h3>
+      </div>
+
+      <!-- Berufserfahrung -->
+      <div class="timeline">
+        <article class="cv-card">
+          <h4>Prozessmanager</h4>
+          <div class="cv-meta">Polizei Hamburg · 01/2024 – heute · Hamburg</div>
+          <p>ITIL-v4, Power-BI-Dashboard-Entwicklung, Begleitung und Mitwirkung bei Projekten,
+            Lizenzmanagementprozesse, UML/BPMN-Modellierung, ETL-Prozesse und Automatisierung.</p>
+        </article>
+
+        <article class="cv-card">
+          <h4>Umschulung Fachinformatiker Anwendungsentwicklung</h4>
+          <div class="cv-meta">BBQ – Baumann Bildung und Qualifizierung GmbH · 2022 – 2024 · Hamburg</div>
+          <p>Java, OOP, UML, agile Softwareentwicklung, Scrum, Datenbanken und SQL.</p>
+        </article>
+
+        <article class="cv-card">
+          <h4>Mehr als 20 Jahre Erfahrung im Kundenservice</h4>
+          <div class="cv-meta">Gastronomie (diverse Betriebe), Hamburg · 2004 – 2022</div>
+          <div class="tags">
+            <span class="tag">Personal-/Dienstplanung</span>
+            <span class="tag">Wareneinsatz</span>
+            <span class="tag">Qualitätsstandards</span>
+            <span class="tag">Leitung bis 25 MA</span>
+            <span class="tag">Prozessoptimierung</span>
+            <span class="tag">Eventmanagement</span>
+            <span class="tag">Kassenabschluss/Buchhaltung</span>
+          </div>
+        </article>
+
+        <article class="cv-card">
+          <h4>Praktikum – IT 322 · ITIL Management</h4>
+          <div class="cv-meta">Polizei Hamburg · 11/2022 – 01/2024 · Hamburg</div>
+          <p>Ticketbearbeitung, ITIL & Lizenzmanagement, Hospitation in IT-Bereichen, BPMN-Prozessskizzen,
+            Projektentwicklung, ITIL®-Simulation (Apollo 13) & Schulungen zu IT-Governance.</p>
+        </article>
+      </div>
+
+      <!-- Skills / Zertifikate / Sprachen -->
+      <div class="cv-grid">
+        <section class="cv-box" aria-labelledby="skills">
+          <h5 id="skills">Skills</h5>
+          <div class="tags">
+            <span class="tag">UML</span>
+            <span class="tag">BPMN 2.0</span>
+            <span class="tag">ITIL v4</span>
+            <span class="tag">Python</span>
+            <span class="tag">C#</span>
+            <span class="tag">Power BI</span>
+            <span class="tag">DAX</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">T‑SQL</span>
+            <span class="tag">Java</span>
+          </div>
+        </section>
+
+        <section class="cv-box" aria-labelledby="certs">
+          <h5 id="certs">Zertifikate</h5>
+          <ul style="margin:0; padding-left:18px; color:var(--muted); line-height:1.6;">
+            <li>Power BI Data Analyst (PL‑300), New Elements GmbH (2025)</li>
+            <li>ITIL® Foundation Certificate (2024)</li>
+            <li>AEVO – Ausbildereignung (IHK), Handelskammer Hamburg (2025)</li>
+            <li>EXIN Agile Scrum Master</li>
+          </ul>
+        </section>
+
+        <section class="cv-box" aria-labelledby="lang">
+          <h5 id="lang">Sprachen</h5>
+          <ul style="margin:0; padding-left:18px; color:var(--muted); line-height:1.6;">
+            <li>Deutsch – C1</li>
+            <li>Englisch – B1</li>
+            <li>Spanisch – Muttersprache</li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- Aktionen -->
+      <div class="cv-actions">
+        <a class="btn" href="assets/docs/Lebenslauf.pdf" target="_blank" rel="noopener">Lebenslauf als PDF</a>
+        <a class="btn" href="https://www.linkedin.com/in/doniman-francisco-pe%C3%B1a-parra-609263232/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kontaktblock (global, vor Footer) -->
+  <section class="contact-block" aria-labelledby="kontaktTitle">
+    <div class="contact-inner">
+      <h2 id="kontaktTitle" class="contact-title">Kontakt</h2>
+      <p class="contact-name">Doniman F. Peña Parra</p>
+      <p class="contact-email">
+        <a id="contactEmail"
+           data-email-user="dofp79"
+           data-email-domain="hotmail.com"
+           href="#"
+           rel="nofollow">E‑Mail anzeigen</a>
+        <noscript>(dofp79 [at] hotmail [dot] com)</noscript>
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Doniman F. Peña Parra – Bewerbung für Dataport
+  </footer>
+
+  <!-- Globales Menü (Burger) -->
+  <script src="assets/js/menu.js"></script>
+</body>
+</html>
