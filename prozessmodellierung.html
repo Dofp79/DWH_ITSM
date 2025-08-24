@@ -5,17 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Prozessmodellierung – Doniman F. Peña Parra</title>
 
-  <!-- Globale Styles/JS (Dataport-Look & Standard-Verhalten) -->
+  <!-- Globaler Look & JS -->
   <link rel="stylesheet" href="assets/css/site.css" />
   <script src="assets/js/site.js" defer></script>
   <script src="assets/js/menu.js" defer></script>
 
-  <!-- (Optional) minimale Seiten-Extras -->
+  <!-- Seiten‑spezifische, kleine Ergänzungen -->
   <style>
-    /* Nur kleine Abweichungen speziell für diese Seite */
+    /* Überschrift im Callout konsistent */
     .callout h4{ margin:0; color:var(--headline); font-weight:700; }
-    /* Medienelemente erhalten eine dezente Hover-Andeutung */
+
+    /* Dezent: Mauszeiger „Lupe“ für alle vergrößerbaren Bilder */
     .card img[data-full]{ cursor: zoom-in; }
+
+    /* Breite Diagramm‑Karten: Bild nicht croppen, sondern einpassen */
+    .card--wide{ align-items:center; } /* Inhalt mittig */
+    .card--wide .diag{
+      width:100%;
+      height:auto;
+      aspect-ratio:auto;
+      object-fit:contain;          /* NICHT zuschneiden */
+      background:#fff;
+      display:block;
+    }
+
+    /* Buttons unter den Diagrammen – mittig & mit etwas Abstand */
+    .media-actions{
+      display:flex; gap:12px; justify-content:center;
+      padding:12px 16px 0;
+      flex-wrap:wrap;
+    }
+
+    /* „Primär“ (aus site.css vorhanden) + sanfte Ghost‑Variante */
+    .btn-ghost{
+      background:#fff; color:var(--brand-primary);
+      border:1px solid rgba(0,0,0,.12);
+      border-radius:10px; padding:10px 16px; font-weight:700;
+      text-decoration:none; display:inline-block;
+      transition:background .2s ease, color .2s ease, border-color .2s ease;
+    }
+    .btn-ghost:hover{ background:var(--brand-primary); color:#fff; border-color:var(--brand-primary); }
   </style>
 </head>
 
@@ -26,7 +55,6 @@
       <img src="assets/img/DoniLogo_1.0.0.png" alt="Logo Doniman F. Peña Parra" class="logo" />
     </a>
 
-    <!-- Burger (mobil) -->
     <button class="nav-toggle" id="navToggle" aria-controls="mainnav" aria-expanded="false">
       <span>Menü</span>
       <svg class="icon" width="28" height="18" viewBox="0 0 28 18" aria-hidden="true">
@@ -64,17 +92,10 @@
     <div class="callout stack">
       <h4>Visualisierung der Zusammenhänge zwischen Support-Bearbeitungsprozessen, beteiligten Komponenten und Auftraggebern der Dataport-Kunden.</h4>
       <p class="lead">
-        Dataport interne Kunden (im Folgenden User genannt) nutzen eine Vielzahl an Tools und Anwendungen für ihre tägliche
-        Arbeit. Diese unterschiedlichen Tools und Anwendungen stellen die User manchmal vor Herausforderungen im Gebrauch
-        und somit benötigen die User schließlich Unterstützung von Supporteinheiten.
+        Dataport interne Kunden (im Folgenden User genannt) nutzen eine Vielzahl an Tools und Anwendungen …
       </p>
       <p class="lead">
-        Hat ein User solch einen Supportfall, so kann dieser selbstständig über ein Dataport internes Selfservice Portal den
-        Supportfall in ein Formular eingeben. In dem Formular werden bestimmte Fragen dem User zu seinem Supportfall gestellt …
-        Anschließend wird das Formular eingereicht. Das Formular wird in ein Dataport internes Ticketsystem (ITSM) überführt,
-        wodurch die First Supporteinheit per E‑Mail informiert wird. … Falls die First Supporteinheit keine Möglichkeit der Abhilfe
-        hat, wird der Second Supporteinheit das Ticket übergeben. Die Second Supporteinheit verschafft dem User Abhilfe und informiert
-        per E‑Mail den User.
+        Hat ein User solch einen Supportfall, so kann dieser selbstständig über ein Dataport internes Selfservice Portal …
       </p>
       <p class="lead">
         Jederzeit hat der User die Möglichkeit über das interne Selfservice Portal den aktuellen Status seines Tickets einzusehen.
@@ -128,8 +149,9 @@
     </div>
 
     <div class="grid grid-1">
-      <article class="card">
+      <article class="card card--wide">
         <img
+          class="diag"
           src="assets/img/Komponentendiagramm.png"
           alt="Komponentendiagramm"
           loading="lazy"
@@ -151,16 +173,17 @@
     </div>
 
     <div class="grid grid-1">
-      <article class="card">
+      <article class="card card--wide">
         <img
+          class="diag"
           src="assets/img/DataportSuport_1.0.0.svg"
           alt="BPMN‑Diagramm 1"
           loading="lazy"
           decoding="async"
           data-full="assets/img/DataportSuport_1.0.0.svg" />
         <div class="media-actions">
-          <a class="btn-link" href="assets/img/DataportSuport_1.0.0.svg" target="_blank" rel="noopener">BPMN in neuem Tab</a>
-          <a class="btn-link" href="assets/img/DataportSuport_1.0.0.svg" download>Download</a>
+          <a class="btn" href="assets/img/DataportSuport_1.0.0.svg" target="_blank" rel="noopener">BPMN in neuem Tab</a>
+          <a class="btn-ghost" href="assets/img/DataportSuport_1.0.0.svg" download>Download</a>
         </div>
         <div class="card-body stack">
           <h4>Prozesslogik</h4>
@@ -178,16 +201,17 @@
     </div>
 
     <div class="grid grid-1">
-      <article class="card">
+      <article class="card card--wide">
         <img
+          class="diag"
           src="assets/img/DataportSuport_2.0.0.svg"
           alt="BPMN‑Diagramm 2"
           loading="lazy"
           decoding="async"
           data-full="assets/img/DataportSuport_2.0.0.svg" />
         <div class="media-actions">
-          <a class="btn-link" href="assets/img/DataportSuport_2.0.0.svg" target="_blank" rel="noopener">BPMN in neuem Tab</a>
-          <a class="btn-link" href="assets/img/DataportSuport_2.0.0.svg" download>Download</a>
+          <a class="btn" href="assets/img/DataportSuport_2.0.0.svg" target="_blank" rel="noopener">BPMN in neuem Tab</a>
+          <a class="btn-ghost" href="assets/img/DataportSuport_2.0.0.svg" download>Download</a>
         </div>
         <div class="card-body stack">
           <h4>Prozesslogik</h4>
@@ -218,7 +242,7 @@
     &copy; 2025 Doniman F. Peña Parra – Bewerbung für Dataport
   </footer>
 
-  <!-- ===== Lightbox (IDs passen zu assets/js/site.js) ===== -->
+  <!-- ===== Lightbox (IDs wie in assets/js/site.js) ===== -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <button type="button" id="lightboxClose" aria-label="Schließen">✕</button>
     <img id="lightboxImg" src="" alt="Vergrößertes Bild" />
