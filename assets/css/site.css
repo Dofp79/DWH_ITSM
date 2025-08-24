@@ -1,279 +1,110 @@
-<!-- =========================================================
-     index.html — Dataport-Style Starter (komplett kommentiert)
-     ========================================================= -->
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Start – Doniman F. Peña Parra</title>
+/* ====== Globales Stylesheet im Dataport-Stil ====== */
 
-  <!-- Zentrales Stylesheet (dein Projektlook) -->
-  <link rel="stylesheet" href="assets/css/site.css" />
+/* Farb-/Layout-Variablen */
+:root{
+  --brand-primary:#7d212b;      /* Links/Buttons */
+  --brand-accent:#9e292b;       /* Unterstreichung/Hover */
+  --headline:#3a424b;           /* H1..H3 */
+  --text-color:#3a424b;         /* Fließtext */
+  --muted:#54616e;              /* Sekundärtext */
+  --light-gray:#f4f4f4;         /* helle Flächen */
+  --separator:#eeeff1;          /* feine Trenner */
+  --white:#fff;
+  --maxw:1120px; --padx:24px; --radius:14px;
+  --shadow:0 6px 18px rgba(0,0,0,.06);
+}
 
-  <style>
-/* ======================================================
-   A) LOKALE WEBFONTS (Pfad korrigiert: assets/Webfonts/…)
-   ====================================================== */
-@font-face{
-  font-family:'Roboto';
-  font-style:normal; font-weight:400; font-display:swap;
-  src:url('assets/Webfonts/roboto-v19-latin-regular.woff2') format('woff2');
-}
-@font-face{
-  font-family:'Roboto';
-  font-style:normal; font-weight:700; font-display:swap;
-  src:url('assets/Webfonts/roboto-v19-latin-700.woff2') format('woff2');
-}
-@font-face{
-  font-family:'Roboto Condensed';
-  font-style:normal; font-weight:300; font-display:swap;
-  src:url('assets/Webfonts/roboto-condensed-v17-latin-300.woff2') format('woff2');
-}
-@font-face{
-  font-family:'Roboto Condensed';
-  font-style:normal; font-weight:700; font-display:swap;
-  src:url('assets/Webfonts/roboto-condensed-v17-latin-700.woff2') format('woff2');
-}
-/* Globale Anwendung der Schriften */
-body{ font-family:'Roboto', Arial, sans-serif; color:#3a424b; }
-h1,h2,h3{ font-family:'Roboto Condensed','Roboto',Arial,sans-serif; }
+/* LOKALE WEBFONTS (Pfad: assets/Webfonts/...) */
+@font-face{ font-family:'Roboto'; font-style:normal; font-weight:400; font-display:swap;
+  src:url('../Webfonts/roboto-v19-latin-regular.woff2') format('woff2');}
+@font-face{ font-family:'Roboto'; font-style:normal; font-weight:700; font-display:swap;
+  src:url('../Webfonts/roboto-v19-latin-700.woff2') format('woff2');}
+@font-face{ font-family:'Roboto Condensed'; font-style:normal; font-weight:300; font-display:swap;
+  src:url('../Webfonts/roboto-condensed-v17-latin-300.woff2') format('woff2');}
+@font-face{ font-family:'Roboto Condensed'; font-style:normal; font-weight:700; font-display:swap;
+  src:url('../Webfonts/roboto-condensed-v17-latin-700.woff2') format('woff2');}
 
-/* ======================================================
-   B) NAVIGATION (Dataport-Stil + Burger mobil)
-   ====================================================== */
+/* Basistypo */
+html,body{margin:0}
+body{font-family:'Roboto',Arial,sans-serif;color:var(--text-color);background:#fff;line-height:1.55;}
+a:focus,button:focus{outline:2px solid #1c527f; outline-offset:2px;}
 
-/* Kopfzeile + rote Topline */
-.site-header{ 
+/* ===== HEADER & NAVIGATION ===== */
+.site-header{
   display:flex; align-items:center; justify-content:space-between; gap:16px;
-  padding:12px var(--padx,24px); background:#fff;
-  border-bottom:2px solid var(--separator,#eeeff1);
-  border-top:4px solid var(--deep-red,#7d212b);
+  padding:12px var(--padx); background:#fff;
+  border-bottom:2px solid var(--separator); border-top:4px solid var(--brand-primary);
 }
 .logo{ height:60px; width:auto; }
-.logo-link{ display:inline-flex; align-items:center; }
+.logo-link{ display:inline-flex; align-items:center; text-decoration:none; }
 
-/* Desktop-Navigation */
+/* Desktop-Menü */
 .mainnav{}
-.nav-list{
-  display:flex; align-items:center; gap:32px; list-style:none; margin:0; padding:0;
-}
-/* feiner Trenner links wie bei Dataport */
+.nav-list{ display:flex; align-items:center; gap:32px; list-style:none; margin:0; padding:0; }
 .nav-list .nav-item:first-child{ padding-left:22px; position:relative; }
 .nav-list .nav-item:first-child::before{
   content:""; position:absolute; left:0; top:50%; transform:translateY(-50%);
   width:1px; height:18px; background:#cbd2d9;
 }
 .nav-link{
-  color: var(--headline,#3a424b); font-weight:700; text-decoration:none; position:relative; padding-bottom:2px;
-  background-image:linear-gradient(90deg,var(--deep-red,#7d212b),var(--deep-red,#7d212b));
+  color:var(--headline); font-weight:700; text-decoration:none; position:relative; padding-bottom:2px;
+  background-image:linear-gradient(90deg,var(--brand-primary),var(--brand-primary));
   background-repeat:no-repeat; background-size:0 1px; background-position:0 100%;
-  transition: background-size .2s ease, color .2s ease;
+  transition:background-size .2s ease, color .2s ease;
 }
-.nav-link::after{ content:" +"; color:var(--deep-red,#7d212b); } /* Plus-Suffix wie Dataport */
+.nav-link::after{ content:" +"; color:var(--brand-primary); }
 .nav-link:hover{ background-size:100% 1px; }
+.nav-link[aria-current="page"]{ color:var(--brand-primary); }
 
-/* Burger-Schalter (mobil sichtbar) */
+/* Burger (mobil sichtbar) */
 .nav-toggle{
-  display:none; align-items:center; gap:8px; background:transparent; border:0;
-  color:var(--headline,#3a424b); font:700 1rem/1 'Roboto',system-ui,Arial; cursor:pointer;
+  display:none; align-items:center; gap:8px; background:transparent; border:0; cursor:pointer;
+  color:var(--headline); font:700 1rem/1 'Roboto',system-ui,Arial;
 }
-.nav-toggle .icon rect{ fill: var(--deep-red,#7d212b); }
-.nav-toggle:focus{ outline:2px solid #1c527f; outline-offset:2px; }
+.nav-toggle .icon rect{ fill:var(--brand-primary); }
 
-/* Mobile-Layout */
+/* MOBIL: Burger aktiv, Menü als Dropdown (push-down) */
 @media (max-width: 980px){
   .logo{ height:48px; }
-  .nav-toggle{ display:inline-flex; }           /* Burger einblenden */
-  .mainnav{
-    position:relative; width:100%;
-  }
-  /* Dropdown: push-down (überlagert NICHT den Inhalt) */
+
+  .nav-toggle{ display:inline-flex; }
+
+  .mainnav{ position:relative; width:100%; }
   .nav-list{
     display:none; flex-direction:column; align-items:flex-end; gap:14px;
-    padding:16px var(--padx,24px);
-    background:#fff; border-bottom:2px solid var(--separator,#eeeff1);
+    padding:16px var(--padx); background:#fff; border-bottom:2px solid var(--separator);
     box-shadow:0 8px 24px rgba(0,0,0,.06);
   }
   .mainnav[data-open="true"] .nav-list{ display:flex; }
+
   .nav-list .nav-item:first-child{ padding-left:0; }
   .nav-list .nav-item:first-child::before{ display:none; }
 }
 
-/* Aktive Seite (optional) */
-.nav-link[aria-current="page"]{ color:var(--deep-red,#7d212b); }
+/* ===== HERO ===== */
+.hero{ background:#fff; border-bottom:2px solid var(--separator); }
+.hero-inner{ max-width:var(--maxw); margin:0 auto; padding:48px var(--padx) 24px; }
+.headline{ margin:0 0 6px; color:var(--headline); font-family:'Roboto Condensed',Roboto,Arial,sans-serif; font-weight:300;
+  font-size:clamp(28px,3.6vw+10px,46px);}
+.subhead{ margin:10px 0 0; color:var(--muted); font-size:clamp(.95rem,.6vw + .9rem,1.05rem); }
 
-/* ======================================================
-   C) Seiten‑Spezifika (Hero, Cards, Teaser)
-   ====================================================== */
-.hero{ background:#fff; border-bottom:2px solid var(--separator,#eeeff1); }
-.hero-inner{ max-width:var(--maxw,1120px); margin:0 auto; padding:48px var(--padx,24px) 24px; }
-.headline{
-  margin:0 0 6px; color:var(--headline,#3a424b);
-  font-weight:300; font-size:clamp(28px,3.6vw+10px,46px);
-}
-.subhead{ margin:10px 0 0; color:var(--muted,#54616e); font-size:clamp(.95rem,.6vw + .9rem,1.05rem); }
+/* ===== SECTIONS & CARDS ===== */
+.container{ max-width:var(--maxw); margin:0 auto; padding:0 var(--padx); }
+.section{ max-width:var(--maxw); margin:0 auto; padding:28px var(--padx) 8px; }
 
-.container{ max-width:var(--maxw,1120px); margin:0 auto; padding:0 var(--padx,24px); }
+.sec-head{ display:flex; align-items:center; gap:10px; margin:0 0 16px; }
+.sec-dot{ width:12px; height:12px; border-radius:3px; background:var(--brand-primary); }
+.sec-title{ margin:0; color:var(--headline); font-family:'Roboto Condensed',Roboto,Arial,sans-serif; font-weight:300; font-size:clamp(20px,1.6vw,26px); }
 
-/* News/Press-Teaser im Dataport-Look */
-.news-teaser{
-  background:#fff; border-bottom:2px solid var(--deep-red,#7d212b);
-  padding:24px 16px; display:grid; grid-template-columns:1fr auto; gap:12px;
-  transition: background-color .2s ease, color .2s ease;
-}
-.news-teaser:hover{ background:var(--deep-red,#7d212b); color:#fff; }
-.news-teaser .teaser-meta{ color:var(--muted,#54616e); font-size:.9rem; margin-bottom:.5rem; }
-.news-teaser:hover .teaser-meta{ color:#fff; opacity:.9; }
-.news-teaser .teaser-head{
-  margin:0; font-weight:300; color:var(--headline,#3a424b);
-  font-size:clamp(1.25rem,1.1rem + 1vw,1.8rem); line-height:1.15;
-}
-.news-teaser:hover .teaser-head{ color:#fff; }
-.news-teaser .teaser-icon{ align-self:center; font-size:clamp(1.6rem,1.2rem + 2vw,2.4rem); color:var(--deep-red,#7d212b); }
+.grid{ display:grid; gap:18px; grid-template-columns:repeat(3,1fr); align-items:stretch; }
+.card{ background:#fff; border-bottom:2px solid var(--brand-primary); border-radius:0 0 10px 10px; display:flex; flex-direction:column; overflow:hidden; }
+.card img{ width:100%; aspect-ratio:16/9; object-fit:cover; }
+.card .card-body{ padding:14px 16px; }
+.card h4{ margin:0; color:var(--brand-primary); font-size:1.05rem; }
 
-/* Footer */
-footer{ margin-top:28px; text-align:center; padding:20px; background:#fff; border-top:2px solid var(--separator,#eeeff1); color:#666; }
-  </style>
-</head>
+/* RESPONSIVE GRIDS */
+@media (max-width:1024px){ .grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:640px){ .grid{ grid-template-columns:1fr; } }
 
-<body>
-
-  <!-- =====================================================
-       HEADER (globaler Block)
-       - Desktop: Menü rechts
-       - Mobil : Burger öffnet Dropdown
-       ===================================================== -->
-  <header class="site-header">
-    <a class="logo-link" href="index.html" aria-label="Startseite">
-      <img src="assets/img/DonimanLogo1.png" alt="Logo Doniman F. Peña Parra" class="logo" />
-    </a>
-
-    <!-- Burger-Button -->
-    <button class="nav-toggle" id="navToggle" aria-controls="mainnav" aria-expanded="false">
-      <span class="nav-toggle-label">Menü</span>
-      <svg class="icon" width="28" height="18" viewBox="0 0 28 18" aria-hidden="true">
-        <rect x="0" y="0"  width="28" height="2" rx="1"></rect>
-        <rect x="0" y="8"  width="28" height="2" rx="1"></rect>
-        <rect x="0" y="16" width="28" height="2" rx="1"></rect>
-      </svg>
-    </button>
-
-    <!-- Navigation -->
-    <nav id="mainnav" class="mainnav" aria-label="Hauptnavigation" data-open="false">
-      <ul class="nav-list">
-        <li class="nav-item"><a class="nav-link" href="index.html" aria-current="page">Start</a></li>
-        <li class="nav-item"><a class="nav-link" href="projekte.html">Projekte & Leistungen</a></li>
-        <li class="nav-item"><a class="nav-link" href="prozessmodellierung.html">Prozessmodellierung</a></li>
-        <li class="nav-item"><a class="nav-link" href="uebermich_1.0.0.html">Über mich</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- =====================================================
-       HERO
-       ===================================================== -->
-  <section class="hero">
-    <div class="hero-inner">
-      <h1 class="headline">Digitale Verwaltung gestalten</h1>
-      <p class="subhead">ITSM · Datenmodelle · Dashboards · Prozessmanagement</p>
-      <p style="margin-top:18px;">
-        <a class="nav-link" href="#projekte" style="background:none">Direkt zu Projekten</a>
-      </p>
-    </div>
-  </section>
-
-  <!-- =====================================================
-       Schwerpunkte
-       ===================================================== -->
-  <section class="section container" id="projekte">
-    <div class="sec-head">
-      <span class="sec-dot" aria-hidden="true" style="width:12px;height:12px;border-radius:3px;background:var(--deep-red,#7d212b)"></span>
-      <h2 class="sec-title" style="margin:0;font-weight:300">Leistungsschwerpunkte</h2>
-    </div>
-
-    <div class="grid" style="display:grid;gap:18px;grid-template-columns:repeat(3,1fr);align-items:stretch;">
-      <article class="card" style="background:#fff;border-bottom:2px solid var(--deep-red,#7d212b);border-radius:0 0 10px 10px;overflow:hidden;">
-        <img src="assets/img/ITIL_Monitoring.png" alt="ITIL Monitoring" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;">
-        <div class="card-body" style="padding:14px 16px">
-          <h4 style="margin:0;color:var(--deep-red,#7d212b)">ITIL® Monitoring</h4>
-          <p style="margin:6px 0 0;color:#54616e">Governance, KPIs, faktenbasierte Steuerung & Reports.</p>
-        </div>
-      </article>
-
-      <article class="card" style="background:#fff;border-bottom:2px solid var(--deep-red,#7d212b);border-radius:0 0 10px 10px;overflow:hidden;">
-        <img src="assets/img/Datenmodell.png" alt="Datenmodell" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;">
-        <div class="card-body" style="padding:14px 16px">
-          <h4 style="margin:0;color:var(--deep-red,#7d212b)">Datenmodelle & ETL</h4>
-          <p style="margin:6px 0 0;color:#54616e">Saubere Domänenmodelle, robuste Pipelines, DAX.</p>
-        </div>
-      </article>
-
-      <article class="card" style="background:#fff;border-bottom:2px solid var(--deep-red,#7d212b);border-radius:0 0 10px 10px;overflow:hidden;">
-        <img src="assets/img/GPT_DashboardDesingn.png" alt="Dashboards" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;">
-        <div class="card-body" style="padding:14px 16px">
-          <h4 style="margin:0;color:var(--deep-red,#7d212b)">Dashboards</h4>
-          <p style="margin:6px 0 0;color:#54616e">Barrierearme Visualisierungen, klare Stories, Pflegeleicht.</p>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- =====================================================
-       News/Teaser
-       ===================================================== -->
-  <section class="section container" aria-labelledby="newsTitle">
-    <div class="sec-head">
-      <span class="sec-dot" aria-hidden="true" style="width:12px;height:12px;border-radius:3px;background:var(--deep-red,#7d212b)"></span>
-      <h2 id="newsTitle" class="sec-title" style="margin:0;font-weight:300">Aktuelles</h2>
-    </div>
-
-    <a class="news-teaser" href="projekte.html#powerbi">
-      <div>
-        <div class="teaser-meta">Power BI · Reporting</div>
-        <h3 class="teaser-head">ITIL® Practice‑Scorecards: Reifegrad auf einen Blick</h3>
-      </div>
-      <div class="teaser-icon" aria-hidden="true">›</div>
-    </a>
-
-    <a class="news-teaser" href="prozessmodellierung.html#bpmn">
-      <div>
-        <div class="teaser-meta">Prozessmodellierung</div>
-        <h3 class="teaser-head">BPMN‑Landkarte: Von Incident bis Service Request</h3>
-      </div>
-      <div class="teaser-icon" aria-hidden="true">›</div>
-    </a>
-  </section>
-
-  <footer>
-    &copy; 2025 Doniman F. Peña Parra – im Dataport‑Stil
-  </footer>
-
-  <!-- =====================================================
-       Menü‑Script (klein, barrierearm)
-       - toggelt data-open auf <nav>
-       - setzt aria-expanded auf dem Button
-       - schließt bei Klick außerhalb & ESC
-       ===================================================== -->
-  <script>
-    const btn = document.getElementById('navToggle');
-    const nav = document.getElementById('mainnav');
-
-    if (btn && nav){
-      const setOpen = (open) => {
-        btn.setAttribute('aria-expanded', String(open));
-        nav.setAttribute('data-open', String(open));
-      };
-      btn.addEventListener('click', () => {
-        const open = btn.getAttribute('aria-expanded') === 'true';
-        setOpen(!open);
-      });
-      window.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
-      document.addEventListener('click', (e) => {
-        if (!e.target.closest('.site-header')) setOpen(false);
-      });
-      window.addEventListener('resize', () => { if (window.innerWidth > 980) setOpen(false); });
-    }
-  </script>
-</body>
-</html>
+/* ===== FOOTER ===== */
+footer{ margin-top:28px; text-align:center; padding:20px; background:#fff; border-top:2px solid var(--separator); color:#666; }
