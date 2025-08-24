@@ -1,356 +1,95 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Projekte &amp; Leistungen – Doniman F. Peña Parra</title>
+  <title>Start – Doniman F. Peña Parra</title>
 
-  <!-- Einheitliche Schrift (für DSGVO ideal: später lokal hosten) -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-
-  <style>
-    /* ===============================
-       1) Design‑Variablen (global)
-       =============================== */
-    :root{
-      --primary-color: #cc0033;   /* Hauptakzent/Links */
-      --deep-red:      #7d212b;   /* dunkler Akzent (Buttons/Borders) */
-      --text-color:    #1a1a1a;   /* Fließtext */
-      --muted:         #54616e;   /* Sekundärtext */
-      --light-gray:    #f4f4f4;   /* helle Flächen */
-      --white:         #fff;      /* Karten/Hintergrund */
-      --separator:     #eeeff1;   /* feine Trennlinie Header/Hero/Footer */
-
-      --maxw:   1120px;           /* Content‑Breite */
-      --padx:   24px;             /* Seitenabstand */
-      --radius: 14px;             /* Kanten‑Radius (Cards) */
-      --shadow: 0 6px 18px rgba(0,0,0,.06); /* zarte Schatten */
-
-      /* Transparente Flächen vor dem Hintergrundbild (Lesbarkeit) */
-      --panel-bg: rgba(255,255,255,.92);
-    }
-
-    /* ===============================
-       2) Globaler Seitenhintergrund
-       — zeigt netzt.png stets seitenfüllend
-       =============================== */
-
-    /* Variante A (empfohlen): Hintergrund über <html> */
-    html{
-      /* Pfad bei Bedarf anpassen (z. B. nur "6613575_17930.png") */
-      background: url("assets/img/Präsentation1.png") center center / cover no-repeat fixed;
-      /* cover = füllt den Viewport, „fixed“ = bleibt stehen beim Scrollen */
-    }
-
-    /* Fallback für alte Browser + sichere Basis */
-    body{ background: transparent; }
-
-    /* Optional: leichte Abdunklung für bessere Lesbarkeit von Text über dem Bild.
-       -> auskommentieren, falls nicht gewünscht. */
-    body::before{
-      content:"";
-      position:fixed; inset:0;        /* deckt gesamten Viewport */
-      background: rgba(255,255,255,.04); /* ganz leichte Aufhellung; für dunkle Bilder ggf. 0.08–0.12 wählen */
-      pointer-events:none; z-index:-1; /* klicks gehen „durch“ */
-    }
-
-    /* ===============================
-       3) Base / Typo / A11y‑Fokus
-       =============================== */
-    html,body{ margin:0; }
-    body{
-      font-family: 'Roboto', system-ui, Arial, sans-serif;
-      color: var(--text-color);
-      line-height: 1.55;
-    }
-    a:focus, button:focus{ outline:2px solid #1c527f; outline-offset:2px; }
-
-    /* ===============================
-       4) Header & Navigation
-       — liegen auf halbtransparentem Panel,
-         damit Text vor dem Hintergrund gut lesbar bleibt
-       =============================== */
-    header{
-      display:flex; justify-content:space-between; align-items:center;
-      padding:20px 40px; flex-wrap:wrap;
-      background: var(--panel-bg);             /* halbtransparentes Panel über dem Hintergrund */
-      backdrop-filter: blur(2px);              /* leichte Unschärfe (unterstützte Browser) */
-      border-bottom:2px solid var(--separator);
-    }
-    .logo{ height:80px; width:auto; }
-    nav{ display:flex; gap:30px; flex-wrap:wrap; }
-    nav a{
-      text-decoration:none; font-weight:700; color:var(--primary-color);
-      background-image:linear-gradient(90deg,var(--deep-red),var(--deep-red));
-      background-position:0 100%; background-repeat:no-repeat; background-size:0 1px;
-      transition: background-size .2s ease, color .2s ease;
-    }
-    nav a:hover{ color:var(--deep-red); background-size:100% 1px; }
-
-    /* ===============================
-       5) Hero (Seitenkopf)
-       — ebenfalls auf Panel für Lesbarkeit
-       =============================== */
-    .hero{
-      background: var(--panel-bg);
-      backdrop-filter: blur(2px);
-      border-bottom:2px solid var(--separator);
-    }
-    .hero-inner{ max-width:var(--maxw); margin:0 auto; padding:48px var(--padx) 24px; }
-    .headline{
-      margin:0 0 6px; color:var(--deep-red);
-      font-size:clamp(28px,3.6vw + 10px,46px);
-      font-weight:700;
-    }
-    .subline{ margin:0; color:var(--muted); font-size:clamp(16px,.35vw + 14px,18px); }
-
-    /* ===============================
-       6) Sektionen / Cards / Grids
-       — Sektionen liegen ebenfalls auf Paneelen
-       =============================== */
-    .section{
-      max-width:var(--maxw); margin:0 auto; padding:28px var(--padx) 8px;
-      background: var(--panel-bg); backdrop-filter: blur(2px);
-      border:1px solid rgba(0,0,0,.03);
-      border-radius: 12px;
-      margin-top: 16px;
-    }
-    .sec-head{ display:flex; align-items:center; gap:10px; margin:0 0 16px; }
-    .sec-dot{ width:12px; height:12px; border-radius:3px; background:var(--deep-red); }
-    .sec-title{ margin:0; color:var(--deep-red); font-size:clamp(20px,1.6vw,26px); font-weight:700; }
-    .lead{ color:var(--muted); line-height:1.7; text-align:justify; margin:0; }
-
-    .grid{
-      display:grid; gap:18px;
-      grid-template-columns: repeat(3,1fr);
-      align-items:stretch;
-    }
-    .card{
-      background:#fff;
-      border-bottom:2px solid var(--deep-red);
-      border-radius:0 0 10px 10px;
-      box-shadow:none;
-      display:flex; flex-direction:column; overflow:hidden;
-    }
-    .card img{ width:100%; aspect-ratio:16/9; object-fit:cover; cursor:zoom-in; }
-    .card .card-body{ padding:14px 16px; display:flex; flex-direction:column; gap:8px; }
-    .card h4{ margin:0; color:var(--primary-color); font-size:1.05rem; font-weight:700; }
-    .card p{ margin:0; color:var(--muted); line-height:1.55; }
-
-    /* Dezenter Hover für GPT‑Agenten‑Karten */
-    #gpt-agents .card img{
-      cursor:pointer; transition: transform .25s ease, box-shadow .25s ease;
-    }
-    #gpt-agents .card img:hover{
-      transform: scale(1.05); box-shadow: 0 6px 18px rgba(0,0,0,.25);
-    }
-
-    /* 2‑Spalten Layout */
-    .two-col{ display:grid; gap:20px; grid-template-columns:1.1fr 1fr; }
-    .two-col img{ width:100%; border-radius:12px; box-shadow:var(--shadow); }
-
-    /* Listen */
-    .checklist{ padding-left:18px; color:var(--muted); line-height:1.7; }
-    .checklist li{ margin-bottom:6px; }
-
-    /* ===============================
-       7) Lightbox (Zoom ohne neues Tab)
-       =============================== */
-    .lightbox{
-      position:fixed; inset:0; display:none; place-items:center;
-      background:rgba(0,0,0,.72); z-index:100; padding:24px;
-    }
-    .lightbox.is-open{ display:grid; }
-    .lightbox img{ max-width:90vw; max-height:85vh; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.4); }
-    .lightbox button{
-      position:absolute; top:16px; right:16px; background:#fff; border:0;
-      padding:6px 10px; border-radius:6px; cursor:pointer;
-    }
-
-    /* ===============================
-       8) Footer
-       =============================== */
-    footer{
-      margin-top:28px; text-align:center; padding:20px;
-      background: var(--panel-bg); backdrop-filter: blur(2px);
-      color:#666; border-top:2px solid var(--separator);
-    }
-
-    /* ===============================
-       9) Responsive
-       =============================== */
-    @media(max-width:1024px){
-      .grid{grid-template-columns:repeat(2,1fr);}
-      .two-col{grid-template-columns:1fr;}
-    }
-    @media(max-width:640px){
-      .grid{grid-template-columns:1fr;}
-      header{flex-direction:column; align-items:flex-start; padding:20px;}
-      nav{flex-direction:column; gap:12px; margin-top:10px;}
-      .logo{height:60px;}
-      .hero-inner{padding:32px var(--padx);}
-    }
-  </style>
+  <!-- Globales Stylesheet im Dataport-Look -->
+  <link rel="stylesheet" href="assets/css/site.css" />
 </head>
-<body>
 
-  <!-- Header: Logo + Hauptnavigation (liegt auf halbtransparentem Panel) -->
-  <header>
-    <img src="assets/img/DonimanLogo1.png" class="logo" alt="Logo Doniman F. Peña Parra">
-    <nav aria-label="Hauptnavigation">
-      <a href="index.html">Hauptseite</a>
-      <a href="uebermich_1.0.0.html">Über mich</a>
-      <a href="prozessmodellierung.html">Prozessmodellierung</a>
+<body>
+  <!-- =========================
+       HEADER (global, überall gleich)
+       - Desktop: horizontale Navi rechts
+       - Mobil : Burger klappt Navi auf (push‑down)
+       ========================= -->
+  <header class="site-header">
+    <a class="logo-link" href="projekte.html" aria-label="Startseite">
+      <img src="assets/img/DonimanLogo1.png" alt="Logo Doniman F. Peña Parra" class="logo" />
+    </a>
+
+    <!-- Burger-Button (nur mobil sichtbar) -->
+    <button class="nav-toggle" id="navToggle" aria-controls="mainnav" aria-expanded="false">
+      <span>Menü</span>
+      <!-- kleines “Hamburger”-Icon -->
+      <svg class="icon" width="28" height="18" viewBox="0 0 28 18" aria-hidden="true">
+        <rect x="0" y="0"  width="28" height="2" rx="1"></rect>
+        <rect x="0" y="8"  width="28" height="2" rx="1"></rect>
+        <rect x="0" y="16" width="28" height="2" rx="1"></rect>
+      </svg>
+    </button>
+
+    <nav id="mainnav" class="mainnav" aria-label="Hauptnavigation" data-open="false">
+      <ul class="nav-list">
+        <li class="nav-item"><a class="nav-link" href="index.html" aria-current="page">Start</a></li>
+        <li class="nav-item"><a class="nav-link" href="uebermich_1.0.0.html">Über mich</a></li>
+        <li class="nav-item"><a class="nav-link" href="prozessmodellierung.html">Prozessmodellierung</a></li>
+      </ul>
     </nav>
   </header>
 
-  <!-- Hero (Panel über dem Hintergrund) -->
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-inner">
-      <h1 class="headline">Projekte &amp; Leistungen</h1>
-      <p class="subline">Power BI Dashboards · Datenmodell · GPT‑Agenten · ITIL‑Monitoring</p>
+      <h1 class="headline">Digitale Verwaltung gestalten</h1>
+      <p class="subhead">ITSM · Datenmodelle · Dashboards · Prozessmanagement</p>
+      <p style="margin-top:18px;">
+        <a class="nav-link" href="#projekte" style="background:none">Direkt zu Projekten</a>
+      </p>
     </div>
   </section>
 
-  <!-- Section: Power BI – Dashboards -->
-  <section class="section" id="powerbi">
+  <!-- Beispiel-Inhalt -->
+  <section id="projekte" class="section container">
     <div class="sec-head">
       <span class="sec-dot" aria-hidden="true"></span>
-      <h2 class="sec-title">Power BI – Dashboards &amp; Berichte</h2>
+      <h2 class="sec-title">Leistungsschwerpunkte</h2>
     </div>
 
     <div class="grid">
       <article class="card">
-        <img src="assets/img/ITIL_Monitoring.png" alt="ITIL Practices" data-full="assets/img/ITIL_Monitoring.png">
+        <img src="assets/img/ITIL_Monitoring.png" alt="ITIL Monitoring" loading="lazy">
         <div class="card-body">
-          <h4>Bewertung der ITIL® Practices</h4>
-          <p>Reifegradbewertung verschiedener ITIL® Practices.</p>
+          <h4>ITIL® Monitoring</h4>
+          <p>Governance, KPIs, faktenbasierte Steuerung & Reports.</p>
         </div>
       </article>
 
       <article class="card">
-        <img src="assets/img/IT32ReferatKapa.png" alt="Kapazität" data-full="assets/img/IT32ReferatKapa.png">
+        <img src="assets/img/Datenmodell.png" alt="Datenmodell" loading="lazy">
         <div class="card-body">
-          <h4>Kapazität &amp; Backlog</h4>
-          <p>Kreisdiagramm der Teamkapazitäten und Engpässe.</p>
+          <h4>Datenmodelle & ETL</h4>
+          <p>Saubere Domänenmodelle, robuste Pipelines, DAX.</p>
         </div>
       </article>
 
       <article class="card">
-        <img src="assets/img/Datenmodell.png" alt="DAX" data-full="assets/img/Datenmodell.png">
+        <img src="assets/img/GPT_DashboardDesingn.png" alt="Dashboards" loading="lazy">
         <div class="card-body">
-          <h4>DAX‑Skripting</h4>
-          <p>Datenaggregation durch DAX‑Formeln im BI‑Kontext.</p>
+          <h4>Dashboards</h4>
+          <p>Barrierearme Visualisierungen, klare Stories, pflegeleicht.</p>
         </div>
       </article>
     </div>
   </section>
 
-  <!-- Section: Power BI – Datenmodell -->
-  <section class="section" id="datenmodell">
-    <div class="sec-head">
-      <span class="sec-dot" aria-hidden="true"></span>
-      <h2 class="sec-title">Power BI Datenmodell</h2>
-    </div>
+  <footer>
+    &copy; 2025 Doniman F. Peña Parra – Bewerbung für Dataport
+  </footer>
 
-    <div class="two-col">
-      <img src="assets/img/Datenmodell_2.png" alt="Power BI Datenmodell" data-full="assets/img/Datenmodell_2.png">
-      <div>
-        <p class="lead">Tabellen und Beziehungen im ITSM‑Kontext: Geräteverwaltung, Downtimes und KPIs.</p>
-        <ul class="checklist">
-          <li><b>Faktentabelle:</b> fact_UngeplanteDowntimes</li>
-          <li><b>Dimensionen:</b> Kalender, Gerät, Gerätearten</li>
-          <li><b>KPIs:</b> Anzahl Drucker, Server etc.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section: Eigene GPT‑Agenten (externe Links) -->
-  <section class="section" id="gpt-agents">
-    <div class="sec-head">
-      <span class="sec-dot" aria-hidden="true"></span>
-      <h2 class="sec-title">Meine GPT‑Agenten</h2>
-    </div>
-
-    <div class="grid">
-      <article class="card">
-        <a href="https://chatgpt.com/g/g-UYiBEofKD-itsm-standards-consultant" target="_blank" rel="noopener">
-          <img src="assets/img/GPT_ITSM_StandardsConsultant.png" alt="ITSM Consultant">
-        </a>
-        <div class="card-body">
-          <h4>ITSM‑Standards Consultant</h4>
-          <p>Unterstützt bei ITSM‑Frameworks (ITIL®4, ISO/IEC 20000, COBIT) – von Strategie bis operative Umsetzung.</p>
-        </div>
-      </article>
-
-      <article class="card">
-        <a href="https://chatgpt.com/g/g-6734f04e060c8190a7fadc8c552b0e6e-modellierung-betrieblichen-informationssystemen" target="_blank" rel="noopener">
-          <img src="assets/img/GPT_ModellierungBetrieblicheInformationssystemen.png" alt="Modellierung">
-        </a>
-        <div class="card-body">
-          <h4>Modellierung betrieblicher Informationssysteme</h4>
-          <p>Beratung zu Daten‑ &amp; Prozessmodellen. Fokus: Risiko‑Reduktion, sichere Architekturen, praxisnahe Modelle.</p>
-        </div>
-      </article>
-
-      <article class="card">
-        <a href="https://chatgpt.com/g/g-68150f83fda081919d979c8418039ee5-dashboard-design" target="_blank" rel="noopener">
-          <img src="assets/img/GPT_DashboardDesingn.png" alt="Dashboard Design">
-        </a>
-        <div class="card-body">
-          <h4>Dashboard Design</h4>
-          <p>KPI‑Design &amp; Visualisierung für IT‑Betrieb. Wartbare BI‑Modelle nach ITIL®‑Standards.</p>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- Lightbox‑Overlay (einmal je Seite) -->
-  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Bildvergrößerung">
-    <button type="button" id="lightboxClose" aria-label="Schließen">&#x2715;</button>
-    <img id="lightboxImg" src="" alt="Vergrößertes Bild">
-  </div>
-
-  <!-- Footer (Panel über dem Hintergrund) -->
-  <footer>&copy; 2025 Doniman F. Peña Parra – Bewerbung für Dataport</footer>
-
-  <!-- JS: Lightbox (kompakt) -->
-  <script>
-    // Lightbox‑Elemente
-    const lb     = document.getElementById('lightbox');
-    const lbImg  = document.getElementById('lightboxImg');
-    const lbExit = document.getElementById('lightboxClose');
-
-    // Delegation: klickbare Bilder mit data-full in die Lightbox laden
-    document.addEventListener('click', (e) => {
-      const t = e.target;
-      const isZoomable = t.matches('img[data-full]') && !t.closest('#gpt-agents a');
-      if (isZoomable) {
-        e.preventDefault();
-        lbImg.src = t.dataset.full;
-        lb.classList.add('is-open');
-        lb.setAttribute('aria-hidden','false');
-        lbExit.focus();
-        return;
-      }
-      // Schließen: Klick auf Overlay oder auf X
-      if (t === lb || t === lbExit) {
-        lb.classList.remove('is-open');
-        lb.setAttribute('aria-hidden','true');
-        lbImg.src = '';
-      }
-    });
-
-    // ESC‑Taste schließt die Lightbox
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && lb.classList.contains('is-open')) {
-        lb.classList.remove('is-open');
-        lb.setAttribute('aria-hidden','true');
-        lbImg.src = '';
-      }
-    });
-  </script>
+  <!-- Globales Menü‑Script -->
+  <script src="assets/js/menu.js"></script>
 </body>
 </html>
