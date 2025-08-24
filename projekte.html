@@ -8,23 +8,27 @@
   <!-- Globales Stylesheet im Dataport-Look -->
   <link rel="stylesheet" href="assets/css/site.css" />
   <script src="assets/js/site.js" defer></script>
+
+  <style>
+    /* --- Seiten-spezifische Minimalanpassungen ------------------------- */
+    /* KI-Agenten: Bild soll als Link wirken, aber NICHT zoomen */
+    #ki-agents .card img { cursor: pointer; }           /* Zeigt „klickbar“ an */
+    #ki-agents .card a { text-decoration: none; color: inherit; display:block; }
+    /* (Die generellen Card-Styles inkl. object-fit, aspect-ratio kommen aus site.css) */
+  </style>
 </head>
 
 <body>
   <!-- =========================
        HEADER (global, überall gleich)
-       - Desktop: horizontale Navi rechts
-       - Mobil : Burger klappt Navi auf (push‑down)
        ========================= -->
   <header class="site-header">
     <a class="logo-link" href="projekte.html" aria-label="Startseite">
       <img src="assets/img/DoniLogo_1.0.0.png" alt="Logo Doniman F. Peña Parra" class="logo" />
     </a>
 
-    <!-- Burger-Button (nur mobil sichtbar) -->
     <button class="nav-toggle" id="navToggle" aria-controls="mainnav" aria-expanded="false">
       <span>Menü</span>
-      <!-- kleines “Hamburger”-Icon -->
       <svg class="icon" width="28" height="18" viewBox="0 0 28 18" aria-hidden="true">
         <rect x="0" y="0"  width="28" height="2" rx="1"></rect>
         <rect x="0" y="8"  width="28" height="2" rx="1"></rect>
@@ -47,11 +51,10 @@
       <h1 class="headline">Digitale Verwaltung gestalten</h1>
       <p class="subhead">Von Daten zu Entscheidungen</p>
       <p class="subhead">ITSM‑Controlling nach ITIL® 4 · KPIs · Datenmodelle/ETL · Dashboards · Prozessmanagement</p>
-      <p style="margin-top:18px;">
     </div>
   </section>
 
-  <!-- Beispiel-Inhalt -->
+  <!-- Leistungsschwerpunkte (unverändert: Lightbox aktiv durch data-full oder site.js-Logik) -->
   <section id="projekte" class="section container">
     <div class="sec-head">
       <span class="sec-dot" aria-hidden="true"></span>
@@ -60,49 +63,98 @@
 
     <div class="grid">
       <article class="card">
-        <img src="assets/img/PowerBI/CIM.png" alt="ITIL Monitoring" loading="lazy">
+        <img src="assets/img/PowerBI/CIM.png" alt="ITIL Monitoring – Continual Improvement Dashboard mit Reifegrad, KPI-Ampeln und Priorisierung" loading="lazy" data-full="assets/img/PowerBI/CIM.png">
         <div class="card-body">
           <h4>ITIL® Monitoring mit Continual Improvement</h4>
-          <p>Das ITIL® Monitoring Continual Improvement Dashboard zeigt den Reifegrad der ITIL® 4 Practices. Es kombiniert KPI-Messung, Ampellogik und Priorisierung, um Verbesserungsmaßnahmen faktenbasiert zu steuern und kontinuierlich nachzuverfolgen.</p>
+          <p>Das Dashboard zeigt Reifegrade, KPI-Ampeln und priorisierte Maßnahmen für faktenbasierte Verbesserungen.</p>
         </div>
       </article>
 
       <article class="card">
-        <img src="assets/img/PowerBI/KPIs_Dashboard.png" alt="KPIs - Dashboard" loading="lazy">
+        <img src="assets/img/PowerBI/KPIs_Dashboard.png" alt="KPI-Dashboard – Tickets, Changes, IT-Assets und Vertragsvolumen, inklusive Performance-Übersicht" loading="lazy" data-full="assets/img/PowerBI/KPIs_Dashboard.png">
         <div class="card-body">
-          <h4>KPI-Design, Reporting und ITSM-Controlling.</h4>
-          <p>Das KPI-Dashboard bündelt zentrale Kennzahlen aus dem ITSM-Umfeld: Tickets, Changes, IT-Assets und Vertragsvolumen. Ergänzend visualisiert es die aktuelle Service-Performance und zeigt Optimierungspotenziale faktenbasiert auf.</p>
+          <h4>KPI‑Design, Reporting & ITSM‑Controlling</h4>
+          <p>Zentrale Kennzahlen im Überblick, mit Performance‑Sicht und Optimierungspotenzialen.</p>
         </div>
       </article>
 
       <article class="card">
-        <img src="assets/img/PowerBI/ReferatKapasi.png" alt="Kapazitäts-Dashboard" loading="lazy">
+        <img src="assets/img/PowerBI/ReferatKapasi.png" alt="Kapazitäts-Dashboard – Auslastung, Story-Bearbeitung, Kapazitätstage und -stunden je Team" loading="lazy" data-full="assets/img/PowerBI/ReferatKapasi.png">
         <div class="card-body">
-          <h4>Kapazitäts-Dashboard</h4>
-          <p>Das Kapazitäts-Dashboard visualisiert die Auslastung und Story-Bearbeitung innerhalb der Teams. Es kombiniert Kapazitätstage und -stunden mit Statusübersichten und liefert eine faktenbasierte Grundlage für Planung und Steuerung im IT-Service-Management.</p>
+          <h4>Kapazitäts‑Dashboard</h4>
+          <p>Transparenz zur Team‑Auslastung und Steuerungsbasis für Planung im IT‑Service‑Management.</p>
         </div>
       </article>
     </div>
   </section>
-  
-  <!-- Kontakt (global, immer vor dem Footer) -->
-<section class="contact-block" aria-labelledby="kontaktTitle">
-  <div class="contact-inner">
-    <h2 id="kontaktTitle" class="contact-title">Kontakt</h2>
-    <p class="contact-name">Doniman F. Peña Parra</p>
 
-      <!-- Spam-sicher: Text + href werden per site.js gesetzt -->
+  <!-- =========================================================
+       NEU: KI-AGENTEN (3 Karten als LINKS, KEINE Zoom-Lightbox)
+       ========================================================= -->
+  <section id="ki-agents" class="section container" aria-labelledby="kiTitle">
+    <div class="sec-head">
+      <span class="sec-dot" aria-hidden="true"></span>
+      <h2 id="kiTitle" class="sec-title">KI‑Agenten</h2>
+    </div>
+
+    <div class="grid">
+      <!-- Agent 1 -->
+      <article class="card">
+        <!-- Ganze Karte ist klickbar: <a> umschließt Bild + Text -->
+        <a href="https://chatgpt.com/g/g-UYiBEofKD-itsm-standards-consultant" target="_blank" rel="noopener">
+          <img src="assets/img/GPT_ITSM_StandardsConsultant.png"
+               alt="KI-Agent: ITSM‑Standards Consultant – Beratung zu ITIL®4, ISO/IEC 20000 und COBIT mit Empfehlungen von Strategie bis Betrieb"
+               loading="lazy">
+          <div class="card-body">
+            <h4>ITSM‑Standards Consultant</h4>
+            <p>ITIL®4, ISO/IEC 20000, COBIT – praxisnahe Empfehlungen von Strategie bis Betrieb.</p>
+          </div>
+        </a>
+      </article>
+
+      <!-- Agent 2 -->
+      <article class="card">
+        <a href="https://chatgpt.com/g/g-6734f04e060c8190a7fadc8c552b0e6e-modellierung-betrieblichen-informationssystemen" target="_blank" rel="noopener">
+          <img src="assets/img/GPT_ModellierungBetrieblicheInformationssystemen.png"
+               alt="KI-Agent: Modellierung betrieblicher Informationssysteme – Beratung zu Daten- und Prozessmodellen, sichere Architekturen, Risiko-Reduktion"
+               loading="lazy">
+          <div class="card-body">
+            <h4>Modellierung betrieblicher Informationssysteme</h4>
+            <p>Daten‑ & Prozessmodelle, sichere Architekturen, Risiko‑Reduktion.</p>
+          </div>
+        </a>
+      </article>
+
+      <!-- Agent 3 -->
+      <article class="card">
+        <a href="https://chatgpt.com/g/g-68150f83fda081919d979c8418039ee5-dashboard-design" target="_blank" rel="noopener">
+          <img src="assets/img/GPT_DashboardDesingn.png"
+               alt="KI-Agent: Dashboard Design – KPI‑Design und barrierearme Visualisierung, wartbare BI‑Modelle"
+               loading="lazy">
+          <div class="card-body">
+            <h4>Dashboard Design</h4>
+            <p>KPI‑Design & barrierearme Visualisierung, wartbare BI‑Modelle.</p>
+          </div>
+        </a>
+      </article>
+    </div>
+  </section>
+
+  <!-- Kontakt (global, immer vor dem Footer) -->
+  <section class="contact-block" aria-labelledby="kontaktTitle">
+    <div class="contact-inner">
+      <h2 id="kontaktTitle" class="contact-title">Kontakt</h2>
+      <p class="contact-name">Doniman F. Peña Parra</p>
       <p class="contact-email">
         <a id="contactEmail"
            data-email-user="dofp79"
            data-email-domain="hotmail.com"
            href="#"
            rel="nofollow">E‑Mail anzeigen</a>
-        <noscript> (dofp79&nbsp;[at]&nbsp;hotmail&nbsp;[dot]&nbsp;com) </noscript>
+        <noscript>(dofp79&nbsp;[at]&nbsp;hotmail&nbsp;[dot]&nbsp;com)</noscript>
       </p>
-  </div>
-</section>
-
+    </div>
+  </section>
 
   <footer>
     &copy; 2025 Doniman F. Peña Parra – Bewerbung für Dataport
