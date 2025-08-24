@@ -2,267 +2,87 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <!-- Wichtig: sorgt dafür, dass die Seite auf mobilen Geräten korrekt skaliert -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Prozessmodellierung – Doniman F. Peña Parra</title>
 
-  <!-- Schriftart & (optionales) zentrales Stylesheet -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <!-- Globale Styles/JS (Dataport-Look & Standard-Verhalten) -->
+  <link rel="stylesheet" href="assets/css/site.css" />
+  <script src="assets/js/site.js" defer></script>
+  <script src="assets/js/menu.js" defer></script>
 
+  <!-- (Optional) minimale Seiten-Extras -->
   <style>
-    /* =========================================================
-       >>> HARDSAFE-RESPONSIVE-STYLES (überschreiben notfalls style.css)
-       Diese Styles stellen sicher, dass Bilder & Layout auch dann
-       responsiv sind, wenn style.css fehlt oder etwas anderes setzt.
-       Du kannst sie später 1:1 in assets/css/style.css verschieben.
-       ========================================================= */
-
-    /* ---------- Design-Variablen (Fallbacks) ---------- */
-    :root{
-      --primary:#cc0033;
-      --deep:#7d212b;
-      --text:#1a1a1a;
-      --muted:#54616e;
-      --bg:#fff;
-      --bg-soft:#f4f4f4;
-      --maxw:1120px;
-      --padx:24px;
-      --radius:14px;
-      --shadow:0 8px 20px rgba(0,0,0,.06);
-    }
-
-    html, body { margin:0; }
-    body{
-      font-family:'Roboto', system-ui, -apple-system, Segoe UI, Arial, sans-serif;
-      color:var(--text);
-      background:var(--bg);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
-
-    /* ---------- Bilder IMMER fluid machen ---------- */
-    /* Alle <img> schrumpfen mit dem Container; SVGs inklusive */
-    img{ max-width:100%; height:auto; display:block; }
-
-    /* Medien-Container für Zoom-Karten: hält Layout stabil, vermeidet Sprünge */
-    .media{
-      position:relative;
-      display:block;
-      background:var(--bg-soft);
-      /* Bei Karten ist oft 16:9 sinnvoll – kannst du anpassen oder entfernen */
-      aspect-ratio: 16 / 9;
-      overflow:hidden;
-      border-radius: 10px;
-    }
-    .media > img{
-      /* Bild passt sich der Box an – ohne zu verzerren */
-      width:100%;
-      height:100%;
-      object-fit:contain; /* bei Fotos ggf. 'cover' */
-      background:#fff;
-      transition: transform .25s ease;
-    }
-    .media:hover > img{ transform: scale(1.02); }
-
-    /* Kleines “Lupen”-Badge */
-    .zoom-hint{
-      position:absolute; right:10px; bottom:10px;
-      font-size:.85rem; line-height:1;
-      background:rgba(0,0,0,.6); color:#fff;
-      padding:4px 8px; border-radius:999px;
-      user-select:none;
-    }
-
-    /* ---------- Header / Navigation ---------- */
-    header{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:16px;
-      padding:18px 40px; background:var(--bg-soft);
-      flex-wrap:wrap; /* bricht sauber um, wenn wenig Platz */
-    }
-    .logo{ height: clamp(60px, 8vw, 80px); width:auto; }
-
-    nav{ display:flex; flex-wrap:wrap; gap:20px; }
-    nav a{
-      color:var(--primary); text-decoration:none; font-weight:700;
-    }
-    nav a:hover{ color:var(--deep); }
-
-    /* ---------- Hero ---------- */
-    .hero{ background:var(--bg-soft); }
-    .hero-inner{
-      max-width:var(--maxw); margin:0 auto; padding:40px var(--padx) 22px;
-    }
-    .headline{
-      margin:0 0 6px; color:var(--deep); font-weight:700;
-      font-size: clamp(28px, 3.6vw + 8px, 44px); line-height:1.1;
-    }
-    .subline{
-      margin:0; color:var(--muted);
-      font-size: clamp(16px, .35vw + 14px, 18px);
-    }
-
-    /* ---------- Sektionen ---------- */
-    .section{ max-width:var(--maxw); margin:0 auto; padding:26px var(--padx); }
-    .sec-head{ display:flex; align-items:center; gap:10px; margin:0 0 12px; }
-    .sec-dot{ width:12px; height:12px; border-radius:999px; background:var(--deep); }
-    .sec-title{ margin:0; color:var(--deep); font-size:clamp(20px,1.6vw,26px); font-weight:700; }
-
-    .lead{
-      color:var(--muted); line-height:1.7; margin:0;
-      text-align:justify; text-justify:inter-word; hyphens:auto;
-    }
-
-    /* ---------- Karten & Grids ---------- */
-    .grid{
-      display:grid; gap:18px; margin-top:12px;
-      grid-template-columns:repeat(3,minmax(0,1fr)); /* 3 Spalten, schrumpfbar */
-      align-items:stretch;
-    }
-    .grid-2{ grid-template-columns:repeat(2,minmax(0,1fr)); }
-    .grid-1{ grid-template-columns:1fr; }
-
-    .card{
-      display:flex; flex-direction:column;
-      background:#fff; border:1px solid rgba(0,0,0,.06);
-      border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;
-    }
-    .card-body{ padding:14px 16px; }
-    .card h4{ margin:0 0 6px; color:var(--primary); font-size:1.05rem; }
-    .card p{ margin:0; color:var(--muted); line-height:1.55; }
-
-    /* Buttons/Links unter Bildern */
-    .media-actions{
-      display:flex; gap:10px; align-items:center; padding:10px 16px 0;
-      flex-wrap:wrap;
-    }
-    .btn-link{
-      display:inline-block; text-decoration:none; font-weight:700;
-      background:#fff; color:var(--primary);
-      border:1px solid rgba(0,0,0,.08);
-      padding:8px 12px; border-radius:10px;
-    }
-    .btn-link:hover{ color:#fff; background:var(--primary); border-color:var(--primary); }
-
-    /* ---------- Callouts / Listen ---------- */
-    .callout{
-      border-left:4px solid var(--primary);
-      background:#fff; padding:14px 16px; border-radius:10px; box-shadow:var(--shadow);
-    }
-    .stack > *{ margin:0; }
-    .stack > * + *{ margin-top:14px; }
-    .checklist{ margin:10px 0 0; padding-left:18px; color:var(--muted); line-height:1.7; }
-    .checklist li{ margin-bottom:6px; }
-
-    /* ---------- Lightbox ---------- */
-    .lightbox{
-      position:fixed; inset:0; display:none; place-items:center;
-      background:rgba(0,0,0,.78); z-index:50; padding:24px;
-    }
-    .lightbox.is-open{ display:grid; }
-    .lightbox img{
-      /* Das vergrößerte Bild: passt sich Viewport an */
-      max-width:min(1200px,95vw);
-      max-height:88vh;
-      width:auto; height:auto; /* wichtig für SVG/PNG Responsiveness */
-      border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.35); background:#fff;
-    }
-    .lightbox button{
-      position:absolute; top:16px; right:16px; cursor:pointer;
-      background:#fff; border:0; border-radius:10px; padding:8px 12px; font-weight:700;
-    }
-
-    /* ---------- Bottom-Actions & Footer ---------- */
-    .actions{
-      max-width:var(--maxw); margin:12px auto 0; padding:0 var(--padx) 24px;
-      display:flex; gap:12px; flex-wrap:wrap;
-    }
-    .btn{
-      background:var(--primary); color:#fff; border:0; border-radius:10px;
-      padding:10px 16px; font-weight:700; text-decoration:none; display:inline-block; cursor:pointer;
-    }
-    .btn:hover{ background:var(--deep); }
-
-    footer{
-      margin-top:18px; text-align:center; color:#888; font-size:.92rem;
-      padding:20px var(--padx) 26px; background:var(--bg-soft);
-    }
-
-    /* ---------- Responsive Breakpoints ---------- */
-    @media (max-width:1024px){
-      .grid{ grid-template-columns:repeat(2,minmax(0,1fr)); }
-      .grid-2{ grid-template-columns:1fr; }
-      header{ padding:16px 24px; }
-    }
-    @media (max-width:720px){
-      .grid, .grid-2{ grid-template-columns:1fr; }
-      header{ flex-direction:column; align-items:flex-start; gap:12px; }
-      nav{ gap:12px; }
-      .hero-inner{ padding:32px var(--padx) 18px; }
-      .logo{ height:60px; }
-      /* Bei sehr schmalen Displays: keine feste aspect-ratio nötig */
-      .media{ aspect-ratio:auto; }
-    }
+    /* Nur kleine Abweichungen speziell für diese Seite */
+    .callout h4{ margin:0; color:var(--headline); font-weight:700; }
+    /* Medienelemente erhalten eine dezente Hover-Andeutung */
+    .card img[data-full]{ cursor: zoom-in; }
   </style>
 </head>
-<body>
 
-  <!-- ========== Header mit Navigation ========== -->
-  <header>
-    <img src="assets/img/DonimanLogo1.png" alt="Logo Doniman F. Peña Parra" class="logo" />
-    <nav>
-      <a href="index.html">Hauptseite</a>
-      <a href="lebenslauf.html">Über mich</a>
-      <a href="projekte.html">Projekte & Leistungen</a>
+<body>
+  <!-- ===== Header (global) ===== -->
+  <header class="site-header">
+    <a class="logo-link" href="index.html" aria-label="Startseite">
+      <img src="assets/img/DoniLogo_1.0.0.png" alt="Logo Doniman F. Peña Parra" class="logo" />
+    </a>
+
+    <!-- Burger (mobil) -->
+    <button class="nav-toggle" id="navToggle" aria-controls="mainnav" aria-expanded="false">
+      <span>Menü</span>
+      <svg class="icon" width="28" height="18" viewBox="0 0 28 18" aria-hidden="true">
+        <rect x="0" y="0"  width="28" height="2" rx="1"></rect>
+        <rect x="0" y="8"  width="28" height="2" rx="1"></rect>
+        <rect x="0" y="16" width="28" height="2" rx="1"></rect>
+      </svg>
+    </button>
+
+    <nav id="mainnav" class="mainnav" aria-label="Hauptnavigation" data-open="false">
+      <ul class="nav-list">
+        <li class="nav-item"><a class="nav-link" href="index.html">Start</a></li>
+        <li class="nav-item"><a class="nav-link" href="lebenslauf.html">Über mich</a></li>
+        <li class="nav-item"><a class="nav-link" href="projekte.html">Projekte & Leistungen</a></li>
+        <li class="nav-item"><a class="nav-link" href="prozessmodellierung.html" aria-current="page">Prozessmodellierung</a></li>
+      </ul>
     </nav>
   </header>
 
-  <!-- ========== Hero-Bereich ========== -->
+  <!-- ===== Hero ===== -->
   <section class="hero">
     <div class="hero-inner">
       <h1 class="headline">Prozessmodellierung</h1>
-      <p class="subline">Von der Aufgabenstellung zur Analyse und als Endprodukt ein BPMN-Modell</p>
+      <p class="subhead">Von der Aufgabenstellung zur Analyse – als Endprodukt ein BPMN‑Modell</p>
     </div>
   </section>
 
-  <!-- ========== Aufgabenbeschreibung ========== -->
+  <!-- ===== Aufgabenbeschreibung ===== -->
   <section class="section" id="aufgabe">
     <div class="sec-head">
       <span class="sec-dot" aria-hidden="true"></span>
-      <h2 class="sec-title">Aufgabe für die Vertriebsprozessmodellierung und -managementunterstützung</h2>
+      <h2 class="sec-title">Aufgabe für die Vertriebsprozess­modellierung und -managementunterstützung</h2>
     </div>
 
     <div class="callout stack">
       <h4>Auftrag: Bitte visualisiert folgenden Prozess und teilt uns mit, wie ihr an das Thema rangegangen seid.</h4>
       <p class="lead">
-          Dataport interne Kunden (im Folgenden User genannt) nutzen eine Vielzahl an Tools und 
-          Anwendungen für ihre tägliche Arbeit. Diese unterschiedlichen Tools und Anwendungen stellen die 
-          User manchmal vor Herausforderungen im Gebrauch und somit benötigen die User schließlich 
-          Unterstützung von Supporteinheiten.
+        Dataport interne Kunden (im Folgenden User genannt) nutzen eine Vielzahl an Tools und Anwendungen für ihre tägliche
+        Arbeit. Diese unterschiedlichen Tools und Anwendungen stellen die User manchmal vor Herausforderungen im Gebrauch
+        und somit benötigen die User schließlich Unterstützung von Supporteinheiten.
       </p>
       <p class="lead">
-         Hat ein User solch einen Supportfall, so kann dieser selbstständig über ein Dataport internes 
-         Selfservice Portal den Supportfall in ein Formular eingeben. In dem Formular werden bestimmte 
-         Fragen dem User zu seinem Supportfall gestellt. Z.B. Wie oft tritt der Supportfall auf? Wann hat es 
-         das letzte Mal funktioniert? Von wo und wie erfolgt die Einwahl? Außerdem muss eine Kurz- und 
-         Langbeschreibung des Supportfalles vom User erfolgen. Nachdem der User alle erforderlichen 
-         Informationen in das Formular eingetragen hat. Kann noch eine Anwesenheit bekanntgegeben 
-         werden. Anschließend wird das Formular eingereicht. Das Formular wird in ein Dataport internes 
-         Ticketsystem (ITSM) überführt, wodurch die First Supporteinheit per E-Mail informiert wird. Die 
-         First Supporteinheit prüft die Eingaben, sofern möglich wird dem User unverzüglich Abhilfe 
-         geschaffen und der User per E-Mail darüber in Kenntnis gesetzt. Falls die First Supporteinheit 
-         keine Möglichkeit der Abhilfe hat, wird der Second Supporteinheit das Ticket übergeben. Die 
-         Second Supporteinheit verschafft dem User Abhilfe und informiert per E-Mail den User.
-       </p>
-       <p class="lead">
-         Jederzeit hat der User die Möglichkeit über das interne Selfservice Portal den aktuellen Status 
-         seines Tickets einzusehen.
-       </p> 
+        Hat ein User solch einen Supportfall, so kann dieser selbstständig über ein Dataport internes Selfservice Portal den
+        Supportfall in ein Formular eingeben. In dem Formular werden bestimmte Fragen dem User zu seinem Supportfall gestellt …
+        Anschließend wird das Formular eingereicht. Das Formular wird in ein Dataport internes Ticketsystem (ITSM) überführt,
+        wodurch die First Supporteinheit per E‑Mail informiert wird. … Falls die First Supporteinheit keine Möglichkeit der Abhilfe
+        hat, wird der Second Supporteinheit das Ticket übergeben. Die Second Supporteinheit verschafft dem User Abhilfe und informiert
+        per E‑Mail den User.
+      </p>
+      <p class="lead">
+        Jederzeit hat der User die Möglichkeit über das interne Selfservice Portal den aktuellen Status seines Tickets einzusehen.
+      </p>
     </div>
   </section>
 
-  <!-- ========== Analyse & Vorgehen ========== -->
+  <!-- ===== Vorgehen / Analyse ===== -->
   <section class="section" id="vorgehen">
     <div class="sec-head">
       <span class="sec-dot" aria-hidden="true"></span>
@@ -272,23 +92,26 @@
     <div class="grid grid-2">
       <!-- Use-Case -->
       <article class="card">
-        <!-- WICHTIG: data-full Pfad = identisch zu src; Lightbox nutzt es -->
-        <a class="media" data-full="assets/img/UseCase.png" href="assets/img/UseCase.png" target="_blank" rel="noopener">
-          <img src="assets/img/UseCase.png" alt="Use-Case-Modell" loading="lazy" decoding="async" />
-          <span class="zoom-hint">Klicken zum Vergrößern</span>
-        </a>
+        <img
+          src="assets/img/UseCase.png"
+          alt="Use‑Case‑Modell"
+          loading="lazy"
+          decoding="async"
+          data-full="assets/img/UseCase.png" />
         <div class="card-body stack">
-          <h4>Use-Case</h4>
+          <h4>Use‑Case</h4>
           <p>Akteure, Systeme und ihre Rollen im Supportprozess.</p>
         </div>
       </article>
 
       <!-- Swimlanes -->
       <article class="card">
-        <a class="media" data-full="assets/img/PAP.png" href="assets/img/PAP.png" target="_blank" rel="noopener">
-          <img src="assets/img/PAP.png" alt="Ablaufdarstellung mit Swimlanes" loading="lazy" decoding="async" />
-          <span class="zoom-hint">Klicken zum Vergrößern</span>
-        </a>
+        <img
+          src="assets/img/PAP.png"
+          alt="Ablaufdarstellung mit Swimlanes"
+          loading="lazy"
+          decoding="async"
+          data-full="assets/img/PAP.png" />
         <div class="card-body stack">
           <h4>Swimlanes</h4>
           <p>Visuelle Prozessdarstellung mit Rollen, Entscheidungen und Eskalationen.</p>
@@ -297,7 +120,7 @@
     </div>
   </section>
 
-  <!-- ========== Architektur ========== -->
+  <!-- ===== Architektur / Komponenten ===== -->
   <section class="section" id="architektur">
     <div class="sec-head">
       <span class="sec-dot" aria-hidden="true"></span>
@@ -306,131 +129,99 @@
 
     <div class="grid grid-1">
       <article class="card">
-        <a class="media" data-full="assets/img/Komponentendiagramm.png" href="assets/img/Komponentendiagramm.png" target="_blank" rel="noopener">
-          <img src="assets/img/Komponentendiagramm.png" alt="Komponentendiagramm" loading="lazy" decoding="async" />
-          <span class="zoom-hint">Klicken zum Vergrößern</span>
-        </a>
+        <img
+          src="assets/img/Komponentendiagramm.png"
+          alt="Komponentendiagramm"
+          loading="lazy"
+          decoding="async"
+          data-full="assets/img/Komponentendiagramm.png" />
         <div class="card-body stack">
           <h4>Kontext &amp; Schnittstellen</h4>
-          <p>Formular, Selfservice-Portal, 1st/2nd Level Support, Mail-Service, ITSM-System.</p>
+          <p>Formular, Selfservice‑Portal, 1st/2nd Level Support, Mail‑Service, ITSM‑System.</p>
         </div>
       </article>
     </div>
   </section>
 
-<!-- ========== BPMN Modell 1 ========== -->
-  <section class="section" id="bpmn">
+  <!-- ===== BPMN Modell 1 ===== -->
+  <section class="section" id="bpmn-v1">
     <div class="sec-head">
       <span class="sec-dot" aria-hidden="true"></span>
-      <h2 class="sec-title">Ergebnis: BPMN-Modell (DataportSuport_1.0.0)</h2>
+      <h2 class="sec-title">Ergebnis: BPMN‑Modell (DataportSuport_1.0.0)</h2>
     </div>
 
     <div class="grid grid-1">
       <article class="card">
-        <a class="media" data-full="assets/img/DataportSuport_1.0.0.svg" href="assets/img/DataportSuport_1.0.0.svg" target="_blank" rel="noopener">
-          <img src="assets/img/DataportSuport_1.0.0.svg" alt="BPMN-Diagramm 1" loading="lazy" decoding="async" />
-          <span class="zoom-hint">Klicken zum Vergrößern</span>
-        </a>
-
+        <img
+          src="assets/img/DataportSuport_1.0.0.svg"
+          alt="BPMN‑Diagramm 1"
+          loading="lazy"
+          decoding="async"
+          data-full="assets/img/DataportSuport_1.0.0.svg" />
         <div class="media-actions">
           <a class="btn-link" href="assets/img/DataportSuport_1.0.0.svg" target="_blank" rel="noopener">BPMN in neuem Tab</a>
           <a class="btn-link" href="assets/img/DataportSuport_1.0.0.svg" download>Download</a>
         </div>
-
         <div class="card-body stack">
           <h4>Prozesslogik</h4>
-          <p> Selfservice-Portal, Formular, ITSM & Ticketanlage, Prüfung, Eskalation, Benachrichtigung, Statusabfrage, Incident schließen.</p>
+          <p>Selfservice‑Portal, Formular, ITSM & Ticketanlage, Prüfung, Eskalation, Benachrichtigung, Statusabfrage, Incident schließen.</p>
         </div>
       </article>
     </div>
   </section>
 
-  <!-- ========== BPMN Modell 2 ========== -->
-  <section class="section" id="bpmn">
+  <!-- ===== BPMN Modell 2 ===== -->
+  <section class="section" id="bpmn-v2">
     <div class="sec-head">
       <span class="sec-dot" aria-hidden="true"></span>
-      <h2 class="sec-title">Ergebnis: BPMN-Modell (DataportSuport_2.0.0)</h2>
+      <h2 class="sec-title">Ergebnis: BPMN‑Modell (DataportSuport_2.0.0)</h2>
     </div>
 
     <div class="grid grid-1">
       <article class="card">
-        <a class="media" data-full="assets/img/DataportSuport_2.0.0.svg" href="assets/img/DataportSuport_2.0.0.svg" target="_blank" rel="noopener">
-          <img src="assets/img/DataportSuport_2.0.0.svg" alt="BPMN-Diagramm 2" loading="lazy" decoding="async" />
-          <span class="zoom-hint">Klicken zum Vergrößern</span>
-        </a>
-
+        <img
+          src="assets/img/DataportSuport_2.0.0.svg"
+          alt="BPMN‑Diagramm 2"
+          loading="lazy"
+          decoding="async"
+          data-full="assets/img/DataportSuport_2.0.0.svg" />
         <div class="media-actions">
           <a class="btn-link" href="assets/img/DataportSuport_2.0.0.svg" target="_blank" rel="noopener">BPMN in neuem Tab</a>
           <a class="btn-link" href="assets/img/DataportSuport_2.0.0.svg" download>Download</a>
         </div>
-
         <div class="card-body stack">
           <h4>Prozesslogik</h4>
-          <p>Selfservice-Portal, Formular, Übertragung an ITSM & Ticketanlage & Ticketanlage, Prüfung, Eskalation, Benachrichtigung, User-Information & Statusabfrage, Incident schließen, Automatisierte Aktivitäten sind klar erkennbar.</p>
+          <p>Selfservice‑Portal, Formular, Übertragung an ITSM & Ticketanlage, Prüfung, Eskalation, Benachrichtigung, User‑Information & Statusabfrage, Incident schließen; automatisierte Aktivitäten klar gekennzeichnet.</p>
         </div>
       </article>
     </div>
   </section>
 
-  <!-- ========== Navigation & Footer ========== -->
-  <div class="actions">
-    <button class="btn" type="button" onclick="safeBack()" aria-label="Zurück">&larr; Zurück</button>
-    <noscript><a class="btn" href="index.html">&larr; Zurück</a></noscript>
-  </div>
+  <!-- ===== Kontakt (global, immer vor dem Footer) ===== -->
+  <section class="contact-block" aria-labelledby="kontaktTitle">
+    <div class="contact-inner">
+      <h2 id="kontaktTitle" class="contact-title">Kontakt</h2>
+      <p class="contact-name">Doniman F. Peña Parra</p>
+      <p class="contact-email">
+        <a id="contactEmail"
+           data-email-user="dofp79"
+           data-email-domain="hotmail.com"
+           href="#"
+           rel="nofollow">E‑Mail anzeigen</a>
+        <noscript> (dofp79&nbsp;[at]&nbsp;hotmail&nbsp;[dot]&nbsp;com) </noscript>
+      </p>
+    </div>
+  </section>
 
+  <!-- ===== Footer ===== -->
   <footer>
     &copy; 2025 Doniman F. Peña Parra – Bewerbung für Dataport
   </footer>
 
-  <!-- ========== Lightbox (Overlay) ========== -->
+  <!-- ===== Lightbox (IDs passen zu assets/js/site.js) ===== -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button id="lbClose" type="button" aria-label="Schließen">Schließen ✕</button>
-    <img id="lbImg" src="" alt="" />
+    <button type="button" id="lightboxClose" aria-label="Schließen">✕</button>
+    <img id="lightboxImg" src="" alt="Vergrößertes Bild" />
   </div>
-
-  <script>
-    /* -----------------------------
-       “Zurück”-Funktion mit Fallback
-       ----------------------------- */
-    function safeBack() {
-      try {
-        const refOk = document.referrer && new URL(document.referrer).origin === location.origin;
-        if (refOk && history.length > 1) history.back();
-        else location.href = 'index.html';
-      } catch (_) {
-        location.href = 'index.html';
-      }
-    }
-
-    /* -----------------------------
-       Lightbox – Klick zum Vergrößern
-       ----------------------------- */
-    const lb     = document.getElementById('lightbox');
-    const lbImg  = document.getElementById('lbImg');
-    const lbClose= document.getElementById('lbClose');
-
-    document.addEventListener('click', e => {
-      const a = e.target.closest('.media');
-      if (a && a.dataset.full){
-        e.preventDefault();
-        lbImg.src = a.dataset.full;             // Großes Bild setzen
-        lb.classList.add('is-open');
-        lb.setAttribute('aria-hidden', 'false');
-      }
-      if (e.target === lb || e.target === lbClose){
-        lb.classList.remove('is-open');
-        lb.setAttribute('aria-hidden', 'true');
-        lbImg.src = '';                          // Speicher freigeben
-      }
-    });
-
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && lb.classList.contains('is-open')){
-        lb.classList.remove('is-open');
-        lb.setAttribute('aria-hidden', 'true');
-        lbImg.src = '';
-      }
-    });
-  </script>
 </body>
 </html>
