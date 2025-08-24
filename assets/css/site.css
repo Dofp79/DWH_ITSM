@@ -29,6 +29,43 @@ html,body{margin:0}
 body{font-family:'Roboto',Arial,sans-serif;color:var(--text-color);background:#fff;line-height:1.55;}
 a:focus,button:focus{outline:2px solid #1c527f; outline-offset:2px;}
 
+/* Kontakt-Block (vor Footer) */
+.contact-block{
+  border-top: 2px solid var(--separator);
+  background: var(--white);
+  margin-top: 28px;
+}
+.contact-inner{
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 24px var(--padx);
+}
+.contact-title{
+  margin: 0 0 8px;
+  color: var(--headline);
+  font-family: "Roboto Condensed", Roboto, Arial, sans-serif;
+  font-weight: 300;
+  font-size: clamp(1.2rem, 0.7rem + 1.4vw, 1.6rem);
+}
+.contact-name{
+  margin: 0;
+  color: var(--headline);
+  font-weight: 700;
+  font-size: clamp(1.1rem, 0.7rem + 1.2vw, 1.4rem);
+}
+.contact-email{ margin: 6px 0 0; color: var(--muted); font-size: 1rem; }
+.contact-email a{
+  color: var(--brand-primary);
+  text-decoration: none;
+  background-image: linear-gradient(90deg,var(--brand-accent),var(--brand-accent));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  transition: background-size .2s ease;
+}
+.contact-email a:hover{ background-size: 100% 1px; }
+
+
 /* ===== HEADER & NAVIGATION ===== */
 .site-header{
   display:flex; align-items:center; justify-content:space-between; gap:16px;
