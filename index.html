@@ -1,196 +1,159 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bewerbung – Doniman F. Peña Parra</title>
+<!-- ========= HEADER: Dataport-Style mit Burger-Menü ========= -->
+<header class="site-header page-topline">
+  <!-- Logo links -->
+  <a class="logo-link" href="index.html" aria-label="Startseite">
+    <img src="assets/img/DonimanLogo1.png" alt="Doniman F. Peña Parra" class="logo" />
+  </a>
 
-  <!-- =========================================================
-       1) Fonts & zentrales Stylesheet (Dataport-Look)
-       - Roboto + Roboto Condensed wie auf dataport.de
-       - Einheitliches Styling aus assets/css/site.css
-       ========================================================= -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Roboto+Condensed:wght@300;400;700&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="assets/css/site.css" />
+  <!-- Burger-Schalter (mobil). ARIA: expanded + controls -->
+  <button class="nav-toggle" aria-controls="mainnav" aria-expanded="false">
+    <span class="nav-toggle-label">Menü</span>
+    <!-- schlichtes Hamburger-SVG -->
+    <svg class="icon" width="28" height="18" viewBox="0 0 28 18" aria-hidden="true">
+      <rect x="0" y="0"  width="28" height="2" rx="1"></rect>
+      <rect x="0" y="8"  width="28" height="2" rx="1"></rect>
+      <rect x="0" y="16" width="28" height="2" rx="1"></rect>
+    </svg>
+  </button>
 
-  <!-- =========================================================
-       2) Seiten-spezifische Ergänzungen
-       - Hintergrundbild fallback (falls noch nicht in site.css gesetzt)
-       - Toolbar-/Fit-to-screen-Styles (klein & fokussiert)
-       ========================================================= -->
-  <style>
-    /* Hintergrundbild: fullscreen, DPI-unabhängig
-       -> Nimm diesen Block raus, wenn du es bereits in site.css gesetzt hast. */
-    html{
-      background: url("assets/img/netzt.png") center center / cover no-repeat fixed;
-    }
-    body{ background: transparent; } /* Content liegt über dem Bild */
+  <!-- Hauptnavigation -->
+  <nav id="mainnav" class="mainnav" aria-label="Hauptnavigation" data-open="false">
+    <ul class="nav-list">
+      <!-- feiner linker Trenner an erstem Eintrag via CSS -->
+      <li class="nav-item"><a class="nav-link" href="index.html">Start</a></li>
+      <li class="nav-item"><a class="nav-link" href="uebermich_1.0.0.html">Über mich</a></li>
+      <li class="nav-item"><a class="nav-link" href="projekte.html">Projekte & Leistungen</a></li>
+      <li class="nav-item"><a class="nav-link" href="prozessmodellierung.html">Prozessmodellierung</a></li>
+    </ul>
+  </nav>
+</header>
 
-    /* Toolbar (Ansicht) – kompakt, nutzt deine Markenfarben aus site.css-Variablen */
-    .view-tools{
-      display:flex; gap:10px; justify-content:flex-end;
-      padding:8px var(--padx) 0; max-width:var(--maxw); margin:0 auto;
-    }
-    .view-tools button{
-      background:var(--brand-primary); color:#fff; border:0; border-radius:10px;
-      padding:8px 12px; font-weight:700; cursor:pointer;
-    }
-    .view-tools button:hover{ background:var(--brand-accent); }
+<style>
+/* ======= Navigation – Dataport-Anmutung =======
+   - Desktop: Logo links, Menü rechts, schmale vertikale Linie vor erstem Punkt
+   - Hover/Unterstreichung wie Dataport
+   - Mobil: "Menü" + Hamburger, off-canvas Dropdown
+   ============================================= */
 
-    /* Bildbereich / Figure */
-    .image-section{
-      border-top: 4px solid var(--brand-accent);
-      padding: 12px var(--padx) 24px;
-      max-width: var(--maxw);
-      margin: 0 auto;
-      background: rgba(255,255,255,.92);             /* Lesbarkeit vor BG */
-      backdrop-filter: blur(2px);
-      -webkit-backdrop-filter: blur(2px);
-      border-radius: 12px;
-    }
-    .image-section figure{ margin: 0; }
-    .image-section img{ display:block; max-width:100%; height:auto; margin:0 auto; }
-    .image-hint{ color:#888; font-size:.95rem; text-align:center; margin-top:8px; }
+/* Kopfzeile – nutzt deine Farbvariablen (site.css) */
+.site-header{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:16px; padding:16px var(--padx,24px);
+  background: var(--white);
+  border-bottom:2px solid var(--separator,#eeeff1);
+}
+/* zusätzliche rote Top-Linie */
+.page-topline{ border-top:4px solid var(--brand-accent,#9e292b); }
 
-    /* Fit‑to‑screen: JS setzt --fitHeight; hier nur die Regel */
-    .fit-to-screen #bpmn{ width:auto; max-height: var(--fitHeight, 70vh); }
+.logo{ height:60px; width:auto; }
+.logo-link{ display:inline-flex; align-items:center; }
 
-    /* A11y Helfer (falls du sie nicht schon in site.css hast) */
-    .u-visually-hidden{
-      position:absolute!important; height:1px; width:1px; overflow:hidden;
-      clip:rect(1px,1px,1px,1px); white-space:nowrap;
-    }
-    .u-visually-hidden:focus{
-      clip:auto; height:auto; width:auto; position:static; white-space:normal;
-    } 
-  </style> 
-</head>
+/* ---------- Desktop-Navigation ---------- */
+.mainnav{ /* auf Desktop immer sichtbar */ }
+.nav-list{
+  display:flex; align-items:center; gap:32px; margin:0; padding:0; list-style:none;
+}
+/* feiner Trenner am linken Rand der Liste (wie Dataport) */
+.nav-list .nav-item:first-child{ 
+  padding-left:22px; position:relative;
+}
+.nav-list .nav-item:first-child::before{
+  content:""; position:absolute; left:0; top:50%; transform:translateY(-50%);
+  width:1px; height:18px; background:#cbd2d9; /* dezent grau-blau */
+}
 
-<body>
-  <!-- =========================================================
-       Header – nutzt die Header-/Nav-Styles aus site.css
-       + dünne rote Topline für Dataport-Anmutung
-       ========================================================= -->
-  <header class="page-topline" style="border-top:4px solid var(--brand-accent);">
-    <img src="assets/img/DonimanLogo1.png" alt="Doniman Logo" class="logo" />
-    <nav aria-label="Hauptnavigation">
-      <a href="index.html" aria-current="page">Start</a>
-      <a href="uebermich_1.0.0.html">Über mich</a>
-      <a href="projekte.html">Projekte & Leistungen</a>
-      <a href="prozessmodellierung.html">Prozessmodellierung</a>
-    </nav>
-  </header>
+/* Links: graublau + animierte Unterstreichung; „+“ am Ende */
+.nav-link{
+  color: var(--headline,#3a424b); font-weight:700; text-decoration:none;
+  position:relative; padding-bottom:2px;
+  background-image:linear-gradient(90deg,var(--brand-accent,#9e292b),var(--brand-accent,#9e292b));
+  background-size:0 1px; background-repeat:no-repeat; background-position:0 100%;
+  transition: background-size .2s ease, color .2s ease;
+}
+/* „+“ wie auf Dataport (rein visuell) */
+.nav-link::after{
+  content:" +"; color:var(--brand-accent,#9e292b);
+}
+/* Hover-Unterstreichung */
+.nav-link:hover{ background-size:100% 1px; }
 
-  <!-- =========================================================
-       Hero – Dataport-typische Struktur
-       - .hero / .hero-inner aus site.css
-       - .headline (Roboto Condensed 300), .subline grau
-       ========================================================= -->
-  <section class="hero">
-    <div class="hero-inner">
-      <h1 class="headline">Bewerbung als Prozessmanager ITSM Betrieb Steuern (w/m/d)</h1>
-      <p class="subline">Kennziffer: 10672‑TX52</p>
-      <p class="subline" style="margin-top:.6rem;">
-        Schön, dass ihr hier seid. Willkommen!
-      </p>
-      <p class="lead" style="margin-top:.4rem;">
-        Diese Seite bietet einen kurzen Einblick in meine Arbeit im Bereich Measurement &amp; Reporting nach ITIL® 4.
-        Für eine faktenbasierte ITSM‑Steuerung zeige ich, wie KPI‑Design, Datenmodell/ETL und Dashboards mit
-        BPMN‑Prozessmodellen kombiniert werden – nachvollziehbar in einem transparenten Schritt‑für‑Schritt‑Vorgehen.
-      </p>
-      <p class="lead">Mein Motto: Struktur trifft Leidenschaft, Prozesse optimieren, Menschen inspirieren.</p>
-    </div>
-  </section>
+/* ---------- Burger-Schalter (mobil sichtbar) ---------- */
+.nav-toggle{
+  display:none; /* auf Desktop ausblenden */
+  align-items:center; gap:8px;
+  background:transparent; border:0; color:var(--headline,#3a424b);
+  font:700 1rem/1 'Roboto', system-ui, Arial, sans-serif; cursor:pointer;
+}
+.nav-toggle .icon rect{ fill: var(--brand-accent,#9e292b); }
+.nav-toggle:focus{ outline:2px solid #1c527f; outline-offset:2px; }
 
-  <!-- =========================================================
-       Toolbar – Buttons schalten zwischen „Gesamtansicht“ & 100%
-       ========================================================= -->
-  <div class="view-tools" role="group" aria-label="Ansicht">
-    <button type="button" id="fitBtn"  aria-pressed="false">Gesamtansicht</button>
-    <button type="button" id="realBtn" aria-pressed="false">100% Größe</button>
-  </div>
+/* ---------- Mobile-Layout ---------- */
+@media (max-width: 980px){
+  .logo{ height:48px; }
+  .nav-toggle{ display:inline-flex; }                /* Burger einblenden */
+  .mainnav{
+    position:absolute; left:0; right:0; top: calc(100% + 2px); z-index:50;
+    background: rgba(255,255,255,.98);
+    border-bottom:2px solid var(--separator,#eeeff1);
+    box-shadow: 0 8px 24px rgba(0,0,0,.06);
+    max-height: 0; overflow:hidden; opacity:0; visibility:hidden;
+    transition: max-height .25s ease, opacity .2s ease, visibility .2s step-end;
+  }
+  /* geöffnet: per data-Attribut von JS gesetzt */
+  .mainnav[data-open="true"]{
+    max-height: 70vh; opacity:1; visibility:visible; transition: max-height .3s ease, opacity .25s ease;
+  }
+  .nav-list{
+    flex-direction:column; align-items:flex-end; gap:14px;
+    padding:16px var(--padx,24px);
+  }
+  .nav-list .nav-item:first-child{ padding-left:0; }
+  .nav-list .nav-item:first-child::before{ display:none; }
+  /* „+“ in Mobilansicht weicher */
+  .nav-link::after{ opacity:.85; }
+}
 
-  <!-- =========================================================
-       Bildbereich – Figure + Fallback
-       - Panel-Optik für Lesbarkeit vor dem Hintergrund
-       ========================================================= -->
-  <section class="image-section" aria-labelledby="bpmnTitle">
-    <h2 id="bpmnTitle" class="u-visually-hidden">BPMN‑Übersicht</h2>
-    <figure>
-      <img
-        id="bpmn"
-        src="assets/img/BPMNMAP.png"
-        alt="BPMN‑Diagramm – Übersichtskarte der Prozessbausteine"
-        loading="eager" decoding="async"
-        onerror="
-          this.onerror=null;
-          this.src='assets/img/placeholder.png';
-          document.getElementById('imgError').hidden=false;
-        "
-      />
-      <figcaption class="image-hint" id="imgError" hidden>
-        Hinweis: Originalbild nicht gefunden. Prüfe Pfad/Schreibweise (<code>assets/img/BPMNMAP.png</code>).
-      </figcaption>
-    </figure>
-  </section>
+/* Optional: aktueller Link (falls gewünscht) */
+.nav-link[aria-current="page"]{ color:var(--brand-primary,#7d212b); }
+</style>
 
-  <!-- =========================================================
-       Footer – dezenter Trenner wie bei Dataport
-       ========================================================= -->
-  <footer>
-    &copy; 2025 Doniman F. Peña Parra – Bewerbung für Dataport
-  </footer>
+<script>
+/* ======= Menü-Logik (ohne Framework) ====================
+   - toggelt data-open am <nav>
+   - setzt aria-expanded am Button
+   - schließt bei ESC oder Klick außerhalb
+   ======================================================= */
+(() => {
+  const btn = document.querySelector('.nav-toggle');
+  const nav = document.getElementById('mainnav');
 
-  <!-- =========================================================
-       JavaScript – Fit-to-screen Logik (kommentiert)
-       - computeFitHeight(): berechnet freie Höhe und setzt CSS-Var
-       - enableFit()/disableFit(): toggeln Klasse & ARIA-State
-       ========================================================= -->
-  <script>
-    // DOM-Referenzen
-    const img    = document.getElementById('bpmn');
-    const fitBtn = document.getElementById('fitBtn');
-    const realBtn= document.getElementById('realBtn');
+  // Falls kein Button (z.B. Server-Side-Rendering), nichts tun
+  if (!btn || !nav) return;
 
-    // Verfügbare Bildhöhe = Viewport - (Header + Hero + Toolbar + Footer) - Sicherheitsabstand
-    function computeFitHeight(){
-      const header = document.querySelector('header')?.offsetHeight || 0;
-      const hero   = document.querySelector('.hero')?.offsetHeight   || 0;
-      const tools  = document.querySelector('.view-tools')?.offsetHeight || 0;
-      const footer = document.querySelector('footer')?.offsetHeight || 0;
-      const available = Math.max(240, window.innerHeight - header - hero - tools - footer - 16);
-      document.documentElement.style.setProperty('--fitHeight', available + 'px');
-    }
+  const setOpen = (open) => {
+    btn.setAttribute('aria-expanded', String(open));
+    nav.setAttribute('data-open', String(open));
+  };
 
-    // „Gesamtansicht“ aktivieren
-    function enableFit(){
-      computeFitHeight();
-      document.body.classList.add('fit-to-screen');
-      fitBtn.setAttribute('aria-pressed','true');
-      realBtn.setAttribute('aria-pressed','false');
-    }
+  btn.addEventListener('click', () => {
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    setOpen(!open);
+  });
 
-    // 100%-Größe wiederherstellen
-    function disableFit(){
-      document.body.classList.remove('fit-to-screen');
-      img.style.maxHeight = ''; // sicherheitshalber reset
-      fitBtn.setAttribute('aria-pressed','false');
-      realBtn.setAttribute('aria-pressed','true');
-    }
+  // ESC schließt Menü
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
+  });
 
-    // Events
-    fitBtn.addEventListener('click', enableFit);
-    realBtn.addEventListener('click', disableFit);
-    window.addEventListener('resize', () => {
-      if (document.body.classList.contains('fit-to-screen')) computeFitHeight();
-    });
+  // Klick außerhalb schließt Menü
+  document.addEventListener('click', (e) => {
+    const within = e.target.closest('.site-header');
+    if (!within) setOpen(false);
+  });
 
-    // Beim Laden direkt passend einrasten
-    enableFit();
-  </script>
-</body>
-</html>
+  // Beim Resize: ab Desktop-Menü immer geschlossen halten
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 980) setOpen(false);
+  });
+})();
+</script>
