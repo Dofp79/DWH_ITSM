@@ -5,115 +5,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bewerbung – Doniman F. Peña Parra</title>
 
-  <!-- Webfont (einfach; für DSGVO ideal: lokal hosten) -->
+  <!-- =========================================================
+       1) Fonts & zentrales Stylesheet (Dataport-Look)
+       - Roboto + Roboto Condensed wie auf dataport.de
+       - Einheitliches Styling aus assets/css/site.css
+       ========================================================= -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Roboto+Condensed:wght@300;400;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="assets/css/site.css" />
 
+  <!-- =========================================================
+       2) Seiten-spezifische Ergänzungen
+       - Hintergrundbild fallback (falls noch nicht in site.css gesetzt)
+       - Toolbar-/Fit-to-screen-Styles (klein & fokussiert)
+       ========================================================= -->
   <style>
-    /* ===============================
-       1) Design‑Variablen (Farben)
-       =============================== */
-    :root {
-      --primary-color: #cc0033; /* Linkfarbe / Hauptakzent */
-      --accent-color:  #cc0033; /* reserviert für spätere Trennung */
-      --deep-red:      #7d212b; /* dunkler Akzent (Borders etc.) */
-      --text-color:    #1a1a1a; /* Fließtext */
-      --light-gray:    #f4f4f4; /* helle Flächen (Header/Hero/Footer) */
-      --focus-ring:    #1c527f; /* sichtbarer Tastatur-Fokus */
+    /* Hintergrundbild: fullscreen, DPI-unabhängig
+       -> Nimm diesen Block raus, wenn du es bereits in site.css gesetzt hast. */
+    html{
+      background: url("assets/img/netzt.png") center center / cover no-repeat fixed;
     }
+    body{ background: transparent; } /* Content liegt über dem Bild */
 
-    /* ===============================
-       2) Basislayout / Typografie
-       =============================== */
-    html, body { margin: 0; }
-    body {
-      font-family: 'Roboto', sans-serif;
-      background: #fff;
-      color: var(--text-color);
-      line-height: 1.55;
-    }
-    /* gut sichtbarer Fokus für A11y */
-    a:focus, button:focus { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
-
-    /* ===============================
-       3) Header + Navigation
-       =============================== */
-    header{
-      display:flex; justify-content:space-between; align-items:center; gap:20px;
-      padding:20px 40px; background:var(--light-gray); flex-wrap:wrap;
-    }
-    .logo{ height: clamp(60px, 8vw, 80px); }
-    nav{ display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
-    nav a{
-      color:var(--primary-color); font-weight:700; text-decoration:none;
-    }
-    nav a:hover{ color:var(--deep-red); }
-
-    /* ===============================
-       4) Hero‑Bereich (Titel + Intro)
-       =============================== */
-    .hero{ padding:48px 40px 20px; background:var(--light-gray); }
-    .hero h1{
-      font-size: clamp(1.8rem, 5vw, 2.6rem);
-      color: var(--primary-color);
-      margin: 0 0 6px;
-      font-weight: 500;
-    }
-    .hero h2{
-      font-size: clamp(1.4rem, 4vw, 2.2rem);
-      color: var(--deep-red);
-      margin: 10px 0 0;
-      font-weight: 400;
-    }
-    .description{
-      font-size: clamp(1rem, 2.5vw, 1.1rem);
-      color: #444;              /* besserer Kontrast als #555 */
-      max-width: 1000px;
-      margin-top: 6px;
-    }
-
-    /* ===============================
-       5) Toolbar (Ansicht steuern)
-       =============================== */
+    /* Toolbar (Ansicht) – kompakt, nutzt deine Markenfarben aus site.css-Variablen */
     .view-tools{
       display:flex; gap:10px; justify-content:flex-end;
-      padding:8px 40px 0;
+      padding:8px var(--padx) 0; max-width:var(--maxw); margin:0 auto;
     }
     .view-tools button{
-      background:#7d212b; color:#fff; border:0; border-radius:10px;
+      background:var(--brand-primary); color:#fff; border:0; border-radius:10px;
       padding:8px 12px; font-weight:700; cursor:pointer;
     }
-    .view-tools button:hover{ background:#cc0033; }
+    .view-tools button:hover{ background:var(--brand-accent); }
 
-    /* ===============================
-       6) Bildbereich (BPMN)
-       =============================== */
+    /* Bildbereich / Figure */
     .image-section{
-      border-top: 4px solid var(--deep-red);
-      padding: 12px 40px 20px;
+      border-top: 4px solid var(--brand-accent);
+      padding: 12px var(--padx) 24px;
+      max-width: var(--maxw);
+      margin: 0 auto;
+      background: rgba(255,255,255,.92);             /* Lesbarkeit vor BG */
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      border-radius: 12px;
     }
     .image-section figure{ margin: 0; }
-    .image-section img{
-      display:block; max-width:100%; height:auto; margin:0 auto;
-    }
-    .image-hint{
-      color:#888; font-size:.95rem; text-align:center; margin-top:8px;
-    }
+    .image-section img{ display:block; max-width:100%; height:auto; margin:0 auto; }
+    .image-hint{ color:#888; font-size:.95rem; text-align:center; margin-top:8px; }
 
-    /* Fit‑to‑screen: Begrenze Bildhöhe dynamisch per JS‑gesetzter CSS‑Variable */
+    /* Fit‑to‑screen: JS setzt --fitHeight; hier nur die Regel */
     .fit-to-screen #bpmn{ width:auto; max-height: var(--fitHeight, 70vh); }
 
-    /* ===============================
-       7) Footer
-       =============================== */
-    footer{
-      text-align:center; font-size:.9em; color:#888;
-      padding:12px; background:var(--light-gray);
-    }
-
-    /* ===============================
-       8) A11y‑Hilfsklasse (visually hidden)
-       =============================== */
+    /* A11y Helfer (falls du sie nicht schon in site.css hast) */
     .u-visually-hidden{
       position:absolute!important; height:1px; width:1px; overflow:hidden;
       clip:rect(1px,1px,1px,1px); white-space:nowrap;
@@ -121,63 +67,60 @@
     .u-visually-hidden:focus{
       clip:auto; height:auto; width:auto; position:static; white-space:normal;
     }
-
-    /* ===============================
-       9) Responsive kleiner Screens
-       =============================== */
-    @media (max-width: 768px){
-      header{ padding:16px 20px; align-items:flex-start; }
-      .hero{ padding:40px 20px 20px; }
-    }
-    /* Hinweis: KEINE fixe Höhe für .image-section -> Bild wird nie abgeschnitten */
   </style>
 </head>
 
 <body>
-
-  <!-- ===============================
-       HEADER mit Logo + Navigation
-       =============================== -->
-  <header>
+  <!-- =========================================================
+       Header – nutzt die Header-/Nav-Styles aus site.css
+       + dünne rote Topline für Dataport-Anmutung
+       ========================================================= -->
+  <header class="page-topline" style="border-top:4px solid var(--brand-accent);">
     <img src="assets/img/DonimanLogo1.png" alt="Doniman Logo" class="logo" />
     <nav aria-label="Hauptnavigation">
+      <a href="index.html" aria-current="page">Start</a>
       <a href="uebermich_1.0.0.html">Über mich</a>
-      <a href="projekte.html">Projekte und Leistungen</a>
+      <a href="projekte.html">Projekte & Leistungen</a>
       <a href="prozessmodellierung.html">Prozessmodellierung</a>
-      <a href="ProjekteLeistungen.html">Projekte &amp; Leistungen2</a>
     </nav>
   </header>
 
-  <!-- ===============================
-       HERO: Titel + Einleitung
-       =============================== -->
+  <!-- =========================================================
+       Hero – Dataport-typische Struktur
+       - .hero / .hero-inner aus site.css
+       - .headline (Roboto Condensed 300), .subline grau
+       ========================================================= -->
   <section class="hero">
-    <h1>Bewerbung als Prozessmanager ITSM Betrieb Steuern (w/m/d)</h1>
-    <h2>Kennziffer: 10672‑TX52</h2>
-    <p class="description">Schön, dass ihr hier seid. Willkommen!</p>
-    <p class="description">
-      Diese Seite bietet einen kurzen Einblick in meine Arbeit im Bereich Measurement &amp; Reporting nach ITIL® 4.
-      Für eine faktenbasierte ITSM‑Steuerung zeige ich, wie KPI‑Design, Datenmodell/ETL und Dashboards mit
-      BPMN‑Prozessmodellen kombiniert werden – nachvollziehbar in einem transparenten Schritt‑für‑Schritt‑Vorgehen.
-    </p>
-    <p class="description">Mein Motto: Struktur trifft Leidenschaft, Prozesse optimieren, Menschen inspirieren.</p>
+    <div class="hero-inner">
+      <h1 class="headline">Bewerbung als Prozessmanager ITSM Betrieb Steuern (w/m/d)</h1>
+      <p class="subline">Kennziffer: 10672‑TX52</p>
+      <p class="subline" style="margin-top:.6rem;">
+        Schön, dass ihr hier seid. Willkommen!
+      </p>
+      <p class="lead" style="margin-top:.4rem;">
+        Diese Seite bietet einen kurzen Einblick in meine Arbeit im Bereich Measurement &amp; Reporting nach ITIL® 4.
+        Für eine faktenbasierte ITSM‑Steuerung zeige ich, wie KPI‑Design, Datenmodell/ETL und Dashboards mit
+        BPMN‑Prozessmodellen kombiniert werden – nachvollziehbar in einem transparenten Schritt‑für‑Schritt‑Vorgehen.
+      </p>
+      <p class="lead">Mein Motto: Struktur trifft Leidenschaft, Prozesse optimieren, Menschen inspirieren.</p>
+    </div>
   </section>
 
-  <!-- ===============================
-       Toolbar: Ansicht steuern
-       =============================== -->
+  <!-- =========================================================
+       Toolbar – Buttons schalten zwischen „Gesamtansicht“ & 100%
+       ========================================================= -->
   <div class="view-tools" role="group" aria-label="Ansicht">
     <button type="button" id="fitBtn"  aria-pressed="false">Gesamtansicht</button>
     <button type="button" id="realBtn" aria-pressed="false">100% Größe</button>
   </div>
 
-  <!-- ===============================
-       Bildbereich: Figure + Fallback
-       =============================== -->
+  <!-- =========================================================
+       Bildbereich – Figure + Fallback
+       - Panel-Optik für Lesbarkeit vor dem Hintergrund
+       ========================================================= -->
   <section class="image-section" aria-labelledby="bpmnTitle">
     <h2 id="bpmnTitle" class="u-visually-hidden">BPMN‑Übersicht</h2>
     <figure>
-      <!-- Pfad anpassen, falls dein Bild woanders liegt -->
       <img
         id="bpmn"
         src="assets/img/BPMNMAP.png"
@@ -195,33 +138,30 @@
     </figure>
   </section>
 
-  <!-- ===============================
-       Footer
-       =============================== -->
+  <!-- =========================================================
+       Footer – dezenter Trenner wie bei Dataport
+       ========================================================= -->
   <footer>
     &copy; 2025 Doniman F. Peña Parra – Bewerbung für Dataport
   </footer>
 
-  <!-- ===============================
-       JavaScript (am Ende, damit DOM vorhanden ist)
-       - Compute Fit‑Höhe: rechnet verfügbare Höhe (ohne Header/Hero/Toolbar/Footer)
-       - enableFit(): schaltet „Gesamtansicht“ ein
-       - disableFit(): stellt 100% Größe wieder her
-       =============================== -->
+  <!-- =========================================================
+       JavaScript – Fit-to-screen Logik (kommentiert)
+       - computeFitHeight(): berechnet freie Höhe und setzt CSS-Var
+       - enableFit()/disableFit(): toggeln Klasse & ARIA-State
+       ========================================================= -->
   <script>
-    // DOM‑Referenzen erst NACH dem Rendern holen
+    // DOM-Referenzen
     const img    = document.getElementById('bpmn');
     const fitBtn = document.getElementById('fitBtn');
     const realBtn= document.getElementById('realBtn');
 
-    // Verfügbare Höhe für das Bild berechnen und als CSS‑Variable setzen
+    // Verfügbare Bildhöhe = Viewport - (Header + Hero + Toolbar + Footer) - Sicherheitsabstand
     function computeFitHeight(){
       const header = document.querySelector('header')?.offsetHeight || 0;
       const hero   = document.querySelector('.hero')?.offsetHeight   || 0;
       const tools  = document.querySelector('.view-tools')?.offsetHeight || 0;
       const footer = document.querySelector('footer')?.offsetHeight || 0;
-
-      // Sicherheitsabstand 16px, Mindesthöhe 240px
       const available = Math.max(240, window.innerHeight - header - hero - tools - footer - 16);
       document.documentElement.style.setProperty('--fitHeight', available + 'px');
     }
@@ -234,22 +174,22 @@
       realBtn.setAttribute('aria-pressed','false');
     }
 
-    // Zurück zu 100% Bildgröße
+    // 100%-Größe wiederherstellen
     function disableFit(){
       document.body.classList.remove('fit-to-screen');
-      img.style.maxHeight = ''; // Sicherheitsreset (eigentlich nicht nötig, wird per Klasse gesteuert)
+      img.style.maxHeight = ''; // sicherheitshalber reset
       fitBtn.setAttribute('aria-pressed','false');
       realBtn.setAttribute('aria-pressed','true');
     }
 
-    // Event‑Handler
+    // Events
     fitBtn.addEventListener('click', enableFit);
     realBtn.addEventListener('click', disableFit);
     window.addEventListener('resize', () => {
       if (document.body.classList.contains('fit-to-screen')) computeFitHeight();
     });
 
-    // Optional: Beim ersten Laden direkt passend einrasten
+    // Beim Laden direkt passend einrasten
     enableFit();
   </script>
 </body>
