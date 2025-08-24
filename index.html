@@ -7,13 +7,35 @@
 
   <!-- Globales Stylesheet im Dataport-Look -->
   <link rel="stylesheet" href="assets/css/site.css" />
+
+  <style>
+    /* ===== Zusatz nur für diese Seite =====
+       Bild so breit wie Text-Container, zentriert & groß */
+    .media-wide {               /* gleicher Rahmen wie .hero-inner / .container */
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 var(--padx);
+    }
+    .media-wide figure {
+      margin: 0;                /* kein zusätzlicher Außenabstand */
+    }
+    .media-wide img {
+      display: block;
+      width: 100%;              /* -> exakt so breit wie der Text */
+      height: auto;             /* Seitenverhältnis bewahren */
+    }
+    .media-wide figcaption {
+      color: var(--muted);
+      font-size: .95rem;
+      margin-top: .5rem;
+      text-align: left;         /* optional */
+    }
+  </style>
 </head>
 
 <body>
   <!-- =========================
        HEADER (global, überall gleich)
-       - Desktop: horizontale Navi rechts
-       - Mobil : Burger klappt Navi auf (push‑down)
        ========================= -->
   <header class="site-header">
     <a class="logo-link" href="index.html" aria-label="Startseite">
@@ -23,7 +45,6 @@
     <!-- Burger-Button (nur mobil sichtbar) -->
     <button class="nav-toggle" id="navToggle" aria-controls="mainnav" aria-expanded="false">
       <span>Menü</span>
-      <!-- kleines “Hamburger”-Icon -->
       <svg class="icon" width="28" height="18" viewBox="0 0 28 18" aria-hidden="true">
         <rect x="0" y="0"  width="28" height="2" rx="1"></rect>
         <rect x="0" y="8"  width="28" height="2" rx="1"></rect>
@@ -32,55 +53,50 @@
     </button>
 
     <nav id="mainnav" class="mainnav" aria-label="Hauptnavigation" data-open="false">
-      <ul class="nav-list"
+      <!-- FIX: fehlendes ">" -->
+      <ul class="nav-list">
         <li class="nav-item"><a class="nav-link" href="uebermich_1.0.0.html">Über mich</a></li>
-        <li class="nav-item"><a class="nav-link" href="projekte.html">Projekte </a></li>
+        <li class="nav-item"><a class="nav-link" href="projekte.html">Projekte</a></li>
         <li class="nav-item"><a class="nav-link" href="prozessmodellierung.html">Prozessmodellierung</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- HERO -->
+  <!-- HERO 1 -->
   <section class="hero">
     <div class="hero-inner">
       <h1 class="headline">Bewerbung als Prozessmanager ITSM Betrieb Steuern (w/m/d)</h1>
-      <p class="subhead">Stellenkennziffer: 10672-TX52.</p>
+      <p class="subhead">Stellenkennziffer: 10672‑TX52.</p>
       <p style="margin-top:18px;">
-        <a class="nav-link" href="#projekte" style="background:none">Direkt zu Projekten</a>
+        <a class="nav-link" href="#bpmn" style="background:none">Direkt zum Diagramm</a>
       </p>
     </div>
   </section>
 
-  <!-- Beispiel-Inhalt -->
-    <section class="hero">
+  <!-- HERO 2 (Intro) -->
+  <section class="hero">
     <div class="hero-inner">
       <p class="subhead">Schön, dass ihr hier seid. Willkommen!</p>
-      <p class="subhead">Diese Seite gibt einen Einblick in meine beruflichen Erfahrungen im IT-Service-Management (ITSM). Der Schwerpunkt liegt auf Prozessmanagement, Daten- und Prozessanalyse, dem Continual Improvement Model (CIM) sowie der Disziplin Measurement & Reporting. Ergänzend zeige ich meine Expertise in der Entwicklung von Dashboards und digitalen Lösungen.</p>
-      <p class="subhead">Mein Motto: Struktur trifft Leidenschaft, Prozesse optimieren, Menschen inspirieren.</p>
-      <p style="margin-top:18px;">
-        <a class="nav-link" href="#projekte" style="background:none">Direkt zu Projekten</a>
+      <p class="subhead">
+        Diese Seite gibt einen Einblick in meine beruflichen Erfahrungen im IT‑Service‑Management (ITSM).
+        Der Schwerpunkt liegt auf Prozessmanagement, Daten- und Prozessanalyse, dem Continual Improvement Model (CIM)
+        sowie der Disziplin Measurement & Reporting. Ergänzend zeige ich meine Expertise in der Entwicklung von
+        Dashboards und digitalen Lösungen.
       </p>
+      <p class="subhead">Mein Motto: Struktur trifft Leidenschaft, Prozesse optimieren, Menschen inspirieren.</p>
     </div>
   </section>
-  <!--
-  <section id="projekte" class="section container">
-    <div class="sec-head">
-      <span class="sec-dot" aria-hidden="true"></span>
-      <h2 class="sec-title">Schön, dass ihr hier seid. Willkommen!</h2>
-      <h2 class="sec-title">Diese Seite gibt einen Einblick in meine beruflichen Erfahrungen im IT-Service-Management (ITSM). Der Schwerpunkt liegt auf Prozessmanagement, Daten- und Prozessanalyse, dem Continual Improvement Model (CIM) sowie der Disziplin Measurement & Reporting. Ergänzend zeige ich meine Expertise in der Entwicklung von Dashboards und digitalen Lösungen.</h2> 
-      <h2 class="sec-title">Mein Motto: Struktur trifft Leidenschaft, Prozesse optimieren, Menschen inspirieren.</h2>
-    </div>
-      <section id="projekte" class="section container">-->
 
-    <div class="grid">
-      <article class="card">
-        <img src="assets/img/BPMNMAP.png" alt="ITIL Monitoring" loading="lazy">
-        <div class="card-body">
-          <h4>ITIL® und BPMN 2.0</h4>
-          <p>Mit den Leitprinzipien von ITIL 4® und dem BPMN-2.0-Framework möchte ich Transparenz und Arbeitsweisen für die digitale Transformation unserer Verwaltung mitgestalten.</p>
-        </div>
-      </article>
-    </div>
+  <!-- ===== NEU: Bildblock in gleicher Breite wie Text, zentriert & groß ===== -->
+  <section id="bpmn" class="media-wide" aria-labelledby="bpmnTitle">
+    <h2 id="bpmnTitle" class="u-visually-hidden">BPMN‑Übersicht</h2>
+    <figure>
+      <!-- wichtig: 100% Breite durch CSS oben -->
+      <img src="assets/img/BPMNMAP.png"
+           alt="BPMN‑Diagramm – Übersicht der Prozessbausteine"
+           loading="eager" decoding="async" />
+      <figcaption>ITIL® &amp; BPMN 2.0 – Transparenz und Arbeitsweisen für die digitale Transformation.</figcaption>
+    </figure>
   </section>
 
   <footer>
