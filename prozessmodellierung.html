@@ -5,46 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Prozessmodellierung – Doniman F. Peña Parra</title>
 
-  <!-- Globaler Look & JS -->
+  <!-- Globale Styles/JS (Dataport-Look & Standard-Verhalten) -->
   <link rel="stylesheet" href="assets/css/site.css" />
   <script src="assets/js/site.js" defer></script>
   <script src="assets/js/menu.js" defer></script>
 
-  <!-- Seiten‑spezifische, kleine Ergänzungen -->
+  <!-- Seiten-spezifische, kleine Ergänzungen -->
   <style>
-    /* Überschrift im Callout konsistent */
+    /* Überschrift im Callout */
     .callout h4{ margin:0; color:var(--headline); font-weight:700; }
 
-    /* Dezent: Mauszeiger „Lupe“ für alle vergrößerbaren Bilder */
-    .card img[data-full]{ cursor: zoom-in; }
+    /* Zentrier-Helfer */
+    .center-wrap{ max-width: var(--maxw); margin: 0 auto; padding: 0 var(--padx); }
+    .centered{ text-align:center; }
+    .centered .card{ margin-left:auto; margin-right:auto; }
 
-    /* Breite Diagramm‑Karten: Bild nicht croppen, sondern einpassen */
-    .card--wide{ align-items:center; } /* Inhalt mittig */
-    .card--wide .diag{
-      width:100%;
-      height:auto;
-      aspect-ratio:auto;
-      object-fit:contain;          /* NICHT zuschneiden */
-      background:#fff;
-      display:block;
+    /* Bilder: stets responsiv & mittig */
+    .card img[data-full]{
+      display:block; width:100%; height:auto; object-fit:contain; cursor:zoom-in;
+      margin: 0 auto;
     }
 
-    /* Buttons unter den Diagrammen – mittig & mit etwas Abstand */
+    /* Einspaltige „centered“-Grids: Karte auf Inhaltbreite begrenzen */
+    .grid-1-centered{
+      display:grid; grid-template-columns: minmax(0, 1fr);
+      justify-items: center;
+      gap: 18px;
+    }
+    .grid-1-centered .card{ width: min(100%, 1024px); } /* angenehm breite Darstellung */
+
+    /* Button-Reihe unter Medien */
     .media-actions{
-      display:flex; gap:12px; justify-content:center;
+      display:flex; gap:12px; justify-content:center; align-items:center;
       padding:12px 16px 0;
       flex-wrap:wrap;
     }
 
-    /* „Primär“ (aus site.css vorhanden) + sanfte Ghost‑Variante */
-    .btn-ghost{
-      background:#fff; color:var(--brand-primary);
-      border:1px solid rgba(0,0,0,.12);
-      border-radius:10px; padding:10px 16px; font-weight:700;
-      text-decoration:none; display:inline-block;
-      transition:background .2s ease, color .2s ease, border-color .2s ease;
+    /* Button-Stil wie globaler Brand-Button */
+    .btn {
+      background: var(--brand-primary);
+      color: #fff;
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-block;
     }
-    .btn-ghost:hover{ background:var(--brand-primary); color:#fff; border-color:var(--brand-primary); }
+    .btn:hover{ background: var(--brand-accent); }
+
+    /* auf sehr kleinen Screens: Bildhöhe frei */
+    @media (max-width: 720px){
+      .grid-1-centered .card{ width:100%; }
+    }
   </style>
 </head>
 
@@ -82,144 +95,169 @@
     </div>
   </section>
 
-  <!-- ===== Aufgabenbeschreibung ===== -->
-  <section class="section" id="aufgabe">
-    <div class="sec-head">
-      <span class="sec-dot" aria-hidden="true"></span>
-      <h2 class="sec-title">Vertriebsprozessmodellierung und -managementunterstützung</h2>
-    </div>
+  <!--
+    WICHTIG für Lightbox in assets/js/site.js:
+    Der Code lauscht auf #projekte img[data-full].
+    Daher kapseln wir die Medienbereiche in <main id="projekte">.
+  -->
+  <main id="projekte">
 
-    <div class="callout stack">
-      <h4>Visualisierung der Zusammenhänge zwischen Support-Bearbeitungsprozessen, beteiligten Komponenten und Auftraggebern der Dataport-Kunden.</h4>
-      <p class="lead">
-        Dataport interne Kunden (im Folgenden User genannt) nutzen eine Vielzahl an Tools und Anwendungen …
-      </p>
-      <p class="lead">
-        Hat ein User solch einen Supportfall, so kann dieser selbstständig über ein Dataport internes Selfservice Portal …
-      </p>
-      <p class="lead">
-        Jederzeit hat der User die Möglichkeit über das interne Selfservice Portal den aktuellen Status seines Tickets einzusehen.
-      </p>
-    </div>
-  </section>
+    <!-- ===== Aufgabenbeschreibung ===== -->
+    <section class="section" id="aufgabe">
+      <div class="sec-head">
+        <span class="sec-dot" aria-hidden="true"></span>
+        <h2 class="sec-title">Vertriebsprozessmodellierung und -managementunterstützung</h2>
+      </div>
 
-  <!-- ===== Vorgehen / Analyse ===== -->
-  <section class="section" id="vorgehen">
-    <div class="sec-head">
-      <span class="sec-dot" aria-hidden="true"></span>
-      <h2 class="sec-title">Vorgehen / Analyse</h2>
-    </div>
+      <div class="callout stack">
+        <h4>Visualisierung der Zusammenhänge zwischen Support-Bearbeitungsprozessen, beteiligten Komponenten und Auftraggebern der Dataport-Kunden.</h4>
+        <p class="lead">
+          Dataport interne Kunden (im Folgenden User genannt) nutzen eine Vielzahl an Tools und Anwendungen für ihre tägliche
+          Arbeit. Diese unterschiedlichen Tools und Anwendungen stellen die User manchmal vor Herausforderungen im Gebrauch
+          und somit benötigen die User schließlich Unterstützung von Supporteinheiten.
+        </p>
+        <p class="lead">
+          Hat ein User solch einen Supportfall, so kann dieser selbstständig über ein Dataport internes Selfservice Portal den
+          Supportfall in ein Formular eingeben. In dem Formular werden bestimmte Fragen dem User zu seinem Supportfall gestellt …
+          Anschließend wird das Formular eingereicht. Das Formular wird in ein Dataport internes Ticketsystem (ITSM) überführt,
+          wodurch die First Supporteinheit per E‑Mail informiert wird. … Falls die First Supporteinheit keine Möglichkeit der Abhilfe
+          hat, wird der Second Supporteinheit das Ticket übergeben. Die Second Supporteinheit verschafft dem User Abhilfe und informiert
+          per E‑Mail den User.
+        </p>
+        <p class="lead">
+          Jederzeit hat der User die Möglichkeit über das interne Selfservice Portal den aktuellen Status seines Tickets einzusehen.
+        </p>
+      </div>
+    </section>
 
-    <div class="grid grid-2">
-      <!-- Use-Case -->
-      <article class="card">
-        <img
-          src="assets/img/UseCase.png"
-          alt="Use‑Case‑Modell"
-          loading="lazy"
-          decoding="async"
-          data-full="assets/img/UseCase.png" />
-        <div class="card-body stack">
-          <h4>Use‑Case</h4>
-          <p>Akteure, Systeme und ihre Rollen im Supportprozess.</p>
+    <!-- ===== Vorgehen / Analyse (Use‑Case & Swimlanes) ===== -->
+    <section class="section" id="vorgehen">
+      <div class="sec-head">
+        <span class="sec-dot" aria-hidden="true"></span>
+        <h2 class="sec-title">Vorgehen / Analyse</h2>
+      </div>
+
+      <div class="center-wrap">
+        <div class="grid grid-2">
+          <!-- Use-Case -->
+          <article class="card">
+            <img
+              src="assets/img/UseCase.png"
+              alt="Use‑Case‑Modell"
+              loading="lazy"
+              decoding="async"
+              data-full="assets/img/UseCase.png" />
+            <div class="card-body stack">
+              <h4>Use‑Case</h4>
+              <p>Akteure, Systeme und ihre Rollen im Supportprozess.</p>
+            </div>
+          </article>
+
+          <!-- Swimlanes -->
+          <article class="card">
+            <img
+              src="assets/img/PAP.png"
+              alt="Ablaufdarstellung mit Swimlanes"
+              loading="lazy"
+              decoding="async"
+              data-full="assets/img/PAP.png" />
+            <div class="card-body stack">
+              <h4>Swimlanes</h4>
+              <p>Visuelle Prozessdarstellung mit Rollen, Entscheidungen und Eskalationen.</p>
+            </div>
+          </article>
         </div>
-      </article>
+      </div>
+    </section>
 
-      <!-- Swimlanes -->
-      <article class="card">
-        <img
-          src="assets/img/PAP.png"
-          alt="Ablaufdarstellung mit Swimlanes"
-          loading="lazy"
-          decoding="async"
-          data-full="assets/img/PAP.png" />
-        <div class="card-body stack">
-          <h4>Swimlanes</h4>
-          <p>Visuelle Prozessdarstellung mit Rollen, Entscheidungen und Eskalationen.</p>
+    <!-- ===== Architektur / Komponenten (zentriert) ===== -->
+    <section class="section" id="architektur">
+      <div class="sec-head">
+        <span class="sec-dot" aria-hidden="true"></span>
+        <h2 class="sec-title">Architektur / Komponenten</h2>
+      </div>
+
+      <div class="center-wrap centered">
+        <div class="grid-1-centered">
+          <article class="card">
+            <img
+              src="assets/img/Komponentendiagramm.png"
+              alt="Komponentendiagramm"
+              loading="lazy"
+              decoding="async"
+              data-full="assets/img/Komponentendiagramm.png" />
+            <div class="card-body stack">
+              <h4>Kontext &amp; Schnittstellen</h4>
+              <p>Formular, Selfservice‑Portal, 1st/2nd Level Support, Mail‑Service, ITSM‑System.</p>
+            </div>
+          </article>
         </div>
-      </article>
-    </div>
-  </section>
+      </div>
+    </section>
 
-  <!-- ===== Architektur / Komponenten ===== -->
-  <section class="section" id="architektur">
-    <div class="sec-head">
-      <span class="sec-dot" aria-hidden="true"></span>
-      <h2 class="sec-title">Architektur / Komponenten</h2>
-    </div>
+    <!-- ===== BPMN Modell 1 (zentriert + Buttons) ===== -->
+    <section class="section" id="bpmn-v1">
+      <div class="sec-head">
+        <span class="sec-dot" aria-hidden="true"></span>
+        <h2 class="sec-title">Ergebnis: BPMN‑Modell (DataportSuport_1.0.0)</h2>
+      </div>
 
-    <div class="grid grid-1">
-      <article class="card card--wide">
-        <img
-          class="diag"
-          src="assets/img/Komponentendiagramm.png"
-          alt="Komponentendiagramm"
-          loading="lazy"
-          decoding="async"
-          data-full="assets/img/Komponentendiagramm.png" />
-        <div class="card-body stack">
-          <h4>Kontext &amp; Schnittstellen</h4>
-          <p>Formular, Selfservice‑Portal, 1st/2nd Level Support, Mail‑Service, ITSM‑System.</p>
+      <div class="center-wrap centered">
+        <div class="grid-1-centered">
+          <article class="card">
+            <img
+              src="assets/img/DataportSuport_1.0.0.svg"
+              alt="BPMN‑Diagramm 1"
+              loading="lazy"
+              decoding="async"
+              data-full="assets/img/DataportSuport_1.0.0.svg" />
+
+            <div class="media-actions">
+              <a class="btn" href="assets/img/DataportSuport_1.0.0.svg" target="_blank" rel="noopener">BPMN in neuem Tab</a>
+              <a class="btn" href="assets/img/DataportSuport_1.0.0.svg" download>Download</a>
+            </div>
+
+            <div class="card-body stack">
+              <h4>Prozesslogik</h4>
+              <p>Selfservice‑Portal, Formular, ITSM & Ticketanlage, Prüfung, Eskalation, Benachrichtigung, Statusabfrage, Incident schließen.</p>
+            </div>
+          </article>
         </div>
-      </article>
-    </div>
-  </section>
+      </div>
+    </section>
 
-  <!-- ===== BPMN Modell 1 ===== -->
-  <section class="section" id="bpmn-v1">
-    <div class="sec-head">
-      <span class="sec-dot" aria-hidden="true"></span>
-      <h2 class="sec-title">Ergebnis: BPMN‑Modell (DataportSuport_1.0.0)</h2>
-    </div>
+    <!-- ===== BPMN Modell 2 (zentriert + Buttons) ===== -->
+    <section class="section" id="bpmn-v2">
+      <div class="sec-head">
+        <span class="sec-dot" aria-hidden="true"></span>
+        <h2 class="sec-title">Ergebnis: BPMN‑Modell (DataportSuport_2.0.0)</h2>
+      </div>
 
-    <div class="grid grid-1">
-      <article class="card card--wide">
-        <img
-          class="diag"
-          src="assets/img/DataportSuport_1.0.0.svg"
-          alt="BPMN‑Diagramm 1"
-          loading="lazy"
-          decoding="async"
-          data-full="assets/img/DataportSuport_1.0.0.svg" />
-        <div class="media-actions">
-          <a class="btn" href="assets/img/DataportSuport_1.0.0.svg" target="_blank" rel="noopener">BPMN in neuem Tab</a>
-          <a class="btn-ghost" href="assets/img/DataportSuport_1.0.0.svg" download>Download</a>
-        </div>
-        <div class="card-body stack">
-          <h4>Prozesslogik</h4>
-          <p>Selfservice‑Portal, Formular, ITSM & Ticketanlage, Prüfung, Eskalation, Benachrichtigung, Statusabfrage, Incident schließen.</p>
-        </div>
-      </article>
-    </div>
-  </section>
+      <div class="center-wrap centered">
+        <div class="grid-1-centered">
+          <article class="card">
+            <img
+              src="assets/img/DataportSuport_2.0.0.svg"
+              alt="BPMN‑Diagramm 2"
+              loading="lazy"
+              decoding="async"
+              data-full="assets/img/DataportSuport_2.0.0.svg" />
 
-  <!-- ===== BPMN Modell 2 ===== -->
-  <section class="section" id="bpmn-v2">
-    <div class="sec-head">
-      <span class="sec-dot" aria-hidden="true"></span>
-      <h2 class="sec-title">Ergebnis: BPMN‑Modell (DataportSuport_2.0.0)</h2>
-    </div>
+            <div class="media-actions">
+              <a class="btn" href="assets/img/DataportSuport_2.0.0.svg" target="_blank" rel="noopener">BPMN in neuem Tab</a>
+              <a class="btn" href="assets/img/DataportSuport_2.0.0.svg" download>Download</a>
+            </div>
 
-    <div class="grid grid-1">
-      <article class="card card--wide">
-        <img
-          class="diag"
-          src="assets/img/DataportSuport_2.0.0.svg"
-          alt="BPMN‑Diagramm 2"
-          loading="lazy"
-          decoding="async"
-          data-full="assets/img/DataportSuport_2.0.0.svg" />
-        <div class="media-actions">
-          <a class="btn" href="assets/img/DataportSuport_2.0.0.svg" target="_blank" rel="noopener">BPMN in neuem Tab</a>
-          <a class="btn-ghost" href="assets/img/DataportSuport_2.0.0.svg" download>Download</a>
+            <div class="card-body stack">
+              <h4>Prozesslogik</h4>
+              <p>Selfservice‑Portal, Formular, Übertragung an ITSM & Ticketanlage, Prüfung, Eskalation, Benachrichtigung, User‑Information & Statusabfrage, Incident schließen; automatisierte Aktivitäten klar gekennzeichnet.</p>
+            </div>
+          </article>
         </div>
-        <div class="card-body stack">
-          <h4>Prozesslogik</h4>
-          <p>Selfservice‑Portal, Formular, Übertragung an ITSM & Ticketanlage, Prüfung, Eskalation, Benachrichtigung, User‑Information & Statusabfrage, Incident schließen; automatisierte Aktivitäten klar gekennzeichnet.</p>
-        </div>
-      </article>
-    </div>
-  </section>
+      </div>
+    </section>
+
+  </main>
 
   <!-- ===== Kontakt (global, immer vor dem Footer) ===== -->
   <section class="contact-block" aria-labelledby="kontaktTitle">
@@ -242,7 +280,7 @@
     &copy; 2025 Doniman F. Peña Parra – Bewerbung für Dataport
   </footer>
 
-  <!-- ===== Lightbox (IDs wie in assets/js/site.js) ===== -->
+  <!-- ===== Lightbox-Container (falls site.js ihn nutzt) ===== -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <button type="button" id="lightboxClose" aria-label="Schließen">✕</button>
     <img id="lightboxImg" src="" alt="Vergrößertes Bild" />
