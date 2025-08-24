@@ -1,1 +1,130 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Start – Doniman F. Peña Parra</title>
 
+  <!-- Globales Stylesheet im Dataport-Look -->
+  <link rel="stylesheet" href="assets/css/site.css" />
+
+  <style>
+    /* ===== Zusatz nur für diese Seite =====
+       Bild so breit wie Text-Container, zentriert & groß */
+    .media-wide {               /* gleicher Rahmen wie .hero-inner / .container */
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 var(--padx);
+    }
+    .media-wide figure {
+      margin: 0;                /* kein zusätzlicher Außenabstand */
+    }
+    .media-wide img {
+      display: block;
+      width: 100%;              /* -> exakt so breit wie der Text */
+      height: auto;             /* Seitenverhältnis bewahren */
+    }
+    .media-wide figcaption {
+      color: var(--muted);
+      font-size: .95rem;
+      margin-top: .5rem;
+      text-align: left;         /* optional */
+    }
+  </style>
+</head>
+
+<body>
+  <!-- =========================
+       HEADER (global, überall gleich)
+       ========================= -->
+  <header class="site-header">
+    <a class="logo-link" href="index.html" aria-label="Startseite">
+      <img src="assets/img/DoniLogo_1.0.0.png" alt="Logo Doniman F. Peña Parra" class="logo" />
+    </a>
+
+    <!-- Burger-Button (nur mobil sichtbar) -->
+    <button class="nav-toggle" id="navToggle" aria-controls="mainnav" aria-expanded="false">
+      <span>Menü</span>
+      <svg class="icon" width="28" height="18" viewBox="0 0 28 18" aria-hidden="true">
+        <rect x="0" y="0"  width="28" height="2" rx="1"></rect>
+        <rect x="0" y="8"  width="28" height="2" rx="1"></rect>
+        <rect x="0" y="16" width="28" height="2" rx="1"></rect>
+      </svg>
+    </button>
+
+    <nav id="mainnav" class="mainnav" aria-label="Hauptnavigation" data-open="false">
+      <!-- FIX: fehlendes ">" -->
+      <ul class="nav-list">
+        <li class="nav-item"><a class="nav-link" href="uebermich_1.0.0.html">Über mich</a></li>
+        <li class="nav-item"><a class="nav-link" href="projekte.html">Projekte</a></li>
+        <li class="nav-item"><a class="nav-link" href="prozessmodellierung.html">Prozessmodellierung</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO 1 -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1 class="headline">Bewerbung als Prozessmanager ITSM Betrieb Steuern (w/m/d)</h1>
+      <p class="subhead">Stellenkennziffer: 10672‑TX52.</p>
+      <p style="margin-top:18px;">
+        <a class="nav-link" href="#bpmn" style="background:none">Direkt zum Diagramm</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- HERO 2 (Intro) -->
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="subhead">Schön, dass ihr hier seid. Willkommen!</p>
+      <p class="subhead">
+        Diese Seite gibt einen Einblick in meine beruflichen Erfahrungen im IT‑Service‑Management (ITSM).
+        Der Schwerpunkt liegt auf Prozessmanagement, Daten- und Prozessanalyse, dem Continual Improvement Model (CIM)
+        sowie der Disziplin Measurement & Reporting. Ergänzend zeige ich meine Expertise in der Entwicklung von
+        Dashboards und digitalen Lösungen.
+      </p>
+      <p class="subhead">Mein Motto: Struktur trifft Leidenschaft, Prozesse optimieren, Menschen inspirieren.</p>
+    </div>
+  </section>
+
+  <!-- ===== NEU: Bildblock in gleicher Breite wie Text, zentriert & groß ===== -->
+  <section id="bpmn" class="media-wide" aria-labelledby="bpmnTitle">
+    <h2 id="bpmnTitle" class="u-visually-hidden">BPMN‑Übersicht</h2>
+    <figure>
+      <!-- wichtig: 100% Breite durch CSS oben -->
+      <img src="assets/img/BPMNMAP.png"
+           alt="BPMN‑Diagramm – Übersicht der Prozessbausteine"
+           loading="eager" decoding="async" />
+      <figcaption>ITIL® &amp; BPMN 2.0 – Transparenz und Arbeitsweisen für die digitale Transformation.</figcaption>
+    </figure>
+  </section>
+
+  <!-- Kontakt (global, immer vor dem Footer) -->
+<section class="contact-block" aria-labelledby="kontaktTitle">
+  <div class="contact-inner">
+    <h2 id="kontaktTitle" class="contact-title">Kontakt</h2>
+    <p class="contact-name">Doniman F. Peña Parra</p>
+
+    <!-- Platzhalter-Link, E-Mail wird per JS zusammengesetzt (Spam-Schutz) -->
+    <p class="contact-email">
+      <a id="contactEmail"
+         data-email-user="dofp79"          <!-- Nutzername -->
+         data-email-domain="hotmail.com"   <!-- Domain -->
+         href="#"                          <!-- wird per JS zu mailto: gesetzt -->
+         rel="nofollow"
+      >E‑Mail anzeigen</a>
+      <noscript> <!-- Fallback ohne JS -->
+        &nbsp;(dofp79&nbsp;[at]&nbsp;hotmail&nbsp;[dot]&nbsp;com)
+      </noscript>
+    </p>
+  </div>
+</section>
+
+  <footer>
+    &copy; 2025 Doniman F. Peña Parra – Bewerbung für Dataport
+  </footer>
+
+  <!-- Globales Menü‑Script -->
+  <script src="assets/js/menu.js"></script>
+</body>
+</html>
