@@ -65,6 +65,15 @@ a:focus,button:focus{outline:2px solid #1c527f; outline-offset:2px;}
 }
 .contact-email a:hover{ background-size: 100% 1px; }
 
+/* ===== Lightbox (global) ===== */
+.lightbox { position: fixed; inset: 0; z-index: 9999; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,.72); }
+.lightbox[aria-hidden="false"] { display: flex; }
+.lightbox__inner { position: relative; max-width: 96vw; max-height: 92vh; }
+.lightbox__img { max-width: 96vw; max-height: 92vh; object-fit: contain; transform-origin: center center; transition: transform .15s ease-out; cursor: zoom-out; }
+.lightbox__caption { margin-top: .5rem; color: #fff; text-align: center; font-size: .95rem; }
+.lightbox__close, .lightbox__zoom { position: absolute; top: .75rem; background: rgba(0,0,0,.55); color:#fff; border:0; border-radius:.6rem; padding:.5rem .6rem; cursor:pointer; }
+.lightbox__close { right: .75rem; } .lightbox__zoom { right: 3.1rem; } .lightbox__zoom--out { right: 5.45rem; }
+body.lb-lock { overflow: hidden; }
 
 /* ===== HEADER & NAVIGATION ===== */
 .site-header{
@@ -103,9 +112,7 @@ a:focus,button:focus{outline:2px solid #1c527f; outline-offset:2px;}
 /* MOBIL: Burger aktiv, Menü als Dropdown (push-down) */
 @media (max-width: 980px){
   .logo{ height:48px; }
-
   .nav-toggle{ display:inline-flex; }
-
   .mainnav{ position:relative; width:100%; }
   .nav-list{
     display:none; flex-direction:column; align-items:flex-end; gap:14px;
@@ -113,7 +120,6 @@ a:focus,button:focus{outline:2px solid #1c527f; outline-offset:2px;}
     box-shadow:0 8px 24px rgba(0,0,0,.06);
   }
   .mainnav[data-open="true"] .nav-list{ display:flex; }
-
   .nav-list .nav-item:first-child{ padding-left:0; }
   .nav-list .nav-item:first-child::before{ display:none; }
 }
@@ -128,16 +134,59 @@ a:focus,button:focus{outline:2px solid #1c527f; outline-offset:2px;}
 /* ===== SECTIONS & CARDS ===== */
 .container{ max-width:var(--maxw); margin:0 auto; padding:0 var(--padx); }
 .section{ max-width:var(--maxw); margin:0 auto; padding:28px var(--padx) 8px; }
-
 .sec-head{ display:flex; align-items:center; gap:10px; margin:0 0 16px; }
 .sec-dot{ width:12px; height:12px; border-radius:3px; background:var(--brand-primary); }
 .sec-title{ margin:0; color:var(--headline); font-family:'Roboto Condensed',Roboto,Arial,sans-serif; font-weight:300; font-size:clamp(20px,1.6vw,26px); }
 
 .grid{ display:grid; gap:18px; grid-template-columns:repeat(3,1fr); align-items:stretch; }
-.card{ background:#fff; border-bottom:2px solid var(--brand-primary); border-radius:0 0 10px 10px; display:flex; flex-direction:column; overflow:hidden; }
-.card img{ width:100%; aspect-ratio:16/9; object-fit:cover; }
+
+/* Basiskarte */
+.card{
+  background:#fff; border-bottom:2px solid var(--brand-primary);
+  border-radius:0 0 10px 10px; display:flex; flex-direction:column; overflow:hidden;
+}
+.card img{
+  width:100%;
+  /* Einheitliches Seitenverhältnis und sauberes Cropping für ALLE Kartenbilder */
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display:block;
+}
 .card .card-body{ padding:14px 16px; }
 .card h4{ margin:0; color:var(--brand-primary); font-size:1.05rem; }
+
+/* ===========================================
+   NEU: Varianten für Karten
+   =========================================== */
+
+/* A) Zoom-Karten (Lightbox) – opt-in per Klasse .card--zoom */
+.card--zoom img{ cursor: zoom-in; }
+
+/* B) Link-Karten (z.B. KI‑Agenten) – die ganze Karte ist klickbar,
+      KEIN Zoom-Cursor, schöner Hover/Fokus, keine Unterstreichung */
+a.card.card--link{
+  text-decoration: none;
+  color: inherit;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+a.card.card--link img{ cursor: pointer; }        /* klarer „klickbar“-Hinweis */
+a.card.card--link:hover,
+a.card.card--link:focus-visible{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(0,0,0,.10);
+  border-bottom-color: var(--brand-accent);
+  outline: none;
+}
+
+/* KI‑Agenten‑Section: dezenter spezieller Hover für Bilder */
+#ki-agents .card img{
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+#ki-agents a.card:hover img,
+#ki-agents a.card:focus-visible img{
+  transform: scale(1.03);
+  box-shadow: 0 6px 18px rgba(0,0,0,.20);
+}
 
 /* RESPONSIVE GRIDS */
 @media (max-width:1024px){ .grid{ grid-template-columns:repeat(2,1fr); } }
