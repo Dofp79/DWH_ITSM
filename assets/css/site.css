@@ -62,6 +62,30 @@ a:focus, button:focus{ outline:2px solid #1c527f; outline-offset:2px; }
   clip:auto; height:auto; width:auto; position:static; white-space:normal;
 }
 
+/* Textblock für Aufgabenbeschreibung */
+.text-block {
+  background: var(--light-gray);
+  border-left: 4px solid var(--brand-primary);
+  padding: 20px 24px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  color: var(--text-color);
+  line-height: 1.65;
+}
+
+.text-block h3 {
+  margin-top: 0;
+  color: var(--brand-primary);
+  font-family: "Roboto Condensed", Roboto, Arial, sans-serif;
+  font-weight: 700;
+}
+
+.text-block p {
+  margin: 0 0 14px;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
 /* =========================================================
    Header & Navigation
    ========================================================= */
