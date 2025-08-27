@@ -1,9 +1,9 @@
 /* =========================================================
-   Globales Stylesheet im Dataport‑Stil
+   Globales Stylesheet im Dataport-Stil
    Pfad: assets/css/site.css
    ========================================================= */
 
-/* ---------- Farb‑ & Layout‑Variablen ---------- */
+/* ---------- Farb- & Layout-Variablen ---------- */
 :root{
   --brand-primary:#7d212b;      /* Links/Buttons, Akzent */
   --brand-accent:#9e292b;       /* Hover/Unterstreichung */
@@ -62,28 +62,26 @@ a:focus, button:focus{ outline:2px solid #1c527f; outline-offset:2px; }
   clip:auto; height:auto; width:auto; position:static; white-space:normal;
 }
 
-/* Textblock für Aufgabenbeschreibung */
-.text-block {
-  background: var(--light-gray);
-  border-left: 4px solid var(--brand-primary);
-  padding: 20px 24px;
-  border-radius: 10px;
-  box-shadow: var(--shadow);
-  color: var(--text-color);
-  line-height: 1.65;
+/* ---------- Textblock (Aufgabenbeschreibung etc.) ---------- */
+.text-block{
+  background:var(--light-gray);
+  border-left:4px solid var(--brand-primary);
+  padding:20px 24px;
+  border-radius:10px;
+  box-shadow:var(--shadow);
+  color:var(--text-color);
+  line-height:1.65;
 }
-
-.text-block h3 {
-  margin-top: 0;
-  color: var(--brand-primary);
-  font-family: "Roboto Condensed", Roboto, Arial, sans-serif;
-  font-weight: 700;
+.text-block h3{
+  margin-top:0;
+  color:var(--brand-primary);
+  font-family:"Roboto Condensed", Roboto, Arial, sans-serif;
+  font-weight:700;
 }
-
-.text-block p {
-  margin: 0 0 14px;
-  text-align: justify;
-  text-justify: inter-word;
+.text-block p{
+  margin:0 0 14px;
+  text-align:justify;
+  text-justify:inter-word;
 }
 
 /* =========================================================
@@ -185,15 +183,15 @@ a:focus, button:focus{ outline:2px solid #1c527f; outline-offset:2px; }
 .card .card-body{ padding:14px 16px; }
 .card h4{ margin:0; color:var(--brand-primary); font-size:1.05rem; }
 
-/* 1‑spaltige Abschnitte optisch zentriert */
+/* 1-spaltige Abschnitte optisch zentriert */
 .grid.grid-1{ justify-items:center; }
 .grid.grid-1 .card{ width:100%; max-width:var(--maxw); }
 
-/* ---------- Varianten ---------- */
+/* ---------- Karten-Varianten ---------- */
 /* A) Zoom-Karten (Lightbox): opt-in */
 .card--zoom img{ cursor: zoom-in; }
 
-/* B) Link-Karten (z.B. KI‑Agenten): ganze Karte klickbar, ohne Zoom */
+/* B) Link-Karten (z.B. KI-Agenten): ganze Karte klickbar, ohne Zoom */
 a.card.card--link{
   text-decoration:none; color:inherit;
   transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
@@ -207,7 +205,7 @@ a.card.card--link:focus-visible{
   outline:none;
 }
 
-/* KI‑Agenten: dezenter Bild‑Hover */
+/* KI-Agenten: dezenter Bild-Hover */
 #ki-agents .card img{ transition: transform .25s ease, box-shadow .25s ease; }
 #ki-agents a.card:hover img,
 #ki-agents a.card:focus-visible img{
@@ -228,7 +226,35 @@ a.card.card--link:focus-visible{
   margin:0 auto;
 }
 
-/* Buttons unter Diagrammen (Dataport‑Look) */
+/* ===== BPMN-Beschreibungsblöcke ===== */
+.bpmn-notes{
+  max-width:var(--maxw);
+  margin:16px auto 8px;
+  padding:18px 20px;
+  border-radius:12px;
+  background:#1f2328;   /* dunkler Card-Look */
+  color:#fff;
+  box-shadow:0 8px 20px rgba(0,0,0,.12);
+}
+.bpmn-notes h3{
+  margin:0 0 10px;
+  font-family:"Roboto Condensed", Roboto, Arial, sans-serif;
+  font-weight:700; color:#fff;
+  font-size:clamp(1.05rem,.8rem + .7vw,1.3rem);
+}
+.bpmn-notes .meta{
+  margin:0 0 8px; color:#cbd5e1; font-weight:700;
+}
+.bpmn-notes ol{
+  margin:0; padding-left:1.3rem; line-height:1.6;
+}
+.bpmn-notes ol > li{ margin:.35rem 0; }
+.bpmn-notes ul{
+  margin:.35rem 0 .35rem 1.1rem; padding:0; list-style:disc;
+}
+.bpmn-notes strong{ color:#fff; }
+
+/* ---------- Buttons unter Diagrammen (Dataport-Look) ---------- */
 .media-actions{
   display:flex; gap:10px; align-items:center;
   padding:10px 16px 0; flex-wrap:wrap; justify-content:center;
@@ -240,7 +266,13 @@ a.card.card--link:focus-visible{
   padding:8px 12px; border-radius:10px;
   transition:background-color .2s ease, color .2s ease, border-color .2s ease;
 }
-.btn-link:hover{ color:#fff; background:var(--brand-primary); border-color:var(--brand-primary); }
+.btn-link:hover{
+  color:#fff; background:var(--brand-primary); border-color:var(--brand-primary);
+}
+
+/* (Sicherheits-Duplikat für 1-Spalten-Karten) */
+.grid.grid-1{ justify-items:center; }
+.grid.grid-1 .card{ width:100%; max-width:var(--maxw); }
 
 /* =========================================================
    Lightbox (global)
@@ -266,12 +298,11 @@ a.card.card--link:focus-visible{
 .lightbox__zoom--out{ right:5.45rem; }
 body.lb-lock{ overflow:hidden; }
 
-/* Hinweis: alle Kartenbilder mit data-full erhalten automatisch cursor:zoom-in
-   (ergänzend zu .card--zoom) */
+/* Hinweis: alle Kartenbilder mit data-full erhalten automatisch cursor:zoom-in */
 .card img[data-full]{ cursor:zoom-in; }
 
 /* =========================================================
-   Kontakt‑Block (immer vor dem Footer)
+   Kontakt-Block (immer vor dem Footer)
    ========================================================= */
 .contact-block{
   border-top:2px solid var(--separator);
