@@ -149,96 +149,97 @@
 <section class="section" id="vergleich">
   <div class="sec-head">
     <span class="sec-dot" aria-hidden="true"></span>
-    <h2 class="sec-title">Vergleich der ITSM-Komponenten</h2>
+    <h2 class="sec-title">ITSM-Komponenten im Vergleich</h2>
   </div>
 
   <div class="center-wrap" style="overflow-x:auto;">
-    <table class="itsm-table" style="width:100%; border-collapse:collapse; font-size:0.95rem;">
-      <thead style="background:var(--bg-soft);">
-        <tr>
-          <th style="padding:12px; border-bottom:2px solid var(--deep); text-align:left;">Komponente</th>
-          <th style="padding:12px; border-bottom:2px solid var(--deep); text-align:left;">Beschreibung</th>
-          <th style="padding:12px; border-bottom:2px solid var(--deep); text-align:left;">Funktion im ITSM</th>
-          <th style="padding:12px; border-bottom:2px solid var(--deep); text-align:left;">Rolle im Incident Management</th>
+    <table class="itsm-table" style="width:100%; border-collapse: collapse; font-size: 0.95rem;">
+      <thead>
+        <tr style="background: var(--light-gray); border-top: 2px solid var(--separator);">
+          <th style="padding: 10px; border: 1px solid var(--separator); text-align: left;">Komponente</th>
+          <th style="padding: 10px; border: 1px solid var(--separator); text-align: left;">Beschreibung</th>
+          <th style="padding: 10px; border: 1px solid var(--separator); text-align: left;">Funktion im ITSM</th>
+          <th style="padding: 10px; border: 1px solid var(--separator); text-align: left;">Rolle im Incident Management</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>User (Selfservice-Portal)</td>
-          <td>Endanwender:innen, die Incidents melden oder Status prüfen</td>
-          <td>Zugriff via HTTPS</td>
-          <td>Erstellt Tickets, prüft Status, empfängt Updates</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">User (Selfservice-Portal)</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Endanwender:innen, die Incidents melden oder Status prüfen</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Zugriff via HTTPS</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Erstellt Tickets, prüft Status, empfängt Updates</td>
         </tr>
         <tr>
-          <td>Load Balancer (HA)</td>
-          <td>Verteilt eingehenden Traffic auf Web-Gateways</td>
-          <td>Hochverfügbarkeit (Active/Passive)</td>
-          <td>Gewährleistet Erreichbarkeit des Portals</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Load Balancer (HA)</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Verteilt eingehenden Traffic auf Web-Gateways</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Hochverfügbarkeit (Active/Passive)</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Gewährleistet Erreichbarkeit des Portals</td>
         </tr>
         <tr>
-          <td>Web-Gateway / Reverse Proxy</td>
-          <td>Sicherheits- und Zugriffskomponente in der DMZ</td>
-          <td>HTTPS-Terminierung, TLS, Routing</td>
-          <td>Filtert Anfragen, schützt interne Systeme</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Web-Gateway / Reverse Proxy</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Sicherheits- und Zugriffskomponente in der DMZ</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">HTTPS-Terminierung, TLS, Routing</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Filtert Anfragen, schützt interne Systeme</td>
         </tr>
         <tr>
-          <td>Portal-Frontend (HTML/JS/CSS)</td>
-          <td>UI für den User im Browser</td>
-          <td>Darstellung der ITSM-Oberfläche</td>
-          <td>Erfassung & Anzeige von Incident-Daten</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Portal-Frontend (HTML/JS/CSS)</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">UI für den User im Browser</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Darstellung der ITSM-Oberfläche</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Erfassung & Anzeige von Incident-Daten</td>
         </tr>
         <tr>
-          <td>ITSM-App-Cluster</td>
-          <td>Applikationsschicht mit mehreren Servern</td>
-          <td>Ausführung von ITSM-Workflows, Ticketmanagement</td>
-          <td>Validierung, Ticketanlage, Eskalation, Workflows</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">ITSM-App-Cluster</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Applikationsschicht mit mehreren Servern</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Ausführung von ITSM-Workflows, Ticketmanagement</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Validierung, Ticketanlage, Eskalation, Workflows</td>
         </tr>
         <tr>
-          <td>DB-Cluster (Primary/Replica)</td>
-          <td>Zentrale Datenbank mit Redundanz</td>
-          <td>Speicherung von Tickets, Usern, CMDB, Knowledge</td>
-          <td>Herzstück: Speicherung und Verfügbarkeit der INCs</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">DB-Cluster (Primary/Replica)</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Zentrale Datenbank mit Redundanz</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Speicherung von Tickets, Usern, CMDB, Knowledge</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Herzstück: Speicherung und Verfügbarkeit der INCs</td>
         </tr>
         <tr>
-          <td>File/Blob-Storage</td>
-          <td>Ablage von großen Dateien (z. B. Anhängen)</td>
-          <td>Speicherung von Attachments</td>
-          <td>Hält Beweise/Anhänge zum Incident bereit</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">File/Blob-Storage</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Ablage von großen Dateien (z. B. Anhängen)</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Speicherung von Attachments</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Hält Beweise/Anhänge zum Incident bereit</td>
         </tr>
         <tr>
-          <td>Mail-Gateway</td>
-          <td>Anbindung an Mailsystem</td>
-          <td>Versand von Benachrichtigungen</td>
-          <td>Automatische Mails an User & Support</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Mail-Gateway</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Anbindung an Mailsystem</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Versand von Benachrichtigungen</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Automatische Mails an User & Support</td>
         </tr>
         <tr>
-          <td>Directory Services (AD/LDAP/SSO/MFA)</td>
-          <td>Authentifizierungssysteme</td>
-          <td>Single Sign-On, Multi-Faktor-Authentifizierung</td>
-          <td>Verifiziert Identitäten beim Incident-Login</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Directory Services (AD/LDAP/SSO/MFA)</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Authentifizierungssysteme</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Single Sign-On, Multi-Faktor-Authentifizierung</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Verifiziert Identitäten beim Incident-Login</td>
         </tr>
         <tr>
-          <td>Monitoring & Logging</td>
-          <td>Protokollierung & Überwachung</td>
-          <td>SLA-Tracking, Dashboards, Alarmierung</td>
-          <td>Überwacht Ticketlaufzeit & Systemzustand</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Monitoring & Logging</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Protokollierung & Überwachung</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">SLA-Tracking, Dashboards, Alarmierung</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Überwacht Ticketlaufzeit & Systemzustand</td>
         </tr>
         <tr>
-          <td>Backup-Server</td>
-          <td>Lokales Backup-System</td>
-          <td>Snapshots und Recovery</td>
-          <td>Wiederherstellung nach Fehler oder Datenverlust</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Backup-Server</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Lokales Backup-System</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Snapshots und Recovery</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Wiederherstellung nach Fehler oder Datenverlust</td>
         </tr>
         <tr>
-          <td>DR-Standort (optional)</td>
-          <td>Externes Disaster-Recovery-System</td>
-          <td>Georedundante Sicherung</td>
-          <td>System-Resilienz, Wiederaufnahme im Notfall</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">DR-Standort (optional)</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Externes Disaster-Recovery-System</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Georedundante Sicherung</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">System-Resilienz, Wiederaufnahme im Notfall</td>
         </tr>
       </tbody>
     </table>
   </div>
 </section>
+
 
 <!-- Kontakt (global, immer vor dem Footer) -->
   <section class="contact-block" aria-labelledby="kontaktTitle">
