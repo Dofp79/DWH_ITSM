@@ -64,7 +64,25 @@
   <main id="projekte">
 
     <!-- Aufgabenbeschreibung -->
-    <section class="section" id="aufgabe"> <div class="sec-head"> <span class="sec-dot" aria-hidden="true"></span> <h2 class="sec-title">Systemmodellierung und Analyse der Rechenzentrumsstruktur (RZ) für ein ITSM-Tool.</h2> </div> <div class="text-block"> <h4>Es folgt eine Analyse im Kontext von ITSM (insbesondere Incident Management, kurz INC) sowie eine Erklärung, wie ein Incident in diesem System bearbeitet wird.</h4> <p class="lead"> Im Rahmen meiner ITSM-Arbeit habe ich die Rechenzentrumsstruktur für ein ITSM-Tool modelliert. Dabei habe ich den kompletten Lifecycle eines Incidents vom Portalzugriff über die Ticketanlage im DB-Cluster bis hin zu Eskalation, Monitoring und Disaster Recovery abgebildet. Durch die Integration von Mail-Gateways, Directory Services (SSO/LDAP) und Backup-Systemen konnte ich die vollständige Prozesskette von der Incident-Erstellung bis zur Lösung dokumentieren. Dieses Vorgehen stellt sicher, dass SLAs eingehalten, Daten gesichert und der Betrieb auch bei Ausfällen gewährleistet ist. </p> <p class="lead"> Mithilfe dieses RZ-Diagramms werden die für das Incident Management kritischen ITSM-Komponenten veranschaulicht: vom Portalzugriff über die Ticketbearbeitung bis hin zur Sicherung und Wiederherstellung. Deutlich erkennbar ist, dass der Datenbank-Cluster das Herzstück bildet, während die App-Cluster und Integrationen für die Funktionalität und Kommunikation verantwortlich sind. </p> </div> </section>
+    <section class="section" id="aufgabe"> 
+      <div class="sec-head"> 
+        <span class="sec-dot" aria-hidden="true"></span> 
+        <h2 class="sec-title">Systemmodellierung und Analyse der Rechenzentrumsstruktur (RZ) für ein ITSM-Tool.</h2> 
+      </div> 
+      <div class="text-block"> 
+        <h4>Es folgt eine Analyse im Kontext von ITSM (insbesondere Incident Management, kurz INC) sowie eine Erklärung, wie ein Incident in diesem System bearbeitet wird.</h4>
+        <p class="lead"> Im Rahmen einer Rechenzentrumsstruktur für ein ITSM-Tool wird das folgende Modell visualisiert. Dabei wird der komplette Lebenszyklus eines Incidents 
+        abgebildet: vom Portalzugriff über die Ticketanlage im DB-Cluster bis hin zu Eskalation, Monitoring und Disaster Recovery. Durch die Integration von Mail-Gateways, Directory 
+        Services (SSO/LDAP) und Backup-Systemen kann die vollständige Prozesskette von der Incident-Erstellung bis zur Lösung dokumentiert werden. Dieses Vorgehen stellt sicher, dass 
+        SLAs eingehalten, Daten gesichert und der Betrieb auch bei Ausfällen gewährleistet ist.</p>
+        <p class="lead"> Mithilfe des RZ-Diagramms werden die für das Incident-Management kritischen ITSM-Komponenten veranschaulicht: vom Portalzugriff über die Ticketbearbeitung bis hin zur 
+        Sicherung und Wiederherstellung. Deutlich erkennbar ist, dass der Datenbank-Cluster das Herzstück bildet, während die App-Cluster und Integrationen für die Funktionalität 
+        und Kommunikation verantwortlich sind. </p> 
+        <p class="lead"> Mithilfe dieses RZ-Diagramms werden die für das Incident Management kritischen ITSM-Komponenten veranschaulicht: vom Portalzugriff über die Ticketbearbeitung bis 
+        hin zur Sicherung und Wiederherstellung. Deutlich erkennbar ist, dass der Datenbank-Cluster das Herzstück bildet, während die App-Cluster und Integrationen für die Funktionalität und 
+        Kommunikation verantwortlich sind. </p> 
+      </div> 
+    </section>
 
     <!-- Architektur / Diagramm -->
     <section class="section" id="rz-diagramm">
