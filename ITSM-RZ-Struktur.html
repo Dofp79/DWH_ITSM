@@ -10,73 +10,38 @@
   <script src="assets/js/site.js" defer></script>
   <script src="assets/js/menu.js" defer></script>
 
-  <!-- Seiten-spezifische, kleine Ergänzungen -->
+  <!-- Seiten-spezifische Ergänzungen -->
   <style>
-    /* Überschrift im Callout */
-    .callout h4{ margin:0; color:var(--headline); font-weight:700; }
-
-    /* Zentrier-Helfer */
-    .center-wrap{ max-width: var(--maxw); margin: 0 auto; padding: 0 var(--padx); }
-    .centered{ text-align:center; }
-    .centered .card{ margin-left:auto; margin-right:auto; }
-
-    /* Bilder: stets responsiv & mittig */
-    .card img[data-full]{
-      display:block; width:100%; height:auto; object-fit:contain; cursor:zoom-in;
-      margin: 0 auto;
+    .callout h4 { margin:0; color:var(--headline); font-weight:700; }
+    .center-wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--padx); }
+    .centered { text-align:center; }
+    .centered .card { margin-left:auto; margin-right:auto; }
+    .card img[data-full] {
+      display:block; width:100%; height:auto; object-fit:contain;
+      cursor:zoom-in; margin: 0 auto;
     }
-
-    /* Einspaltige „centered“-Grids: Karte auf Inhaltbreite begrenzen */
-    .grid-1-centered{
-      display:grid; grid-template-columns: minmax(0, 1fr);
-      justify-items: center;
-      gap: 18px;
-    }
-    .grid-1-centered .card{ width: min(100%, 1024px); } /* angenehm breite Darstellung */
-
-    /* Button-Reihe unter Medien */
-    .media-actions{
-      display:flex; gap:12px; justify-content:center; align-items:center;
-      padding:12px 16px 0;
-      flex-wrap:wrap;
-    }
-
-    /* Button-Stil wie globaler Brand-Button */
-    .btn {
-      background: var(--brand-primary);
-      color: #fff;
-      border: 0;
-      border-radius: 10px;
-      padding: 10px 16px;
-      font-weight: 700;
-      text-decoration: none;
-      display: inline-block;
-    }
-    .btn:hover{ background: var(--brand-accent); }
-
-    /* auf sehr kleinen Screens: Bildhöhe frei */
-    @media (max-width: 720px){
-      .grid-1-centered .card{ width:100%; }
-    }
+    .grid-1-centered { display:grid; grid-template-columns:1fr; justify-items:center; gap:18px; }
+    .grid-1-centered .card { width:min(100%, 1024px); }
+    .media-actions { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; padding:12px 16px 0; }
+    .btn { background:var(--brand-primary); color:#fff; border:0; border-radius:10px; padding:10px 16px; font-weight:700; text-decoration:none; display:inline-block; }
+    .btn:hover { background:var(--brand-accent); }
   </style>
 </head>
 
 <body>
-  <!-- ===== Header (global) ===== -->
+  <!-- ===== Header ===== -->
   <header class="site-header">
     <a class="logo-link" href="index.html" aria-label="Startseite">
       <img src="assets/img/DoniLogo_1.0.0.png" alt="Logo Doniman F. Peña Parra" class="logo" />
     </a>
-
     <button class="nav-toggle" id="navToggle" aria-controls="mainnav" aria-expanded="false">
       <span>Menü</span>
       <svg class="icon" width="28" height="18" viewBox="0 0 28 18" aria-hidden="true">
-        <rect x="0" y="0"  width="28" height="2" rx="1"></rect>
-        <rect x="0" y="8"  width="28" height="2" rx="1"></rect>
+        <rect x="0" y="0" width="28" height="2" rx="1"></rect>
+        <rect x="0" y="8" width="28" height="2" rx="1"></rect>
         <rect x="0" y="16" width="28" height="2" rx="1"></rect>
       </svg>
     </button>
-
     <nav id="mainnav" class="mainnav" aria-label="Hauptnavigation" data-open="false">
       <ul class="nav-list">
         <li class="nav-item"><a class="nav-link" href="index.html">Start</a></li>
@@ -95,181 +60,96 @@
     </div>
   </section>
 
-  <!--
-    WICHTIG für Lightbox in assets/js/site.js:
-    Der Code lauscht auf #projekte img[data-full].
-    Daher kapseln wir die Medienbereiche in <main id="projekte">.
-  -->
+  <!-- ===== Hauptinhalt ===== -->
   <main id="projekte">
 
-    <!-- ===== Aufgabenbeschreibung ===== -->
+    <!-- Aufgabenbeschreibung -->
     <section class="section" id="aufgabe">
       <div class="sec-head">
-        <span class="sec-dot" aria-hidden="true"></span>
-        <h2 class="sec-title">Systemmodellierung und Analyse der Rechenzentrumsstruktur (RZ) für ein ITSM-Tool.</h2>
+        <span class="sec-dot"></span>
+        <h2 class="sec-title">Systemmodellierung und Analyse</h2>
       </div>
-
       <div class="text-block">
-        <h4>Es folgt eine Analyse im Kontext von ITSM (insbesondere Incident Management, kurz INC) sowie eine Erklärung, wie ein Incident in diesem 
-          System bearbeitet wird.</h4>
+        <h4>Analyse im Kontext von ITSM (Incident Management, INC)</h4>
         <p class="lead">
-          Im Rahmen meiner ITSM-Arbeit habe ich die Rechenzentrumsstruktur für ein ITSM-Tool modelliert. Dabei habe ich den kompletten Lifecycle eines 
-          Incidents vom Portalzugriff über die Ticketanlage im DB-Cluster bis hin zu Eskalation, Monitoring und Disaster Recovery abgebildet. Durch die 
-          Integration von Mail-Gateways, Directory Services (SSO/LDAP) und Backup-Systemen konnte ich die vollständige Prozesskette von der 
-          Incident-Erstellung bis zur Lösung dokumentieren. Dieses Vorgehen stellt sicher, dass SLAs eingehalten, Daten gesichert und der Betrieb auch 
-          bei Ausfällen gewährleistet ist.
+          Ich habe die RZ-Struktur für ein ITSM-Tool modelliert – vom Portalzugriff über die Ticketanlage im DB-Cluster bis hin zu Eskalation, Monitoring und Disaster Recovery.
         </p>
         <p class="lead">
-          Mithilfe dieses RZ-Diagramms werden die für das Incident Management kritischen ITSM-Komponenten veranschaulicht: vom Portalzugriff über die 
-          Ticketbearbeitung bis hin zur Sicherung und Wiederherstellung.
-          Deutlich erkennbar ist, dass der Datenbank-Cluster das Herzstück bildet, während die App-Cluster und Integrationen für die Funktionalität und 
-          Kommunikation verantwortlich sind.
+          Kritische Komponenten: Portal, App-Cluster, DB-Cluster (Herzstück), Integrationen (Mail-Gateway, Directory Services, Backup).
         </p>
       </div>
     </section>
-    
-    <!-- ===== Architektur / Rechenzentrumsstruktur (RZ) Modell (zentriert) ===== -->
-    <section class="section" id="architektur">
+
+    <!-- Architektur / Diagramm -->
+    <section class="section" id="rz-diagramm">
       <div class="sec-head">
-        <span class="sec-dot" aria-hidden="true"></span>
-        <h2 class="sec-title">Architektur / Komponenten</h2>
+        <span class="sec-dot"></span>
+        <h2 class="sec-title">ITSM-RZ-Diagramm</h2>
       </div>
 
-      <div class="center-wrap centered">
-        <div class="grid-1-centered">
-          <article class="card">
-            <img
-              src="assets/img/Komponentendiagramm.png"
-              alt="Komponentendiagramm"
-              loading="lazy"
-              decoding="async"
-              data-full="assets/img/ITSM_RZ_1.0.0.png" />
-            <div class="card-body stack">
-              <h4>Kontext &amp; Schnittstellen</h4>
-              <p>Systemübersicht / Kontextdarstellung des Incident-Management-Prozesses.
-              Es zeigt die Interaktion zwischen User, Selfservice-Portal, Supportdiensten und den ITSM-Systemen.</p>
-              <p>Formular, Selfservice‑Portal, 1st/2nd Level Support, Mail‑Service, ITSM‑System.</p>
+      <div class="center-wrap">
+        <article class="card">
+          <img class="diagram"
+               src="assets/img/ITSM_RZ_1.0.0.png"
+               alt="ITSM RZ-Diagramm"
+               loading="lazy"
+               decoding="async"
+               data-full="assets/img/ITSM_RZ_1.0.0.png" />
+
+          <div class="card-body">
+            <div class="text-block">
+              <h3>Incident Management – Standardablauf</h3>
+              <p>Ein Incident (INC) durchläuft standardisiert folgende Schritte:</p>
+              <ol>
+                <li><strong>Incident-Erstellung:</strong>
+                  <ul>
+                    <li>User meldet Problem über Selfservice-Portal.</li>
+                    <li>Portal sendet Anfrage verschlüsselt an ITSM.</li>
+                  </ul>
+                </li>
+                <li><strong>Ticket-Anlage:</strong>
+                  <ul>
+                    <li>Appserver validiert Daten.</li>
+                    <li>Ticket im DB-Cluster gespeichert (inkl. INC-ID).</li>
+                  </ul>
+                </li>
+                <li><strong>Zuweisung &amp; Prüfung:</strong>
+                  <ul>
+                    <li>Workflow leitet Incident an zuständigen Support weiter.</li>
+                  </ul>
+                </li>
+                <li><strong>Bearbeitung &amp; Lösung:</strong>
+                  <ul>
+                    <li>Support löst Incident oder eskaliert.</li>
+                    <li>Lösung wird dokumentiert.</li>
+                  </ul>
+                </li>
+                <li><strong>Benachrichtigung:</strong>
+                  <ul>
+                    <li>User wird über Mail-Gateway informiert.</li>
+                    <li>Status jederzeit im Portal einsehbar.</li>
+                  </ul>
+                </li>
+                <li><strong>Abschluss:</strong>
+                  <ul>
+                    <li>Ticket geschlossen.</li>
+                    <li>Monitoring überwacht SLA &amp; dokumentiert Lifecycle.</li>
+                  </ul>
+                </li>
+              </ol>
             </div>
-          </article>
-        </div>
+          </div>
+        </article>
       </div>
     </section>
-
-<!-- ===== BPMN-Modelle (zentriert, mit Beschreibung & Buttons) ===== -->
-<section class="section" id="bpmn-modelle">
-  <div class="sec-head">
-    <span class="sec-dot" aria-hidden="true"></span>
-    <h2 class="sec-title">BPMN-Modelle</h2>
-  </div>
-
-  <div class="center-wrap">
-    <!-- ==== Modell 1.0.0 ==== -->
-    <article class="card" style="margin:0 auto; max-width:1024px;">
-      <img
-        class="diagram"
-        src="assets/img/DataportSuport_1.0.0.svg"
-        alt="BPMN-Modell 1.0.0 – Kernprozess Supportfall"
-        loading="lazy" decoding="async"
-        data-full="assets/img/DataportSuport_1.0.0.svg" />
-
-      <div class="media-actions">
-        <a class="btn" href="assets/img/DataportSuport_1.0.0.svg" target="_blank" rel="noopener">BPMN in neuem Tab</a>
-        <a class="btn" href="assets/img/DataportSuport_1.0.0.svg" download>Download</a>
-      </div>
-
-      <div class="card-body" style="padding-top:8px;">
-        <div class="text-block">
-          <h3>Beschreibung</h3>
-          <p class="lead">
-            Das Modell <strong>1.0.0</strong> bildet den <strong>Kernprozess eines Supportfalls</strong> ab:
-            vom Erfassen der Störung über 1st/2nd-Level-Bearbeitung bis zur Benachrichtigung und dem Schließen des Incidents.
-          </p>
-
-          <h3>Ablauf (Hauptschritte)</h3>
-          <ol>
-            <li><strong>User-Pool:</strong> Supportformular mit Kurz-/Langbeschreibung senden.</li>
-            <li><strong>ITSM-Pool:</strong> Ticketanlage &amp; Weiterleitung an First Support.</li>
-            <li>
-              <strong>First Support:</strong> Prüfung
-              <ul>
-                <li><strong>lösbar:</strong> Lösung &amp; Info an User, Ticket schließen</li>
-                <li><strong>nicht lösbar:</strong> Übergabe an Second Support</li>
-              </ul>
-            </li>
-            <li><strong>Second Support:</strong> Analyse, Behebung, Dokumentation.</li>
-            <li><strong>E-Mail-Benachrichtigungen</strong> an den User (Status/Abschluss).</li>
-          </ol>
-
-          <h3>Charakteristik</h3>
-          <ul>
-            <li>Fokus auf <strong>Standardfluss</strong> ohne Sonderpfade.</li>
-            <li>Kompakte, gut nachvollziehbare E2E-Transparenz.</li>
-          </ul>
-        </div>
-      </div>
-    </article>
-
-    <!-- Abstand zwischen den zwei Modellen -->
-    <div style="height:24px"></div>
-
-    <!-- ==== Modell 2.0.0 ==== -->
-    <article class="card" style="margin:0 auto; max-width:1024px;">
-      <img
-        class="diagram"
-        src="assets/img/DataportSuport_2.0.0.svg"
-        alt="BPMN-Modell 2.0.0 – Erweiterter Supportprozess"
-        loading="lazy" decoding="async"
-        data-full="assets/img/DataportSuport_2.0.0.svg" />
-
-      <div class="media-actions">
-        <a class="btn" href="assets/img/DataportSuport_2.0.0.svg" target="_blank" rel="noopener">BPMN in neuem Tab</a>
-        <a class="btn" href="assets/img/DataportSuport_2.0.0.svg" download>Download</a>
-      </div>
-
-      <div class="card-body" style="padding-top:8px;">
-        <div class="text-block">
-          <h3>Beschreibung</h3>
-          <p class="lead">
-            Das Modell <strong>2.0.0</strong> erweitert den Kernprozess um <strong>Authentifizierung</strong>,
-            <strong>Wissensdatenbank-Abfragen (DBSM)</strong>, <strong>Feedback-Schleifen</strong> und
-            <strong>Timer-Events</strong> (z. B. Auto-Close).
-          </p>
-
-          <h3>Ablauf (Hauptschritte &amp; Erweiterungen)</h3>
-          <ol>
-            <li><strong>User-Pool:</strong> Login/Authentifizierung, Formular inkl. Abbruchpfade.</li>
-            <li><strong>ITSM-Pool:</strong> Ticketanlage mit Validierungen (DB-Abgleich/DBSM).</li>
-            <li>
-              <strong>First Support:</strong> zusätzlich
-              <ul>
-                <li><strong>Wissensdatenbank-Abfrage</strong> zur schnellen Lösungssuche.</li>
-                <li><strong>Feedback-Schleife</strong> (Rückfragen/Bestätigung durch User).</li>
-              </ul>
-            </li>
-            <li><strong>Second Support:</strong> detailliertere Eskalations-/Dokupfade (ITIL-nah).</li>
-            <li><strong>User-Rückmeldung</strong> zur Lösung (ja/nein).</li>
-            <li><strong>Timer-Events</strong> für SLA-/Prozess-Automatisierung.</li>
-          </ol>
-
-          <h3>Wesentliche Unterschiede zu 1.0.0</h3>
-          <ul>
-            <li>Vorangestellte <strong>Authentifizierung</strong> und valide Ticketanlage.</li>
-            <li><strong>DBSM/Wissensdatenbank</strong> als Entscheidungshilfe im 1st-Level.</li>
-            <li><strong>Feedback-Schleife</strong> vor dem Schließen.</li>
-            <li><strong>Timer-Events</strong> (z. B. automatisches Schließen).</li>
-          </ul>
-        </div>
-      </div>
-    </article>
-  </div>
-</section>
+  </main>
 
   <!-- ===== Footer ===== -->
   <footer>
     &copy; 2025 Doniman F. Peña Parra – Bewerbung für Dataport
   </footer>
 
-  <!-- ===== Lightbox-Container (falls site.js ihn nutzt) ===== -->
+  <!-- ===== Lightbox ===== -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <button type="button" id="lightboxClose" aria-label="Schließen">✕</button>
     <img id="lightboxImg" src="" alt="Vergrößertes Bild" />
