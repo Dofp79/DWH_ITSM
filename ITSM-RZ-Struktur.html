@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Prozessmodellierung – Doniman F. Peña Parra</title>
+  <title>Rechenzentrumsstruktur (RZ) für ein ITSM-Tool – Doniman F. Peña Parra</title>
 
   <!-- Globale Styles/JS (Dataport-Look & Standard-Verhalten) -->
   <link rel="stylesheet" href="assets/css/site.css" />
@@ -90,8 +90,8 @@
   <!-- ===== Hero ===== -->
   <section class="hero">
     <div class="hero-inner">
-      <h1 class="headline">Prozessmodellierung</h1>
-      <p class="subhead">Transparenz schaffen · Faktenbasierte Steuerung · Governance & Compliance · Optimierung & Effizienz</p>
+      <h1 class="headline">Rechenzentrumsstruktur (RZ) für ein ITSM-Tool</h1>
+      <p class="subhead">Komponente des RZ-Diagramms · Beschreibung · Funktion im ITSM · Rolle im Incident Management</p>
     </div>
   </section>
 
@@ -106,72 +106,29 @@
     <section class="section" id="aufgabe">
       <div class="sec-head">
         <span class="sec-dot" aria-hidden="true"></span>
-        <h2 class="sec-title">Beispielszenario: Vertriebsprozessmodellierung zur Managementunterstützung</h2>
+        <h2 class="sec-title">System Modellierung und analize Rechenzentrumsstruktur (RZ) für ein ITSM-Tool</h2>
       </div>
 
       <div class="text-block">
-        <h4>Visualisierung der Zusammenhänge zwischen Support-Bearbeitungsprozessen, beteiligten Komponenten und Auftraggebern der Dataport-Kunden.</h4>
+        <h4>Es folgt eine Analyse im Kontext von ITSM (insbesondere Incident Management, kurz INC) sowie eine Erklärung, wie ein Incident in diesem 
+          System bearbeitet wird.</h4>
         <p class="lead">
-          Dataport interne Kunden (im Folgenden User genannt) nutzen eine Vielzahl an Tools und Anwendungen für ihre tägliche
-          Arbeit. Diese unterschiedlichen Tools und Anwendungen stellen die User manchmal vor Herausforderungen im Gebrauch
-          und somit benötigen die User schließlich Unterstützung von Supporteinheiten.
+          Im Rahmen meiner ITSM-Arbeit habe ich die Rechenzentrumsstruktur für ein ITSM-Tool modelliert. Dabei habe ich den kompletten Lifecycle eines 
+          Incidents vom Portalzugriff über die Ticketanlage im DB-Cluster bis hin zu Eskalation, Monitoring und Disaster Recovery abgebildet. Durch die 
+          Integration von Mail-Gateways, Directory Services (SSO/LDAP) und Backup-Systemen konnte ich die vollständige Prozesskette von der 
+          Incident-Erstellung bis zur Lösung dokumentieren. Dieses Vorgehen stellt sicher, dass SLAs eingehalten, Daten gesichert und der Betrieb auch 
+          bei Ausfällen gewährleistet ist.
         </p>
         <p class="lead">
-          Hat ein User solch einen Supportfall, so kann dieser selbstständig über ein Dataport internes Selfservice Portal den
-          Supportfall in ein Formular eingeben. In dem Formular werden bestimmte Fragen dem User zu seinem Supportfall gestellt …
-          Anschließend wird das Formular eingereicht. Das Formular wird in ein Dataport internes Ticketsystem (ITSM) überführt,
-          wodurch die First Supporteinheit per E‑Mail informiert wird. … Falls die First Supporteinheit keine Möglichkeit der Abhilfe
-          hat, wird der Second Supporteinheit das Ticket übergeben. Die Second Supporteinheit verschafft dem User Abhilfe und informiert
-          per E‑Mail den User.
-        </p>
-        <p class="lead">
-          Jederzeit hat der User die Möglichkeit über das interne Selfservice Portal den aktuellen Status seines Tickets einzusehen.
+          Mithilfe dieses RZ-Diagramms werden die für das Incident Management kritischen ITSM-Komponenten veranschaulicht: vom Portalzugriff über die 
+          Ticketbearbeitung bis hin zur Sicherung und Wiederherstellung.
+          Deutlich erkennbar ist, dass der Datenbank-Cluster das Herzstück bildet, während die App-Cluster und Integrationen für die Funktionalität und 
+          Kommunikation verantwortlich sind.
         </p>
       </div>
     </section>
-
-    <!-- ===== Vorgehen / Analyse (Use‑Case & Swimlanes) ===== -->
-    <section class="section" id="vorgehen">
-      <div class="sec-head">
-        <span class="sec-dot" aria-hidden="true"></span>
-        <h2 class="sec-title">Vorgehen / Analyse</h2>
-      </div>
-
-      <div class="center-wrap">
-        <div class="grid grid-2">
-          <!-- Use-Case -->
-          <article class="card">
-            <img
-              src="assets/img/UseCase.png"
-              alt="Use‑Case‑Modell"
-              loading="lazy"
-              decoding="async"
-              data-full="assets/img/UseCase.png" />
-            <div class="card-body stack">
-              <h4>Use‑Case</h4>
-              <p>Das Use-Case-Diagramm visualisiert sehr transparent, wie viele Akteure mit dem System interagieren und welche Funktionen 
-              sie nutzen. Es zeigt die Verantwortlichkeiten klar getrennt und macht die Logik des Prozesses nachvollziehbar.</p>
-            </div>
-          </article>
-
-          <!-- Swimlanes -->
-          <article class="card">
-            <img
-              src="assets/img/PAP.png"
-              alt="Ablaufdarstellung mit Swimlanes"
-              loading="lazy"
-              decoding="async"
-              data-full="assets/img/PAP.png" />
-            <div class="card-body stack">
-              <h4>Aktivitätsdiagramm mit Swimlanes</h4>
-              <p>Das gezeigte Aktivitätsdiagramm stellt den Ablauf eines Supportfalls dar und nutzt dabei sogenannte Swimlanes (Bahnen), um die Verantwortlichkeiten der verschiedenen Rollen/Organisationseinheiten klar abzugrenzen.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== Architektur / Komponenten (zentriert) ===== -->
+    
+    <!-- ===== Architektur / Rechenzentrumsstruktur (RZ) Modell (zentriert) ===== -->
     <section class="section" id="architektur">
       <div class="sec-head">
         <span class="sec-dot" aria-hidden="true"></span>
@@ -186,7 +143,7 @@
               alt="Komponentendiagramm"
               loading="lazy"
               decoding="async"
-              data-full="assets/img/Komponentendiagramm.png" />
+              data-full="assets/img/ITSM_RZ_1.0.0.png" />
             <div class="card-body stack">
               <h4>Kontext &amp; Schnittstellen</h4>
               <p>Systemübersicht / Kontextdarstellung des Incident-Management-Prozesses.
