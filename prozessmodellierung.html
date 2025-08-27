@@ -197,129 +197,114 @@
       </div>
     </section>
 
-    <!-- ===== BPMN Modell 1 (zentriert + Buttons) ===== -->
-<section class="section" id="bpmn10-notes" aria-labelledby="bpmn10Title">
+<!-- ===== BPMN-Modelle (zentriert, mit Beschreibung & Buttons) ===== -->
+<section class="section" id="bpmn-modelle">
   <div class="sec-head">
     <span class="sec-dot" aria-hidden="true"></span>
-    <h2 id="bpmn10Title" class="sec-title">BPMN-Modell 1.0.0 – Kernprozess Supportfall</h2>
+    <h2 class="sec-title">BPMN-Modelle</h2>
   </div>
 
-  <div class="text-block">
-    <h3>Beschreibung</h3>
-    <p class="lead">
-      Das Modell 1.0.0 bildet den <strong>Kernprozess eines Supportfalls</strong> ab: vom Erfassen der Störung
-      über die Bearbeitung im 1st/2nd-Level bis zur Benachrichtigung und dem Schließen des Incidents.
-    </p>
+  <div class="center-wrap">
+    <!-- ==== Modell 1.0.0 ==== -->
+    <article class="card" style="margin:0 auto; max-width:1024px;">
+      <img
+        class="diagram"
+        src="assets/img/DataportSuport_1.0.0.svg"
+        alt="BPMN-Modell 1.0.0 – Kernprozess Supportfall"
+        loading="lazy" decoding="async"
+        data-full="assets/img/DataportSuport_1.0.0.svg" />
 
-    <h3>Ablauf (Hauptschritte)</h3>
-    <ol>
-      <li>
-        <strong>User-Pool:</strong> Nutzer erstellt einen Supportfall und übermittelt ein
-        Formular (Kurz-/Langbeschreibung, Rückrufoption etc.).
-      </li>
-      <li>
-        <strong>ITSM-Pool:</strong> Ticketanlage im ITSM-System und Weiterleitung an den First Support.
-      </li>
-      <li>
-        <strong>First Support:</strong> prüft den Fall.
-        <ul>
-          <li><strong>Wenn lösbar:</strong> Lösung bereitstellen &amp; dokumentieren, Nutzer informieren.</li>
-          <li><strong>Wenn nicht lösbar:</strong> Ticket an Second Support eskalieren.</li>
-        </ul>
-      </li>
-      <li>
-        <strong>Second Support:</strong> übernimmt, analysiert und behebt — inkl. Dokumentation.
-      </li>
-      <li>
-        <strong>E-Mail-Benachrichtigungen:</strong> Nutzer wird über Status &amp; Abschluss informiert.
-      </li>
-    </ol>
-
-    <h3>Charakteristik</h3>
-    <ul>
-      <li>Fokus auf <strong>Standardfluss</strong> ohne erweiterte Sonderpfade.</li>
-      <li>Kompakte Darstellung für nachvollziehbare End-to-End-Transparenz.</li>
-    </ul>
-   </div>
-     <div class="media-actions">
+      <div class="media-actions">
         <a class="btn" href="assets/img/DataportSuport_1.0.0.svg" target="_blank" rel="noopener">BPMN in neuem Tab</a>
-        <a class="btn" href="assets/img/DataportSuport_1.0.0.svg" download>Download</a>          
-     </div>
-    </section>
+        <a class="btn" href="assets/img/DataportSuport_1.0.0.svg" download>Download</a>
+      </div>
 
-    <!-- ===== BPMN Modell 2 (zentriert + Buttons) ===== -->
- <section class="section" id="bpmn20-notes" aria-labelledby="bpmn20Title">
-  <div class="sec-head">
-    <span class="sec-dot" aria-hidden="true"></span>
-    <h2 id="bpmn20Title" class="sec-title">BPMN-Modell 2.0.0 – Erweiterter Supportprozess</h2>
-  </div>
+      <div class="card-body" style="padding-top:8px;">
+        <div class="text-block">
+          <h3>Beschreibung</h3>
+          <p class="lead">
+            Das Modell <strong>1.0.0</strong> bildet den <strong>Kernprozess eines Supportfalls</strong> ab:
+            vom Erfassen der Störung über 1st/2nd-Level-Bearbeitung bis zur Benachrichtigung und dem Schließen des Incidents.
+          </p>
 
-  <div class="text-block">
-    <h3>Beschreibung</h3>
-    <p class="lead">
-      Das Modell 2.0.0 ist eine <strong>erweiterte Version</strong> mit zusätzlichen Details und
-      Qualitätssicherungen (z. B. Authentifizierung, Wissensdatenbank-Abfragen, Feedback-Schleifen
-      und Timer-Events).
-    </p>
+          <h3>Ablauf (Hauptschritte)</h3>
+          <ol>
+            <li><strong>User-Pool:</strong> Supportformular mit Kurz-/Langbeschreibung senden.</li>
+            <li><strong>ITSM-Pool:</strong> Ticketanlage &amp; Weiterleitung an First Support.</li>
+            <li>
+              <strong>First Support:</strong> Prüfung
+              <ul>
+                <li><strong>lösbar:</strong> Lösung &amp; Info an User, Ticket schließen</li>
+                <li><strong>nicht lösbar:</strong> Übergabe an Second Support</li>
+              </ul>
+            </li>
+            <li><strong>Second Support:</strong> Analyse, Behebung, Dokumentation.</li>
+            <li><strong>E-Mail-Benachrichtigungen</strong> an den User (Status/Abschluss).</li>
+          </ol>
 
-    <h3>Ablauf (Hauptschritte &amp; Erweiterungen)</h3>
-    <ol>
-      <li>
-        <strong>User-Pool:</strong> Login/Authentifizierung im Selfservice-Portal; Formular inkl. Abbruchpfade.
-      </li>
-      <li>
-        <strong>ITSM-Pool:</strong> Ticketanlage mit <em>Validierungen</em> (z. B. Abgleich mit ITSM-Datenbank/DBSM).
-      </li>
-      <li>
-        <strong>First Support:</strong> enthält zusätzliche Schritte
-        <ul>
-          <li><strong>Wissensdatenbank-Abfrage (DBSM)</strong> zur schnelleren Lösungssuche.</li>
-          <li><strong>Feedback-Schleife</strong> (z. B. Rückfragen oder Bestätigung durch den Nutzer).</li>
-        </ul>
-      </li>
-      <li>
-        <strong>Second Support:</strong> analog zu 1.0.0, jedoch detaillierter dokumentiert und
-        näher an ITIL-Standards (Eskalations- und Nachdokumentationspfade).
-      </li>
-      <li>
-        <strong>User-Rückmeldungen:</strong> kurzes Feedback („Lösung erfolgreich ja/nein“).
-      </li>
-      <li>
-        <strong>Timer-Events:</strong> zeitgesteuerte Aktionen (z. B. automatisches Schließen nach 30 Tagen).
-      </li>
-    </ol>
-
-    <h3>Wesentliche Unterschiede zu 1.0.0</h3>
-    <ul>
-      <li>Vorangestellte <strong>Authentifizierung</strong> im Portal &amp; valide Ticketanlage.</li>
-      <li><strong>DBSM/Wissensdatenbank</strong> als Entscheidungshilfe im 1st-Level.</li>
-      <li><strong>Feedback-Schleife</strong> mit Nutzerinteraktion, bevor geschlossen wird.</li>
-      <li><strong>Timer-Events</strong> für SLA-/Prozess-Automatisierung.</li>
-    </ul>
-        <div class="media-actions">
-          <a class="btn" href="assets/img/DataportSuport_1.0.0.svg" target="_blank" rel="noopener">BPMN in neuem Tab</a>
-          <a class="btn" href="assets/img/DataportSuport_1.0.0.svg" download>Download</a>
+          <h3>Charakteristik</h3>
+          <ul>
+            <li>Fokus auf <strong>Standardfluss</strong> ohne Sonderpfade.</li>
+            <li>Kompakte, gut nachvollziehbare E2E-Transparenz.</li>
+          </ul>
         </div>
       </div>
-    </section>
+    </article>
 
-  </main>
+    <!-- Abstand zwischen den zwei Modellen -->
+    <div style="height:24px"></div>
 
-  <!-- ===== Kontakt (global, immer vor dem Footer) ===== -->
-  <section class="contact-block" aria-labelledby="kontaktTitle">
-    <div class="contact-inner">
-      <h2 id="kontaktTitle" class="contact-title">Kontakt</h2>
-      <p class="contact-name">Doniman F. Peña Parra</p>
-      <p class="contact-email">
-        <a id="contactEmail"
-           data-email-user="dofp79"
-           data-email-domain="hotmail.com"
-           href="#"
-           rel="nofollow">E‑Mail anzeigen</a>
-        <noscript> (dofp79&nbsp;[at]&nbsp;hotmail&nbsp;[dot]&nbsp;com) </noscript>
-      </p>
-    </div>
-  </section>
+    <!-- ==== Modell 2.0.0 ==== -->
+    <article class="card" style="margin:0 auto; max-width:1024px;">
+      <img
+        class="diagram"
+        src="assets/img/DataportSuport_2.0.0.svg"
+        alt="BPMN-Modell 2.0.0 – Erweiterter Supportprozess"
+        loading="lazy" decoding="async"
+        data-full="assets/img/DataportSuport_2.0.0.svg" />
+
+      <div class="media-actions">
+        <a class="btn" href="assets/img/DataportSuport_2.0.0.svg" target="_blank" rel="noopener">BPMN in neuem Tab</a>
+        <a class="btn" href="assets/img/DataportSuport_2.0.0.svg" download>Download</a>
+      </div>
+
+      <div class="card-body" style="padding-top:8px;">
+        <div class="text-block">
+          <h3>Beschreibung</h3>
+          <p class="lead">
+            Das Modell <strong>2.0.0</strong> erweitert den Kernprozess um <strong>Authentifizierung</strong>,
+            <strong>Wissensdatenbank-Abfragen (DBSM)</strong>, <strong>Feedback-Schleifen</strong> und
+            <strong>Timer-Events</strong> (z. B. Auto-Close).
+          </p>
+
+          <h3>Ablauf (Hauptschritte &amp; Erweiterungen)</h3>
+          <ol>
+            <li><strong>User-Pool:</strong> Login/Authentifizierung, Formular inkl. Abbruchpfade.</li>
+            <li><strong>ITSM-Pool:</strong> Ticketanlage mit Validierungen (DB-Abgleich/DBSM).</li>
+            <li>
+              <strong>First Support:</strong> zusätzlich
+              <ul>
+                <li><strong>Wissensdatenbank-Abfrage</strong> zur schnellen Lösungssuche.</li>
+                <li><strong>Feedback-Schleife</strong> (Rückfragen/Bestätigung durch User).</li>
+              </ul>
+            </li>
+            <li><strong>Second Support:</strong> detailliertere Eskalations-/Dokupfade (ITIL-nah).</li>
+            <li><strong>User-Rückmeldung</strong> zur Lösung (ja/nein).</li>
+            <li><strong>Timer-Events</strong> für SLA-/Prozess-Automatisierung.</li>
+          </ol>
+
+          <h3>Wesentliche Unterschiede zu 1.0.0</h3>
+          <ul>
+            <li>Vorangestellte <strong>Authentifizierung</strong> und valide Ticketanlage.</li>
+            <li><strong>DBSM/Wissensdatenbank</strong> als Entscheidungshilfe im 1st-Level.</li>
+            <li><strong>Feedback-Schleife</strong> vor dem Schließen.</li>
+            <li><strong>Timer-Events</strong> (z. B. automatisches Schließen).</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
 
   <!-- ===== Footer ===== -->
   <footer>
