@@ -246,8 +246,25 @@
               data-full="assets/img/DataportSuport_2.0.0.svg" />
 
             <div class="media-actions">
-              <a class="btn" href="assets/img/DataportSuport_2.0.0.svg" target="_blank" rel="noopener">BPMN in neuem Tab</a>
-              <a class="btn" href="assets/img/DataportSuport_2.0.0.svg" download>Download</a>
+              <div class="bpmn-notes" aria-labelledby="bpmn-10-title">
+                <h3 id="bpmn-10-title">BPMN-Modell 1.0.0</h3>
+                 <p class="meta">Beschreibung:</p>
+                 <ol>
+                   <li><strong>User-Pool:</strong> erstellt einen Supportfall und schickt ein Formular ab.</li>
+                   <li><strong>ITSM-Pool:</strong> erfasst das Ticket und leitet es an den First Support weiter.</li>
+                   <li><strong>First Support:</strong> prüft den Fall.
+                     <ul>
+                       <li><strong>Wenn lösbar:</strong> Lösung bereitstellen und dokumentieren.</li>
+                       <li><strong>Wenn nicht lösbar:</strong> Ticket eskalieren.</li>
+                     </ul>
+                    </li>
+                    <li><strong>Second Support:</strong> übernimmt das Ticket, führt Analyse &amp; Lösung durch und dokumentiert.</li>
+                    <li><strong>E-Mail-Benachrichtigungen</strong> erfolgen an den User.</li>
+                  </ol>
+                  <p>Modell 1.0.0 eignet sich sehr gut als einstiegstaugliche Visualisierung, um den Ablauf einem nicht-technischen 
+                   Publikum (z. B. Management, Fachbereiche) klar zu machen.</p>
+                </div>
+
             </div>
 
             <div class="card-body stack">
