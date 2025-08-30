@@ -1,142 +1,138 @@
-<!doctype html>
-<html lang="de" class="js">
+<!DOCTYPE html>
+<html lang="de">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ITSM für Steuerung & Controlling Strategie</title>
-  <link rel="stylesheet" href="css/hamburg.css">
-  <link rel="stylesheet" href="css/base.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Start – Doniman F. Peña Parra</title>
 
-  <!-- SVG-Icons -->
-  <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
-    <defs>
-      <symbol id="icon-home" viewBox="0 0 24 24"><path d="M12 3l10 9h-3v9h-6v-6H11v6H5v-9H2z"/></symbol>
-    </defs>
-  </svg>
+  <!-- Globales Stylesheet im Dataport‑Look -->
+  <link rel="stylesheet" href="assets/css/site.css" />
+
+  <style>
+    /* ===== Zusatz nur für diese Seite =====
+       Bild in gleicher Breite wie der Text-Container, zentriert & groß  */
+    .media-wide{                      /* nutzt die gleichen Maße wie .container/.hero-inner */
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 var(--padx);
+    }
+    .media-wide figure{ margin: 0; }
+    .media-wide img{
+      display:block;
+      width:100%;                    /* exakt so breit wie der Textbereich */
+      height:auto;                   /* Seitenverhältnis beibehalten       */
+    }
+    .media-wide figcaption{
+      color: var(--muted);
+      font-size: .95rem;
+      margin-top: .5rem;
+    }
+
+    /* Kontaktblock – falls noch nicht in site.css vorhanden */
+    .contact-block{ border-top:2px solid var(--separator); margin-top:32px; }
+    .contact-inner{ max-width:var(--maxw); margin:0 auto; padding:24px var(--padx); }
+    .contact-title{
+      margin:0 0 .25em; color:var(--headline);
+      font-family:"Roboto Condensed","Roboto",Arial,sans-serif; font-weight:300;
+      font-size:clamp(1.4rem,1.2rem + .6vw,1.75rem);
+    }
+    .contact-name{ margin:.15em 0; font-weight:700; color:var(--headline); }
+    .contact-email a{ color:var(--brand-primary); }
+  </style>
+
+  <!-- Site-weit: Lightbox + E-Mail-Obfuskation (defer = nach dem Parsen) -->
+  <script src="assets/js/site.js" defer></script>
 </head>
-<body class="km1-page km1-page--one-col">
 
-  <!-- ===== HEADER ===== -->
-  <header class="km1-header">
-    <div class="km1-container km1-meta-navigation">
-      <a class="km1-logo km1-header__logo" href="index.html" title="Startseite">
-        <img src="assets/DoniLogo_1.0.0.png" alt="Logo" class="km1-img">
-      </a>
-    </div>
-    <div class="km1-container">
-      <nav class="km1-main-navigation__link-container" aria-label="Hauptnavigation">
-        <ul class="km1-main-navigation__links">
-          <li><a class="km1-link" href="index.html" aria-current="page">Start</a></li>
-          <li><a class="km1-link" href="ueber.html">Über mich</a></li>
-          <li><a class="km1-link" href="taetigkeiten.html">Tätigkeiten</a></li>
-          <li><a class="km1-link" href="projekte.html">Projekte</a></li>
-        </ul>
-      </nav>
-    </div>
+<body>
+  <!-- =========================
+       Header (global)
+       ========================= -->
+  <header class="site-header">
+    <a class="logo-link" href="index.html" aria-label="Startseite">
+      <img src="assets/img/DoniLogo_1.0.0.png" alt="Logo Doniman F. Peña Parra" class="logo" />
+    </a>
+
+    <!-- Burger (mobil) -->
+    <button class="nav-toggle" id="navToggle" aria-controls="mainnav" aria-expanded="false">
+      <span>Menü</span>
+      <svg class="icon" width="28" height="18" viewBox="0 0 28 18" aria-hidden="true">
+        <rect x="0" y="0"  width="28" height="2" rx="1"></rect>
+        <rect x="0" y="8"  width="28" height="2" rx="1"></rect>
+        <rect x="0" y="16" width="28" height="2" rx="1"></rect>
+      </svg>
+    </button>
+
+    <nav id="mainnav" class="mainnav" aria-label="Hauptnavigation" data-open="false">
+      <ul class="nav-list">
+        <li class="nav-item"><a class="nav-link" href="lebenslauf.html">Über mich</a></li>
+        <li class="nav-item"><a class="nav-link" href="projekte.html">Projekte</a></li>
+        <li class="nav-item"><a class="nav-link" href="prozessmodellierung.html">Prozessmodellierung</a></li>
+        <li class="nav-item"><a class="nav-link" href="ITSM-RZ-Struktur.html">ITSM-RZ-Struktur</a></li>
+        
+      </ul>
+    </nav>
   </header>
 
-  <!-- ===== MAIN ===== -->
-  <main class="km1-main km1-page__main">
-
-    <!-- Breadcrumbs -->
-    <nav class="km1-breadcrumbs" aria-label="Brotkrumen">
-      <a class="km1-link km1-breadcrumbs__link km1-breadcrumbs__link--home" href="index.html">
-        <svg class="km1-icon" width="12" height="12" aria-hidden="true"><use xlink:href="#icon-home"/></svg>
-        <span class="sr-only">Start</span>
-      </a>
-      <span class="km1-breadcrumbs__separator">/</span>
-      <span class="km1-breadcrumbs__current">ITSM für Steuerung & Controlling Strategie</span>
-    </nav>
-
-    <!-- Stage/Hero -->
-    <section class="km1-stage">
-      <figure class="km1-stage__figure">
-        <img class="km1-img" src="assets/hero.jpg" alt="Hero Bild: ITSM & Controlling">
-      </figure>
-      <div class="km1-container km1-stage__content-container">
-        <div class="km1-stage__topline">ITSM</div>
-        <h1 class="km1-heading km1-heading--stage km1-stage__heading">ITSM für Steuerung & Controlling Strategie</h1>
-        <p class="km1-paragraph km1-stage__text">Transparente Prozesse, klare Ziele, moderne KI‑Unterstützung.</p>
-      </div>
-    </section>
-
-    <!-- Intro-Teaser (Über/Tätigkeiten/Ziele) -->
-    <section class="km1-teaser-row" aria-label="Einführung">
-      <article class="km1-teaser">
-        <div class="km1-teaser__content">
-          <h2 class="km1-heading">Über mich</h2>
-          <p class="km1-paragraph">Ich bin Doniman F. Peña Parra und verantworte die Konzeption, Implementierung und Verbesserung von ITSM‑Prozessen mit Fokus auf Steuerung & Controlling.</p>
-          <p><a class="km1-link" href="ueber.html">Mehr erfahren</a></p>
-        </div>
-      </article>
-      <article class="km1-teaser">
-        <div class="km1-teaser__content">
-          <h2 class="km1-heading">Tätigkeiten</h2>
-          <p class="km1-paragraph">Service Operations, Change/Release, KPIs & Governance – praxisnah und messbar.</p>
-          <p><a class="km1-link" href="taetigkeiten.html">Alle Tätigkeiten</a></p>
-        </div>
-      </article>
-      <article class="km1-teaser">
-        <div class="km1-teaser__content">
-          <h2 class="km1-heading">Ziele</h2>
-          <ul class="km1-paragraph" style="padding-left:18px; list-style:disc">
-            <li>Ticket‑Konvertierung & Servicequalität steigern</li>
-            <li>Transparente Dashboards & Frühwarnindikatoren</li>
-            <li>KI zur Entscheidungsunterstützung</li>
-            <li>Digitale Effizienzgewinne</li>
-          </ul>
-        </div>
-      </article>
-    </section>
-
-    <!-- Projekte & KI‑Agenten -->
-    <section class="km1-teaser-row" aria-label="Projekte & KI‑Agenten">
-      <article class="km1-teaser">
-        <figure class="km1-teaser__figure">
-          <img class="km1-img" src="assets/agent-itsm.png" alt="ITSM Agent">
-        </figure>
-        <div class="km1-teaser__content">
-          <h3 class="km1-heading km1-teaser__heading">ITSM Agent</h3>
-          <p class="km1-paragraph km1-teaser__paragraph">SLA‑Checks, Ticket‑Analyse, Prozess‑Hinweise.</p>
-          <p><a class="km1-link" href="https://chat.openai.com/g/g-abc123/itsm-agent" target="_blank" rel="noopener noreferrer">Zum Agenten</a></p>
-        </div>
-      </article>
-      <article class="km1-teaser">
-        <figure class="km1-teaser__figure">
-          <img class="km1-img" src="assets/agent-controlling.png" alt="Controlling Assist">
-        </figure>
-        <div class="km1-teaser__content">
-          <h3 class="km1-heading km1-teaser__heading">Controlling Assist</h3>
-          <p class="km1-paragraph km1-teaser__paragraph">Monatsreports, KPI‑Insights, Forecasts.</p>
-          <p><a class="km1-link" href="https://chat.openai.com/g/g-def456/controlling-assist" target="_blank" rel="noopener noreferrer">Zum Agenten</a></p>
-        </div>
-      </article>
-      <article class="km1-teaser">
-        <figure class="km1-teaser__figure">
-          <img class="km1-img" src="assets/agent-strategie.png" alt="Strategie Coach">
-        </figure>
-        <div class="km1-teaser__content">
-          <h3 class="km1-heading km1-teaser__heading">Strategie Coach</h3>
-          <p class="km1-paragraph km1-teaser__paragraph">Zielbilder, Roadmaps, Priorisierung.</p>
-          <p><a class="km1-link" href="https://chat.openai.com/g/g-ghi789/strategie-coach" target="_blank" rel="noopener noreferrer">Zum Agenten</a></p>
-        </div>
-      </article>
-    </section>
-
-  </main>
-
-  <!-- ===== FOOTER ===== -->
-  <footer class="km1-footer">
-    <div class="km1-container km1-footer__inner">
-      <p>© 2025 ITSM – Doniman F. Peña Parra</p>
-      <ul class="km1-footer__list">
-        <li><a class="km1-link km1-footer__link" href="impressum.html">Impressum</a></li>
-        <li><a class="km1-link km1-footer__link" href="datenschutz.html">Datenschutz</a></li>
-        <li><a class="km1-link km1-footer__link" href="barrierefreiheit.html">Barrierefreiheit</a></li>
-      </ul>
-      <span class="km1-footer__line"></span>
+  <!-- HERO 1 -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1 class="headline">Bewerbung als Prozessmanager ITSM Betrieb Steuern (w/m/d)</h1>
+      <p class="subhead">Stellenkennziffer: 10672‑TX52.</p>
     </div>
+  </section>
+
+  <!-- HERO 2 (Intro) -->
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="subhead">Willkommen auf dieser Seite.</p>
+      <p class="subhead">
+      Hier findest du einen Überblick über meine beruflichen Erfahrungen im Bereich IT - Service - Management (ITSM). 
+      Der Schwerpunkt liegt auf dem Prozessmanagement sowie der Analyse von Daten und Abläufen. Zudem beschäftige 
+      ich mich intensiv mit dem Continual Improvement Model (CIM) und dem Themenfeld Measurement & Reporting. 
+      Ergänzend dazu zeige ich Ansätze zur Entwicklung digitaler Lösungen und Dashboards.
+      </p>
+      <p class="subhead">Mein Motto: Struktur trifft Leidenschaft, Prozesse optimieren, Menschen inspirieren.</p>
+    </div>
+  </section>
+
+  <!-- Bildblock: zentriert und gleich breit wie Text -->
+  <section id="bpmn" class="media-wide" aria-labelledby="bpmnTitle">
+    <h2 id="bpmnTitle" class="u-visually-hidden">BPMN‑Übersicht</h2>
+    <figure>
+      <img
+        src="assets/img/BPMNMAP.png"
+        alt="BPMN‑Diagramm – Übersicht der Prozessbausteine"
+        loading="eager"
+        decoding="async"
+        sizes="(max-width: 700px) 100vw, 1120px"  <!-- bessere Schärfe & Ladezeit -->
+      <figcaption>ITIL® &amp; BPMN 2.0 – Transparenz und Arbeitsweisen für die digitale Transformation.</figcaption>
+    </figure>
+  </section>
+
+  <!-- Kontakt (global, immer vor dem Footer) -->
+  <section class="contact-block" aria-labelledby="kontaktTitle">
+    <div class="contact-inner">
+      <h2 id="kontaktTitle" class="contact-title">Kontakt</h2>
+      <p class="contact-name">Doniman F. Peña Parra</p>
+
+      <!-- Spam-sicher: Text + href werden per site.js gesetzt -->
+      <p class="contact-email">
+        <a id="contactEmail"
+           data-email-user="dofp79"
+           data-email-domain="hotmail.com"
+           href="#"
+           rel="nofollow">E‑Mail anzeigen</a>
+        <noscript> (dofp79&nbsp;[at]&nbsp;hotmail&nbsp;[dot]&nbsp;com) </noscript>
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Doniman F. Peña Parra – Bewerbung für Dataport
   </footer>
 
+  <!-- Menü‑Script (öffnet Burger-Menü) -->
+  <script src="assets/js/menu.js"></script>
 </body>
 </html>
