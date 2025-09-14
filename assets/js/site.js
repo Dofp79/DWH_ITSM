@@ -194,25 +194,82 @@
    Öffnet und schließt das Menü durch Klick auf den Burger.
    Nutzt: aria-expanded & data-open für CSS-Steuerung
 =============================================================== */
-(() => {
-  const navToggle = document.getElementById('navToggle');
-  const nav = document.getElementById('mainnav');
+/* Toggle-Button nur auf Mobilgeräten sichtbar */
+.nav-toggle {
+  display: block;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 999;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
 
-  if (!navToggle || !nav) return;
+/* Hauptnavigation: off-canvas */
+.mainnav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 80%;
+  max-width: 300px;
+  height: 100vh;
+  background: #fff;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  transform: translateX(100%); /* 👈 Startposition außerhalb */
+  transition: transform 0.3s ease-in-out;
+  z-index: 998;
+  padding: 2rem 1rem;
+}
 
-  navToggle.addEventListener('click', () => {
-    const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-    navToggle.setAttribute('aria-expanded', String(!expanded));
-    nav.dataset.open = String(!expanded);
-  });
+/* Menü sichtbar bei data-open=true */
+.mainnav[data-open="true"] {
+  transform: translateX(0); /* 👉 eingeschoben */
+}
 
-  // Klick außerhalb schließt Menü
-  document.addEventListener('click', (e) => {
-    if (!nav.contains(e.target) && !navToggle.contains(e.target)) {
-      navToggle.setAttribute('aria-expanded', 'false');
-      nav.dataset.open = 'false';
-    }
-  });
+/* Menüelemente */
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-list li {
+  margin-bottom: 1.5rem;
+}
+
+.nav-list a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+/* Ab Tabletgröße: Menü immer sichtbar, horizontal */
+@media (min-width: 768px) {
+  .nav-toggle {
+    display: none;
+  }
+
+  .mainnav {
+    position: static;
+    transform: none;
+    width: auto;
+    height: auto;
+    box-shadow: none;
+    display: block;
+    padding: 0;
+  }
+
+  .nav-list {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .nav-list li {
+    margin: 0;
+  }
+}
+
 
   // ESC-Taste schließt Menü
   document.addEventListener('keydown', (e) => {
