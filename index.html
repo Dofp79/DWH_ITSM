@@ -5,55 +5,73 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Start – Doniman F. Peña Parra</title>
 
-  <!-- Globales Stylesheet im Dataport‑Look -->
+  <!-- 🔗 Externes globales CSS im Dataport-Stil -->
   <link rel="stylesheet" href="assets/css/site.css" />
 
   <style>
-    /* ===== Zusatz nur für diese Seite =====
-       Bild in gleicher Breite wie der Text-Container, zentriert & groß  */
-    .media-wide{                      /* nutzt die gleichen Maße wie .container/.hero-inner */
+    /* =====================================
+       🎨 Zusätzliche Styles NUR für diese Seite
+       ===================================== */
+    
+    /* Bildblock (z. B. BPMN-Grafik) */
+    .media-wide {
       max-width: var(--maxw);
       margin: 0 auto;
       padding: 0 var(--padx);
     }
-    .media-wide figure{ margin: 0; }
-    .media-wide img{
-      display:block;
-      width:100%;                    /* exakt so breit wie der Textbereich */
-      height:auto;                   /* Seitenverhältnis beibehalten       */
+    .media-wide figure { margin: 0; }
+    .media-wide img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
-    .media-wide figcaption{
+    .media-wide figcaption {
       color: var(--muted);
-      font-size: .95rem;
-      margin-top: .5rem;
+      font-size: 0.95rem;
+      margin-top: 0.5rem;
     }
 
-    /* Kontaktblock – falls noch nicht in site.css vorhanden */
-    .contact-block{ border-top:2px solid var(--separator); margin-top:32px; }
-    .contact-inner{ max-width:var(--maxw); margin:0 auto; padding:24px var(--padx); }
-    .contact-title{
-      margin:0 0 .25em; color:var(--headline);
-      font-family:"Roboto Condensed","Roboto",Arial,sans-serif; font-weight:300;
-      font-size:clamp(1.4rem,1.2rem + .6vw,1.75rem);
+    /* Kontaktbereich */
+    .contact-block {
+      border-top: 2px solid var(--separator);
+      margin-top: 32px;
     }
-    .contact-name{ margin:.15em 0; font-weight:700; color:var(--headline); }
-    .contact-email a{ color:var(--brand-primary); }
+    .contact-inner {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 24px var(--padx);
+    }
+    .contact-title {
+      margin-bottom: 0.25em;
+      color: var(--headline);
+      font-family: "Roboto Condensed", "Roboto", Arial, sans-serif;
+      font-weight: 300;
+      font-size: clamp(1.4rem, 1.2rem + 0.6vw, 1.75rem);
+    }
+    .contact-name {
+      margin: 0.15em 0;
+      font-weight: 700;
+      color: var(--headline);
+    }
+    .contact-email a {
+      color: var(--brand-primary);
+    }
   </style>
 
-  <!-- Site-weit: Lightbox + E-Mail-Obfuskation (defer = nach dem Parsen) -->
+  <!-- ⚙️ Globale JavaScript-Dateien (mit defer für Performance) -->
   <script src="assets/js/site.js" defer></script>
 </head>
 
 <body>
   <!-- =========================
-       Header (global)
+       🔝 HEADER (global, inkl. Logo + Navigation)
        ========================= -->
   <header class="site-header">
     <a class="logo-link" href="index.html" aria-label="Startseite">
       <img src="assets/img/DoniLogo_1.0.0.png" alt="Logo Doniman F. Peña Parra" class="logo" />
     </a>
 
-    <!-- Burger (mobil) -->
+    <!-- 🍔 Burger-Menü für Mobilgeräte -->
     <button class="nav-toggle" id="navToggle" aria-controls="mainnav" aria-expanded="false">
       <span>Menü</span>
       <svg class="icon" width="28" height="18" viewBox="0 0 28 18" aria-hidden="true">
@@ -63,18 +81,20 @@
       </svg>
     </button>
 
+    <!-- 🔗 Navigation -->
     <nav id="mainnav" class="mainnav" aria-label="Hauptnavigation" data-open="false">
       <ul class="nav-list">
         <li class="nav-item"><a class="nav-link" href="lebenslauf.html">Über mich</a></li>
         <li class="nav-item"><a class="nav-link" href="projekte.html">Projekte</a></li>
         <li class="nav-item"><a class="nav-link" href="prozessmodellierung.html">Prozessmodellierung</a></li>
         <li class="nav-item"><a class="nav-link" href="ITSM-RZ-Struktur.html">ITSM-RZ-Struktur</a></li>
-        
       </ul>
     </nav>
   </header>
 
-  <!-- HERO 1 -->
+  <!-- =========================
+       🎯 HERO 1 – Titelbereich
+       ========================= -->
   <section class="hero">
     <div class="hero-inner">
       <h1 class="headline">Bewerbung als Prozessmanager ITSM Betrieb Steuern (w/m/d)</h1>
@@ -82,57 +102,69 @@
     </div>
   </section>
 
-  <!-- HERO 2 (Intro) -->
+  <!-- =========================
+       📣 HERO 2 – Introtext
+       ========================= -->
   <section class="hero">
     <div class="hero-inner">
       <p class="subhead">Willkommen auf dieser Seite.</p>
       <p class="subhead">
-      Hier findest du einen Überblick über meine beruflichen Erfahrungen im Bereich IT - Service - Management (ITSM). 
-      Der Schwerpunkt liegt auf dem Prozessmanagement sowie der Analyse von Daten und Abläufen. Zudem beschäftige 
-      ich mich intensiv mit dem Continual Improvement Model (CIM) und dem Themenfeld Measurement & Reporting. 
-      Ergänzend dazu zeige ich Ansätze zur Entwicklung digitaler Lösungen und Dashboards.
+        Hier findest du einen Überblick über meine beruflichen Erfahrungen im Bereich IT‑Service‑Management (ITSM).
+        Der Schwerpunkt liegt auf dem Prozessmanagement sowie der Analyse von Daten und Abläufen.
+        Zudem beschäftige ich mich intensiv mit dem Continual Improvement Model (CIM) und dem Themenfeld Measurement & Reporting.
+        Ergänzend dazu zeige ich Ansätze zur Entwicklung digitaler Lösungen und Dashboards.
       </p>
       <p class="subhead">Mein Motto: Struktur trifft Leidenschaft, Prozesse optimieren, Menschen inspirieren.</p>
     </div>
   </section>
 
-  <!-- Bildblock: zentriert und gleich breit wie Text -->
+  <!-- =========================
+       🖼️ Bildblock mit BPMN‑Diagramm
+       ========================= -->
   <section id="bpmn" class="media-wide" aria-labelledby="bpmnTitle">
     <h2 id="bpmnTitle" class="u-visually-hidden">BPMN‑Übersicht</h2>
     <figure>
       <img
         src="assets/img/BPMNMAP.png"
         alt="BPMN‑Diagramm – Übersicht der Prozessbausteine"
-        loading="eager"
+        loading="lazy"
         decoding="async"
-        sizes="(max-width: 700px) 100vw, 1120px"  <!-- bessere Schärfe & Ladezeit -->
-      <figcaption>ITIL® &amp; BPMN 2.0 – Transparenz und Arbeitsweisen für die digitale Transformation.</figcaption>
+        sizes="(max-width: 700px) 100vw, 1120px"
+      />
+      <figcaption>
+        ITIL® &amp; BPMN 2.0 – Transparenz und Arbeitsweisen für die digitale Transformation.
+      </figcaption>
     </figure>
   </section>
 
-  <!-- Kontakt (global, immer vor dem Footer) -->
+  <!-- =========================
+       📬 Kontaktbereich
+       ========================= -->
   <section class="contact-block" aria-labelledby="kontaktTitle">
     <div class="contact-inner">
       <h2 id="kontaktTitle" class="contact-title">Kontakt</h2>
       <p class="contact-name">Doniman F. Peña Parra</p>
 
-      <!-- Spam-sicher: Text + href werden per site.js gesetzt -->
+      <!-- ✉️ Spamgeschützte Mail per JavaScript -->
       <p class="contact-email">
         <a id="contactEmail"
            data-email-user="dofp79"
            data-email-domain="hotmail.com"
            href="#"
            rel="nofollow">E‑Mail anzeigen</a>
-        <noscript> (dofp79&nbsp;[at]&nbsp;hotmail&nbsp;[dot]&nbsp;com) </noscript>
+        <noscript>(dofp79&nbsp;[at]&nbsp;hotmail&nbsp;[dot]&nbsp;com)</noscript>
       </p>
     </div>
   </section>
 
+  <!-- =========================
+       🔚 Footer
+       ========================= -->
   <footer>
     &copy; 2025 Doniman F. Peña Parra – Bewerbung für Dataport
   </footer>
 
-  <!-- Menü‑Script (öffnet Burger-Menü) -->
+  <!-- 🍔 JavaScript für mobile Navigation -->
   <script src="assets/js/menu.js"></script>
 </body>
 </html>
