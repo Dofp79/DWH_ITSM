@@ -206,13 +206,23 @@
     nav.dataset.open = String(!expanded);
   });
 
-  // Klick außerhalb des Menüs schließt es
+  // Klick außerhalb schließt Menü
   document.addEventListener('click', (e) => {
     if (!nav.contains(e.target) && !navToggle.contains(e.target)) {
       navToggle.setAttribute('aria-expanded', 'false');
       nav.dataset.open = 'false';
     }
   });
+
+  // ESC-Taste schließt Menü
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      navToggle.setAttribute('aria-expanded', 'false');
+      nav.dataset.open = 'false';
+    }
+  });
+})();
+
 
   // ESC schließt das Menü
   document.addEventListener('keydown', (e) => {
