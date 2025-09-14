@@ -3,201 +3,335 @@
    Pfad: assets/css/site.css
    ========================================================= */
 
-/* -----------------------------
-   🎨 Farb- & Layout-Variablen
-   ----------------------------- */
-:root {
-  --brand-primary: #7d212b;     /* Hauptfarbe für Buttons, Links etc. */
-  --brand-accent: #9e292b;      /* Hover-Farbe oder Akzentfarbe */
-  --headline: #3a424b;          /* Farbe für Überschriften */
-  --text-color: #3a424b;        /* Fließtextfarbe */
-  --muted: #54616e;             /* Sekundärtext */
-  --light-gray: #f4f4f4;        /* Hintergrundfarbe für Blöcke */
-  --separator: #eeeff1;         /* Farbton für Linien */
-  --white: #fff;
+/* ---------- Farb- & Layout-Variablen ---------- */
+:root{
+  --brand-primary:#7d212b;      /* Links/Buttons, Akzent */
+  --brand-accent:#9e292b;       /* Hover/Unterstreichung */
+  --headline:#3a424b;           /* H1..H3 */
+  --text-color:#3a424b;         /* Fließtext */
+  --muted:#54616e;              /* Sekundärtext */
+  --light-gray:#f4f4f4;         /* helle Flächen */
+  --separator:#eeeff1;          /* feine Trenner */
+  --white:#fff;
 
-  --maxw: 1120px;               /* Maximale Breite von Content-Containern */
-  --padx: 24px;                 /* Seitlicher Innenabstand */
-  --radius: 14px;               /* Radius für abgerundete Elemente */
-  --shadow: 0 6px 18px rgba(0,0,0,.06); /* Standard-Schatten */
+  --maxw:1120px;
+  --padx:24px;
+  --radius:14px;
+  --shadow:0 6px 18px rgba(0,0,0,.06);
 }
 
-/* -----------------------------
-   🔤 Webfonts einbinden (lokal)
-   ----------------------------- */
-@font-face {
-  font-family: 'Roboto'; font-weight: 400;
-  src: url('../Webfonts/roboto-v19-latin-regular.woff2') format('woff2');
-  font-display: swap;
+/* ---------- Lokale Webfonts (Pfad: assets/Webfonts/...) ---------- */
+@font-face{
+  font-family:'Roboto';
+  font-style:normal; font-weight:400; font-display:swap;
+  src:url('../Webfonts/roboto-v19-latin-regular.woff2') format('woff2');
 }
-@font-face {
-  font-family: 'Roboto'; font-weight: 700;
-  src: url('../Webfonts/roboto-v19-latin-700.woff2') format('woff2');
-  font-display: swap;
+@font-face{
+  font-family:'Roboto';
+  font-style:normal; font-weight:700; font-display:swap;
+  src:url('../Webfonts/roboto-v19-latin-700.woff2') format('woff2');
 }
-@font-face {
-  font-family: 'Roboto Condensed'; font-weight: 300;
-  src: url('../Webfonts/roboto-condensed-v17-latin-300.woff2') format('woff2');
-  font-display: swap;
+@font-face{
+  font-family:'Roboto Condensed';
+  font-style:normal; font-weight:300; font-display:swap;
+  src:url('../Webfonts/roboto-condensed-v17-latin-300.woff2') format('woff2');
 }
-@font-face {
-  font-family: 'Roboto Condensed'; font-weight: 700;
-  src: url('../Webfonts/roboto-condensed-v17-latin-700.woff2') format('woff2');
-  font-display: swap;
+@font-face{
+  font-family:'Roboto Condensed';
+  font-style:normal; font-weight:700; font-display:swap;
+  src:url('../Webfonts/roboto-condensed-v17-latin-700.woff2') format('woff2');
 }
 
-/* -----------------------------
-   📋 Basis-Typografie & Helferklassen
-   ----------------------------- */
-html, body { margin: 0; }
-body {
-  font-family: 'Roboto', Arial, sans-serif;
-  color: var(--text-color);
-  background: #fff;
-  line-height: 1.55;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* ---------- Basistypo & Utilities ---------- */
+html,body{ margin:0; }
+body{
+  font-family:'Roboto', Arial, sans-serif;
+  color:var(--text-color);
+  background:#fff;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
-a:focus, button:focus {
-  outline: 2px solid #1c527f;
-  outline-offset: 2px;
+a:focus, button:focus{ outline:2px solid #1c527f; outline-offset:2px; }
+
+.u-visually-hidden{
+  position:absolute!important; height:1px; width:1px; overflow:hidden;
+  clip:rect(1px,1px,1px,1px); white-space:nowrap;
+}
+.u-visually-hidden:focus{
+  clip:auto; height:auto; width:auto; position:static; white-space:normal;
 }
 
-/* Für Screenreader-Inhalte (ausblendbar, aber zugänglich) */
-.u-visually-hidden {
-  position: absolute !important;
-  height: 1px; width: 1px; overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-  white-space: nowrap;
+/* ---------- Textblock (Aufgabenbeschreibung etc.) ---------- */
+.text-block{
+  background:var(--light-gray);
+  border-left:4px solid var(--brand-primary);
+  padding:20px 24px;
+  border-radius:10px;
+  box-shadow:var(--shadow);
+  color:var(--text-color);
+  line-height:1.65;
 }
-.u-visually-hidden:focus {
-  clip: auto; height: auto; width: auto; position: static;
-  white-space: normal;
+.text-block h3{
+  margin-top:0;
+  color:var(--brand-primary);
+  font-family:"Roboto Condensed", Roboto, Arial, sans-serif;
+  font-weight:700;
 }
-
-/* -----------------------------
-   📦 Textblöcke (z.B. Aufgabenbeschreibung)
-   ----------------------------- */
-.text-block {
-  background: var(--light-gray);
-  border-left: 4px solid var(--brand-primary);
-  padding: 20px 24px;
-  border-radius: 10px;
-  box-shadow: var(--shadow);
-  line-height: 1.65;
-}
-.text-block h3 {
-  margin-top: 0;
-  color: var(--brand-primary);
-  font-family: 'Roboto Condensed', sans-serif;
-  font-weight: 700;
-}
-.text-block p {
-  margin-bottom: 14px;
-  text-align: justify;
+.text-block p{
+  margin:0 0 14px;
+  text-align:justify;
+  text-justify:inter-word;
 }
 
-/* -----------------------------
-   🔝 Header & Navigation (Desktop/Mobil)
-   ----------------------------- */
-.site-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px var(--padx);
-  background: #fff;
-  border-top: 4px solid var(--brand-primary);
-  border-bottom: 2px solid var(--separator);
+/* =========================================================
+   Header & Navigation
+   ========================================================= */
+.site-header{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding:12px var(--padx); background:#fff;
+  border-bottom:2px solid var(--separator);
+  border-top:4px solid var(--brand-primary);
 }
-.logo { height: 60px; width: auto; }
-.logo-link { display: inline-flex; align-items: center; }
+.logo{ height:60px; width:auto; }
+.logo-link{ display:inline-flex; align-items:center; text-decoration:none; }
 
-/* Navigation Desktop */
-.mainnav {}
-.nav-list {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-  list-style: none;
-  padding: 0; margin: 0;
+/* Desktop-Menü */
+.mainnav{}
+.nav-list{
+  display:flex; align-items:center; gap:32px; list-style:none; margin:0; padding:0;
 }
-.nav-list .nav-item:first-child {
-  padding-left: 22px; position: relative;
+.nav-list .nav-item:first-child{ padding-left:22px; position:relative; }
+.nav-list .nav-item:first-child::before{
+  content:""; position:absolute; left:0; top:50%; transform:translateY(-50%);
+  width:1px; height:18px; background:#cbd2d9;
 }
-.nav-list .nav-item:first-child::before {
-  content: ""; position: absolute; left: 0; top: 50%;
-  transform: translateY(-50%);
-  width: 1px; height: 18px; background: #cbd2d9;
+.nav-link{
+  color:var(--headline); font-weight:700; text-decoration:none; position:relative; padding-bottom:2px;
+  background-image:linear-gradient(90deg,var(--brand-primary),var(--brand-primary));
+  background-repeat:no-repeat; background-size:0 1px; background-position:0 100%;
+  transition:background-size .2s ease, color .2s ease;
 }
+.nav-link::after{ content:" +"; color:var(--brand-primary); }
+.nav-link:hover{ background-size:100% 1px; }
+.nav-link[aria-current="page"]{ color:var(--brand-primary); }
 
-.nav-link {
-  font-weight: 700;
-  text-decoration: none;
-  color: var(--headline);
-  background-image: linear-gradient(90deg, var(--brand-primary), var(--brand-primary));
-  background-size: 0 1px;
-  background-position: 0 100%;
-  background-repeat: no-repeat;
-  padding-bottom: 2px;
-  transition: background-size .2s ease, color .2s ease;
+/* Burger (mobil) */
+.nav-toggle{
+  display:none; align-items:center; gap:8px; background:transparent; border:0; cursor:pointer;
+  color:var(--headline); font:700 1rem/1 'Roboto',system-ui,Arial;
 }
-.nav-link::after {
-  content: " +";
-  color: var(--brand-primary);
-}
-.nav-link:hover {
-  background-size: 100% 1px;
-}
-.nav-link[aria-current="page"] {
-  color: var(--brand-primary);
-}
+.nav-toggle .icon rect{ fill:var(--brand-primary); }
 
-/* Burger-Toggle sichtbar nur mobil */
-.nav-toggle {
-  display: none;
-  gap: 8px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  font: 700 1rem/1 'Roboto', system-ui;
-  color: var(--headline);
-}
-.nav-toggle .icon rect {
-  fill: var(--brand-primary);
-}
-
-/* =================== 📱 Mobile Navigation =================== */
-@media (max-width: 980px) {
-  .logo { height: 48px; }
-  .nav-toggle { display: inline-flex; }
-
-  .mainnav {
-    position: fixed;
-    top: 0; right: 0;
-    height: 100vh;
-    width: 80%;
-    max-width: 300px;
-    background: #fff;
-    transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
-    z-index: 998;
-    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+/* Mobile Menü */
+@media (max-width:980px){
+  .logo{ height:48px; }
+  .nav-toggle{ display:inline-flex; }
+  .mainnav{ position:relative; width:100%; }
+  .nav-list{
+    display:none; flex-direction:column; align-items:flex-end; gap:14px;
+    padding:16px var(--padx); background:#fff; border-bottom:2px solid var(--separator);
+    box-shadow:0 8px 24px rgba(0,0,0,.06);
   }
-  .mainnav[data-open="true"] {
-    transform: translateX(0);
-  }
+  .mainnav[data-open="true"] .nav-list{ display:flex; }
+  .nav-list .nav-item:first-child{ padding-left:0; }
+  .nav-list .nav-item:first-child::before{ display:none; }
+}
 
-  .nav-list {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 2rem;
-    gap: 1.5rem;
-  }
+/* =========================================================
+   Hero
+   ========================================================= */
+.hero{ background:#fff; border-bottom:2px solid var(--separator); }
+.hero-inner{ max-width:var(--maxw); margin:0 auto; padding:48px var(--padx) 24px; }
+.headline{
+  margin:0 0 6px; color:var(--headline);
+  font-family:'Roboto Condensed', Roboto, Arial, sans-serif; font-weight:300;
+  font-size:clamp(28px,3.6vw + 10px,46px);
+}
+.subhead{ margin:10px 0 0; color:var(--muted); font-size:clamp(.95rem,.6vw+.9rem,1.05rem); }
 
-  .nav-list .nav-item:first-child {
-    padding-left: 0;
-  }
-  .nav-list .nav-item:first-child::before {
-    display: none;
-  }
+/* =========================================================
+   Sections, Grids & Cards
+   ========================================================= */
+.container{ max-width:var(--maxw); margin:0 auto; padding:0 var(--padx); }
+.section{ max-width:var(--maxw); margin:0 auto; padding:28px var(--padx) 8px; }
+
+.sec-head{ display:flex; align-items:center; gap:10px; margin:0 0 16px; }
+.sec-dot{ width:12px; height:12px; border-radius:3px; background:var(--brand-primary); }
+.sec-title{
+  margin:0; color:var(--headline);
+  font-family:'Roboto Condensed', Roboto, Arial, sans-serif; font-weight:300;
+  font-size:clamp(20px,1.6vw,26px);
+}
+
+/* Grid */
+.grid{ display:grid; gap:18px; grid-template-columns:repeat(3,1fr); align-items:stretch; }
+@media (max-width:1024px){ .grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:640px){ .grid{ grid-template-columns:1fr; } }
+
+/* Basis-Karte */
+.card{
+  background:#fff; border-bottom:2px solid var(--brand-primary);
+  border-radius:0 0 10px 10px; display:flex; flex-direction:column; overflow:hidden;
+}
+.card img{
+  width:100%;
+  aspect-ratio:16/9;           /* gleichmäßige Vorschaubilder */
+  object-fit:cover;
+  display:block;
+}
+.card .card-body{ padding:14px 16px; }
+.card h4{ margin:0; color:var(--brand-primary); font-size:1.05rem; }
+
+/* 1-spaltige Abschnitte optisch zentriert */
+.grid.grid-1{ justify-items:center; }
+.grid.grid-1 .card{ width:100%; max-width:var(--maxw); }
+
+/* ---------- Karten-Varianten ---------- */
+/* A) Zoom-Karten (Lightbox): opt-in */
+.card--zoom img{ cursor: zoom-in; }
+
+/* B) Link-Karten (z.B. KI-Agenten): ganze Karte klickbar, ohne Zoom */
+a.card.card--link{
+  text-decoration:none; color:inherit;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+a.card.card--link img{ cursor:pointer; }
+a.card.card--link:hover,
+a.card.card--link:focus-visible{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(0,0,0,.10);
+  border-bottom-color: var(--brand-accent);
+  outline:none;
+}
+
+/* KI-Agenten: dezenter Bild-Hover */
+#ki-agents .card img{ transition: transform .25s ease, box-shadow .25s ease; }
+#ki-agents a.card:hover img,
+#ki-agents a.card:focus-visible img{
+  transform:scale(1.03);
+  box-shadow:0 6px 18px rgba(0,0,0,.20);
+}
+
+/* =========================================================
+   Diagramme (BPMN/Architektur) – immer zentriert, nicht beschnitten
+   ========================================================= */
+.card img.diagram{
+  width:100%;
+  height:auto;
+  aspect-ratio:auto;
+  object-fit:contain;
+  background:#fff;
+  display:block;
+  margin:0 auto;
+}
+
+/* ===== BPMN-Beschreibungsblöcke ===== */
+.bpmn-notes{
+  max-width:var(--maxw);
+  margin:16px auto 8px;
+  padding:18px 20px;
+  border-radius:12px;
+  background:#1f2328;   /* dunkler Card-Look */
+  color:#fff;
+  box-shadow:0 8px 20px rgba(0,0,0,.12);
+}
+.bpmn-notes h3{
+  margin:0 0 10px;
+  font-family:"Roboto Condensed", Roboto, Arial, sans-serif;
+  font-weight:700; color:#fff;
+  font-size:clamp(1.05rem,.8rem + .7vw,1.3rem);
+}
+.bpmn-notes .meta{
+  margin:0 0 8px; color:#cbd5e1; font-weight:700;
+}
+.bpmn-notes ol{
+  margin:0; padding-left:1.3rem; line-height:1.6;
+}
+.bpmn-notes ol > li{ margin:.35rem 0; }
+.bpmn-notes ul{
+  margin:.35rem 0 .35rem 1.1rem; padding:0; list-style:disc;
+}
+.bpmn-notes strong{ color:#fff; }
+
+/* ---------- Buttons unter Diagrammen (Dataport-Look) ---------- */
+.media-actions{
+  display:flex; gap:10px; align-items:center;
+  padding:10px 16px 0; flex-wrap:wrap; justify-content:center;
+}
+.btn-link{
+  display:inline-block; font-weight:700; text-decoration:none;
+  background:#fff; color:var(--brand-primary);
+  border:1px solid rgba(0,0,0,.08);
+  padding:8px 12px; border-radius:10px;
+  transition:background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+.btn-link:hover{
+  color:#fff; background:var(--brand-primary); border-color:var(--brand-primary);
+}
+
+/* (Sicherheits-Duplikat für 1-Spalten-Karten) */
+.grid.grid-1{ justify-items:center; }
+.grid.grid-1 .card{ width:100%; max-width:var(--maxw); }
+
+/* =========================================================
+   Lightbox (global)
+   ========================================================= */
+.lightbox{
+  position:fixed; inset:0; z-index:9999; display:none;
+  align-items:center; justify-content:center; background:rgba(0,0,0,.72);
+}
+.lightbox[aria-hidden="false"]{ display:flex; }
+.lightbox__inner{ position:relative; max-width:96vw; max-height:92vh; }
+.lightbox__img{
+  max-width:96vw; max-height:92vh; object-fit:contain;
+  transform-origin:center center; transition:transform .15s ease-out; cursor:zoom-out;
+}
+.lightbox__caption{ margin-top:.5rem; color:#fff; text-align:center; font-size:.95rem; }
+.lightbox__close,
+.lightbox__zoom{
+  position:absolute; top:.75rem; background:rgba(0,0,0,.55); color:#fff;
+  border:0; border-radius:.6rem; padding:.5rem .6rem; cursor:pointer;
+}
+.lightbox__close{ right:.75rem; }
+.lightbox__zoom{ right:3.1rem; }
+.lightbox__zoom--out{ right:5.45rem; }
+body.lb-lock{ overflow:hidden; }
+
+/* Hinweis: alle Kartenbilder mit data-full erhalten automatisch cursor:zoom-in */
+.card img[data-full]{ cursor:zoom-in; }
+
+/* =========================================================
+   Kontakt-Block (immer vor dem Footer)
+   ========================================================= */
+.contact-block{
+  border-top:2px solid var(--separator);
+  background:var(--white);
+  margin-top:28px;
+}
+.contact-inner{ max-width:var(--maxw); margin:0 auto; padding:24px var(--padx); }
+.contact-title{
+  margin:0 0 8px; color:var(--headline);
+  font-family:"Roboto Condensed", Roboto, Arial, sans-serif;
+  font-weight:300; font-size:clamp(1.2rem, .7rem + 1.4vw, 1.6rem);
+}
+.contact-name{
+  margin:0; color:var(--headline); font-weight:700;
+  font-size:clamp(1.1rem, .7rem + 1.2vw, 1.4rem);
+}
+.contact-email{ margin:6px 0 0; color:var(--muted); font-size:1rem; }
+.contact-email a{
+  color:var(--brand-primary); text-decoration:none;
+  background-image:linear-gradient(90deg,var(--brand-accent),var(--brand-accent));
+  background-position:0 100%; background-repeat:no-repeat; background-size:0 1px;
+  transition:background-size .2s ease;
+}
+.contact-email a:hover{ background-size:100% 1px; }
+
+/* =========================================================
+   Footer
+   ========================================================= */
+footer{
+  margin-top:28px; text-align:center;
+  padding:20px; background:#fff; border-top:2px solid var(--separator); color:#666;
 }
