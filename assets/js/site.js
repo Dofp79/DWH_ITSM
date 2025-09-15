@@ -1,14 +1,20 @@
-// ===== Globales Skript: assets/js/site.js =====
+// =========================================================
+// 🧠 Globales Skript: assets/js/site.js
+// =========================================================
 
-/**
- * 1) E-Mail-Obfuskation
- *    Baut aus data-Attributen eine klickbare Mailadresse.
- *    Wirkt auf #contactEmail und alle Elemente mit data-email-user + data-email-domain.
+/* ============================================================================
+ * 1) ✉️ E-Mail-Obfuskation
+ * ----------------------------------------------------------------------------
+ * Baut aus data-Attributen echte, klickbare Mailadressen.
+ * Betrifft alle Elemente mit:
+ *    - id="contactEmail"
+ *    - data-email-user + data-email-domain
+ * ============================================================================
  */
 (() => {
   const nodes = document.querySelectorAll('#contactEmail, [data-email-user][data-email-domain]');
   nodes.forEach((link) => {
-    const user   = link.getAttribute('data-email-user');
+    const user = link.getAttribute('data-email-user');
     const domain = link.getAttribute('data-email-domain');
     if (!user || !domain) return;
 
@@ -17,39 +23,25 @@
     link.href = `mailto:${address}`;
     link.setAttribute('aria-label', `E-Mail an ${address}`);
 
-    // "nofollow" nur einmal anhängen
+    // Verhindert doppelte "nofollow"-Einträge
     const rel = (link.rel || '').trim();
     link.rel = rel.includes('nofollow') ? rel : `${rel} nofollow`.trim();
   });
 })();
 
-/**
- * 2) Lightbox / Lupe für Bilder mit data-full
- *    - Gilt global für alle img[data-full]
- *    - Ausnahmen: Bilder innerhalb #ki-agents sowie Elemente mit .no-zoom
- *    - Features: Tastatursteuerung, Fokusfalle, ESC, Zoom (Buttons & Mausrad), Pan/Drag, Touch-Pan, Body-Scroll-Lock
- *
- *  CSS-Minimum (muss in CSS-Datei stehen):
- *    .lightbox[aria-hidden="true"] { display:none; }
- *    .lightbox[aria-hidden="false"] {
- *      position:fixed; inset:0; display:grid; place-items:center;
- *      background:rgba(0,0,0,.72); z-index:1000; padding:24px;
- *    }
- *    .lightbox__img { max-width:90vw; max-height:85vh; transition:transform .2s ease; }
- *    .lightbox__btn { position:absolute; top:16px; background:#fff; border:0; border-radius:6px; padding:6px 10px; cursor:pointer; }
- *    .lightbox__close  { right:16px; }
- *    .lightbox__zoomIn { right:56px; }
- *    .lightbox__zoomOut{ right:96px; }
- *    body.lb-lock { overflow:hidden; }
+/* ============================================================================
+ * 2) 🔍 Lightbox mit Zoom, Pan, ESC, Fokusfalle & Touch-Support
+ * ----------------------------------------------------------------------------
+ * Für alle Bilder mit `data-full` – außer in #ki-agents oder mit .no-zoom
+ * ============================================================================
  */
 (() => {
-  // Kandidaten sammeln
   const zoomables = [...document.querySelectorAll('img[data-full]:not(.no-zoom)')]
     .filter(img => !img.closest('#ki-agents'));
 
   if (!zoomables.length) return;
 
-  // Overlay erstellen
+  // 🔧 Overlay mit Buttons & Bildstruktur erzeugen
   const lb = document.createElement('div');
   lb.className = 'lightbox';
   lb.setAttribute('role', 'dialog');
@@ -66,15 +58,15 @@
   `;
   document.body.appendChild(lb);
 
-  // Referenzen
-  const imgEl      = lb.querySelector('.lightbox__img');
-  const capEl      = lb.querySelector('.lightbox__caption');
-  const btnClose   = lb.querySelector('.lightbox__close');
-  const btnZoomIn  = lb.querySelector('.lightbox__zoomIn');
+  // 🔗 Referenzen zu DOM-Elementen im Lightbox-Overlay
+  const imgEl = lb.querySelector('.lightbox__img');
+  const capEl = lb.querySelector('.lightbox__caption');
+  const btnClose = lb.querySelector('.lightbox__close');
+  const btnZoomIn = lb.querySelector('.lightbox__zoomIn');
   const btnZoomOut = lb.querySelector('.lightbox__zoomOut');
   const getFocusables = () => [btnClose, btnZoomIn, btnZoomOut];
 
-  // Transform-Status
+  // 🔍 Zoom-Status & Transformation
   let scale = 1, tx = 0, ty = 0, isDrag = false, sx = 0, sy = 0;
 
   const clamp = (v, min, max) => Math.min(Math.max(v, min), max);
@@ -85,7 +77,7 @@
     scale = 1; tx = 0; ty = 0; applyTransform();
   };
 
-  // Öffnen / Schließen
+  // 📂 Öffnet die Lightbox mit gegebenem Bild
   const openLB = (src, alt = '') => {
     imgEl.src = src;
     imgEl.alt = alt;
@@ -93,10 +85,10 @@
     resetTransform();
     lb.setAttribute('aria-hidden', 'false');
     document.body.classList.add('lb-lock');
-    // Fokus auf Schließen setzen
     btnClose.focus({ preventScroll: true });
   };
 
+  // ❌ Schließt die Lightbox
   const closeLB = () => {
     lb.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('lb-lock');
@@ -104,7 +96,7 @@
     resetTransform();
   };
 
-  // Trigger an alle Kandidaten
+  // 🖼️ Klickbare Bilder vorbereiten
   zoomables.forEach(img => {
     img.style.cursor = 'zoom-in';
     img.tabIndex = 0;
@@ -122,14 +114,13 @@
     });
   });
 
-  // Buttons / Hintergrund
+  // 📌 Button-Events & Overlay-Verhalten
   btnClose.addEventListener('click', closeLB);
   lb.addEventListener('click', (e) => {
-    // Klick auf den dunklen Hintergrund schließt
-    if (e.target === lb) closeLB();
+    if (e.target === lb) closeLB(); // Klick auf dunklen Hintergrund
   });
 
-  // Tastatursteuerung (global)
+  // 🧭 Tastatur-Navigation & Fokussteuerung
   document.addEventListener('keydown', (e) => {
     if (lb.getAttribute('aria-hidden') === 'true') return;
 
@@ -139,6 +130,7 @@
       return;
     }
 
+    // Fokusfalle innerhalb der Buttons
     if (e.key === 'Tab') {
       const f = getFocusables();
       const first = f[0], last = f[f.length - 1];
@@ -152,7 +144,7 @@
     }
   });
 
-  // Zoom per Buttons
+  // 🔍 Zoom per Buttons
   btnZoomIn.addEventListener('click', () => {
     scale = clamp(scale + 0.25, 1, 4);
     applyTransform();
@@ -163,7 +155,7 @@
     applyTransform();
   });
 
-  // Zoom per Mausrad (über Bild)
+  // 🖱️ Zoom mit Mausrad
   imgEl.addEventListener('wheel', (e) => {
     if (lb.getAttribute('aria-hidden') === 'true') return;
     e.preventDefault();
@@ -173,7 +165,7 @@
     applyTransform();
   }, { passive: false });
 
-  // Pan/Drag mit Maus
+  // 🖱️ Drag/Pan mit Maus
   imgEl.style.cursor = 'grab';
   imgEl.addEventListener('mousedown', (e) => {
     if (scale <= 1) return;
@@ -193,7 +185,7 @@
     imgEl.style.cursor = 'grab';
   });
 
-  // Touch-Pan (ein Finger)
+  // 📱 Touch-Pan (nur 1 Finger)
   imgEl.addEventListener('touchstart', (e) => {
     if (scale <= 1 || e.touches.length !== 1) return;
     const t = e.touches[0];
@@ -213,4 +205,22 @@
   imgEl.addEventListener('touchend', () => {
     isDrag = false;
   }, { passive: true });
+})();
+
+/* ============================================================================
+ * 3) 🍔 Burger-Menü für Mobilgeräte
+ * ----------------------------------------------------------------------------
+ * Toggelt das Attribut data-open auf .mainnav bei Klick auf .nav-toggle
+ * ============================================================================
+ */
+(() => {
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('.mainnav');
+
+  if (toggle && nav) {
+    toggle.addEventListener('click', () => {
+      const isOpen = nav.getAttribute('data-open') === 'true';
+      nav.setAttribute('data-open', isOpen ? 'false' : 'true');
+    });
+  }
 })();
