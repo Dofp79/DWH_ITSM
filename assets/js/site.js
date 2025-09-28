@@ -1,9 +1,9 @@
 // =========================================================
-// 🧠 Globales Skript: assets/js/site.js
+//   Globales Skript: assets/js/site.js
 // =========================================================
 
 /* ============================================================================
- * 1) ✉️ E-Mail-Obfuskation
+ * 1)  E-Mail-Obfuskation
  * ----------------------------------------------------------------------------
  * Baut aus data-Attributen echte, klickbare Mailadressen.
  * Betrifft alle Elemente mit:
@@ -30,7 +30,7 @@
 })();
 
 /* ============================================================================
- * 2) 🔍 Lightbox mit Zoom, Pan, ESC, Fokusfalle & Touch-Support
+ * 2)  Lightbox mit Zoom, Pan, ESC, Fokusfalle & Touch-Support
  * ----------------------------------------------------------------------------
  * Für alle Bilder mit `data-full` – außer in #ki-agents oder mit .no-zoom
  * ============================================================================
@@ -41,7 +41,7 @@
 
   if (!zoomables.length) return;
 
-  // 🔧 Overlay mit Buttons & Bildstruktur erzeugen
+  //  Overlay mit Buttons & Bildstruktur erzeugen
   const lb = document.createElement('div');
   lb.className = 'lightbox';
   lb.setAttribute('role', 'dialog');
@@ -58,7 +58,7 @@
   `;
   document.body.appendChild(lb);
 
-  // 🔗 Referenzen zu DOM-Elementen im Lightbox-Overlay
+  //  Referenzen zu DOM-Elementen im Lightbox-Overlay
   const imgEl = lb.querySelector('.lightbox__img');
   const capEl = lb.querySelector('.lightbox__caption');
   const btnClose = lb.querySelector('.lightbox__close');
@@ -66,7 +66,7 @@
   const btnZoomOut = lb.querySelector('.lightbox__zoomOut');
   const getFocusables = () => [btnClose, btnZoomIn, btnZoomOut];
 
-  // 🔍 Zoom-Status & Transformation
+  //  Zoom-Status & Transformation
   let scale = 1, tx = 0, ty = 0, isDrag = false, sx = 0, sy = 0;
 
   const clamp = (v, min, max) => Math.min(Math.max(v, min), max);
@@ -77,7 +77,7 @@
     scale = 1; tx = 0; ty = 0; applyTransform();
   };
 
-  // 📂 Öffnet die Lightbox mit gegebenem Bild
+  //  Öffnet die Lightbox mit gegebenem Bild
   const openLB = (src, alt = '') => {
     imgEl.src = src;
     imgEl.alt = alt;
@@ -88,7 +88,7 @@
     btnClose.focus({ preventScroll: true });
   };
 
-  // ❌ Schließt die Lightbox
+  //  Schließt die Lightbox
   const closeLB = () => {
     lb.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('lb-lock');
@@ -96,7 +96,7 @@
     resetTransform();
   };
 
-  // 🖼️ Klickbare Bilder vorbereiten
+  //  Klickbare Bilder vorbereiten
   zoomables.forEach(img => {
     img.style.cursor = 'zoom-in';
     img.tabIndex = 0;
@@ -114,13 +114,13 @@
     });
   });
 
-  // 📌 Button-Events & Overlay-Verhalten
+  //  Button-Events & Overlay-Verhalten
   btnClose.addEventListener('click', closeLB);
   lb.addEventListener('click', (e) => {
     if (e.target === lb) closeLB(); // Klick auf dunklen Hintergrund
   });
 
-  // 🧭 Tastatur-Navigation & Fokussteuerung
+  //  Tastatur-Navigation & Fokussteuerung
   document.addEventListener('keydown', (e) => {
     if (lb.getAttribute('aria-hidden') === 'true') return;
 
@@ -144,7 +144,7 @@
     }
   });
 
-  // 🔍 Zoom per Buttons
+  //  Zoom per Buttons
   btnZoomIn.addEventListener('click', () => {
     scale = clamp(scale + 0.25, 1, 4);
     applyTransform();
@@ -155,7 +155,7 @@
     applyTransform();
   });
 
-  // 🖱️ Zoom mit Mausrad
+  //  Zoom mit Mausrad
   imgEl.addEventListener('wheel', (e) => {
     if (lb.getAttribute('aria-hidden') === 'true') return;
     e.preventDefault();
@@ -165,7 +165,7 @@
     applyTransform();
   }, { passive: false });
 
-  // 🖱️ Drag/Pan mit Maus
+  //  Drag/Pan mit Maus
   imgEl.style.cursor = 'grab';
   imgEl.addEventListener('mousedown', (e) => {
     if (scale <= 1) return;
@@ -185,7 +185,7 @@
     imgEl.style.cursor = 'grab';
   });
 
-  // 📱 Touch-Pan (nur 1 Finger)
+  //  Touch-Pan (nur 1 Finger)
   imgEl.addEventListener('touchstart', (e) => {
     if (scale <= 1 || e.touches.length !== 1) return;
     const t = e.touches[0];
@@ -208,7 +208,7 @@
 })();
 
 /* ============================================================================
- * 3) 🍔 Burger-Menü für Mobilgeräte
+ * 3)  Burger-Menü für Mobilgeräte
  * ----------------------------------------------------------------------------
  * Toggelt das Attribut data-open auf .mainnav bei Klick auf .nav-toggle
  * ============================================================================
