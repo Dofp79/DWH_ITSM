@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rechenzentrumsstruktur (RZ) für ein ITSM-Tool – Doniman F. Peña Parra</title>
+
+  <!-- Globale Styles/JS (Dataport-Look & Standard-Verhalten) -->
+  <link rel="stylesheet" href="assets/css/site.css" />
+  <script src="assets/js/site.js" defer></script>
+  <script src="assets/js/menu.js" defer></script>
+
+  <!-- Seiten-spezifische Ergänzungen -->
+  <style>
+    .callout h4 { margin:0; color:var(--headline); font-weight:700; }
+    .center-wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--padx); }
+    .centered { text-align:center; }
+    .centered .card { margin-left:auto; margin-right:auto; }
+    .card img[data-full] {
+      display:block; width:100%; height:auto; object-fit:contain;
+      cursor:zoom-in; margin: 0 auto;
+    }
+    .grid-1-centered { display:grid; grid-template-columns:1fr; justify-items:center; gap:18px; }
+    .grid-1-centered .card { width:min(100%, 1024px); }
+    .media-actions { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; padding:12px 16px 0; }
+    .btn { background:var(--brand-primary); color:#fff; border:0; border-radius:10px; padding:10px 16px; font-weight:700; text-decoration:none; display:inline-block; }
+    .btn:hover { background:var(--brand-accent); }
+  </style>
+</head>
+
+<body>
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <a class="logo-link" href="index.html" aria-label="Startseite">
+      <img src="assets/img/DoniLogo_1.0.0.png" alt="Logo Doniman F. Peña Parra" class="logo" />
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-controls="mainnav" aria-expanded="false">
+      <span>Menü</span>
+      <svg class="icon" width="28" height="18" viewBox="0 0 28 18" aria-hidden="true">
+        <rect x="0" y="0" width="28" height="2" rx="1"></rect>
+        <rect x="0" y="8" width="28" height="2" rx="1"></rect>
+        <rect x="0" y="16" width="28" height="2" rx="1"></rect>
+      </svg>
+    </button>
+    <nav id="mainnav" class="mainnav" aria-label="Hauptnavigation" data-open="false">
+      <ul class="nav-list">
+        <li class="nav-item"><a class="nav-link" href="index.html">Start</a></li>
+        <li class="nav-item"><a class="nav-link" href="lebenslauf.html">Über mich</a></li>
+        <li class="nav-item"><a class="nav-link" href="projekte.html">Projekte & Leistungen</a></li>
+        <li class="nav-item"><a class="nav-link" href="prozessmodellierung.html">Prozessmodellierung</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1 class="headline">Rechenzentrumsstruktur (RZ)</h1>
+      <p class="subhead">ITSM - System - Komponente · Beschreibung · Komponentenfunktion · Rolle beim Incident Management</p>
+    </div>
+  </section>
+
+  <!-- ===== Hauptinhalt ===== -->
+  <main id="projekte">
+
+    <!-- Aufgabenbeschreibung -->
+    <section class="section" id="aufgabe"> 
+      <div class="sec-head"> 
+        <span class="sec-dot" aria-hidden="true"></span> 
+        <h2 class="sec-title">Systemmodellierung und Analyse der Rechenzentrumsstruktur (RZ) für ein ITSM - Tool.</h2> 
+      </div> 
+      <div class="text-block"> 
+        <h4>Es folgt eine Analyse im Kontext von ITSM (insbesondere Incident Management, kurz INC) sowie eine Erklärung, wie ein Incident in diesem System bearbeitet wird.</h4>
+        <p class="lead"> Im Rahmen einer Rechenzentrumsstruktur für ein ITSM - Tool wird das folgende Modell visualisiert. Dabei wird der komplette Lebenszyklus eines Incidents 
+        abgebildet: vom Portalzugriff über die Ticketanlage im DB - Cluster bis hin zu Eskalation, Monitoring und Disaster Recovery. Durch die Integration von Mail - Gateways, Directory 
+        Services (SSO/LDAP) und Backup-Systemen kann die vollständige Prozesskette von der Incident-Erstellung bis zur Lösung dokumentiert werden. Dieses Vorgehen stellt sicher, dass 
+        SLAs eingehalten, Daten gesichert und der Betrieb auch bei Ausfällen gewährleistet ist.</p>
+        <p class="lead"> Mithilfe des RZ - Diagramms werden die für das Incident - Management kritischen ITSM - Komponenten veranschaulicht: vom Portalzugriff über die Ticketbearbeitung bis hin zur 
+        Sicherung und Wiederherstellung. Deutlich erkennbar ist, dass der Datenbank - Cluster das Herzstück bildet, während die App - Cluster und Integrationen für die Funktionalität 
+        und Kommunikation verantwortlich sind. </p> 
+      </div> 
+    </section>
+
+    <!-- Architektur / Diagramm -->
+    <section class="section" id="rz-diagramm">
+      <div class="sec-head">
+        <span class="sec-dot"></span>
+        <h2 class="sec-title">ITSM - RZ - Diagramm</h2>
+      </div>
+
+      <div class="center-wrap">
+        <article class="card">
+          <img class="diagram"
+               src="assets/img/ITSM_RZ_1.0.0.png"
+               alt="ITSM RZ-Diagramm"
+               loading="lazy"
+               decoding="async"
+               data-full="assets/img/ITSM_RZ_1.0.0.png" />
+
+          <div class="card-body">
+            <div class="text-block">
+              <h3>Incident Management – Standardablauf</h3>
+              <p>Ein Incident (INC) durchläuft standardisiert folgende Schritte:</p>
+              <ol>
+                <li><strong>Incident - Erstellung:</strong>
+                  <ul>
+                    <li>User meldet Problem über Selfservice - Portal.</li>
+                    <li>Portal sendet Anfrage verschlüsselt an ITSM.</li>
+                  </ul>
+                </li>
+                <li><strong>Ticket - Anlage:</strong>
+                  <ul>
+                    <li>Appserver validiert Daten.</li>
+                    <li>Ticket im DB - Cluster gespeichert (inkl. INC - ID).</li>
+                  </ul>
+                </li>
+                <li><strong>Zuweisung &amp; Prüfung:</strong>
+                  <ul>
+                    <li>Workflow leitet Incident an zuständigen Support weiter.</li>
+                  </ul>
+                </li>
+                <li><strong>Bearbeitung &amp; Lösung:</strong>
+                  <ul>
+                    <li>Support löst Incident oder eskaliert.</li>
+                    <li>Lösung wird dokumentiert.</li>
+                  </ul>
+                </li>
+                <li><strong>Benachrichtigung:</strong>
+                  <ul>
+                    <li>User wird über Mail - Gateway informiert.</li>
+                    <li>Status jederzeit im Portal einsehbar.</li>
+                  </ul>
+                </li>
+                <li><strong>Abschluss:</strong>
+                  <ul>
+                    <li>Ticket geschlossen.</li>
+                    <li>Monitoring überwacht SLA &amp; dokumentiert Lifecycle.</li>
+                  </ul>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+  
+<!-- ===== Vergleichstabelle ITSM-Komponenten ===== -->
+<section class="section" id="vergleich">
+  <div class="sec-head">
+    <span class="sec-dot" aria-hidden="true"></span>
+    <h2 class="sec-title">ITSM-Komponenten im Vergleich</h2>
+  </div>
+
+  <div class="center-wrap" style="overflow-x:auto;">
+    <table class="itsm-table" style="width:100%; border-collapse: collapse; font-size: 0.95rem;">
+      <thead>
+        <tr style="background: var(--light-gray); border-top: 2px solid var(--separator);">
+          <th style="padding: 10px; border: 1px solid var(--separator); text-align: left;">Komponente</th>
+          <th style="padding: 10px; border: 1px solid var(--separator); text-align: left;">Beschreibung</th>
+          <th style="padding: 10px; border: 1px solid var(--separator); text-align: left;">Funktion im ITSM</th>
+          <th style="padding: 10px; border: 1px solid var(--separator); text-align: left;">Rolle im Incident Management</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="border: 1px solid var(--separator); padding: 8px;">User (Selfservice-Portal)</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Endanwender:innen, die Incidents melden oder Status prüfen</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Zugriff via HTTPS</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Erstellt Tickets, prüft Status, empfängt Updates</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Load Balancer (HA)</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Verteilt eingehenden Traffic auf Web-Gateways</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Hochverfügbarkeit (Active/Passive)</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Gewährleistet Erreichbarkeit des Portals</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Web-Gateway / Reverse Proxy</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Sicherheits- und Zugriffskomponente in der DMZ</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">HTTPS - Terminierung, TLS, Routing</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Filtert Anfragen, schützt interne Systeme</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Portal - Frontend (HTML/JS/CSS)</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">UI für den User im Browser</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Darstellung der ITSM - Oberfläche</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Erfassung & Anzeige von Incident - Daten</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid var(--separator); padding: 8px;">ITSM - App - Cluster</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Applikationsschicht mit mehreren Servern</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Ausführung von ITSM-Workflows, Ticketmanagement</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Validierung, Ticketanlage, Eskalation, Workflows</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid var(--separator); padding: 8px;">DB - Cluster (Primary/Replica)</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Zentrale Datenbank mit Redundanz</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Speicherung von Tickets, Usern, CMDB, Knowledge</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Herzstück: Speicherung und Verfügbarkeit der INCs</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid var(--separator); padding: 8px;">File/Blob - Storage</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Ablage von großen Dateien (z. B. Anhängen)</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Speicherung von Attachments</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Hält Beweise/Anhänge zum Incident bereit</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Mail - Gateway</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Anbindung an Mailsystem</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Versand von Benachrichtigungen</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Automatische Mails an User & Support</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Directory Services (AD/LDAP/SSO/MFA)</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Authentifizierungssysteme</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Single Sign-On, Multi - Faktor - Authentifizierung</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Verifiziert Identitäten beim Incident-Login</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Monitoring & Logging</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Protokollierung & Überwachung</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">SLA - Tracking, Dashboards, Alarmierung</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Überwacht Ticketlaufzeit & Systemzustand</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Backup - Server</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Lokales Backup - System</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Snapshots und Recovery</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Wiederherstellung nach Fehler oder Datenverlust</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid var(--separator); padding: 8px;">DR - Standort (optional)</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Externes Disaster - Recovery - System</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Georedundante Sicherung</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">System - Resilienz, Wiederaufnahme im Notfall</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<!-- Kontakt (global, immer vor dem Footer) -->
+  <section class="contact-block" aria-labelledby="kontaktTitle">
+    <div class="contact-inner">
+      <h2 id="kontaktTitle" class="contact-title">Kontakt</h2>
+      <p class="contact-name">Doniman F. Peña Parra</p>
+
+      <!-- Spam-sicher: Text + href werden per site.js gesetzt -->
+      <p class="contact-email">
+        <a id="contactEmail"
+           data-email-user="dofp79"
+           data-email-domain="hotmail.com"
+           href="#"
+           rel="nofollow">E‑Mail anzeigen</a>
+        <noscript> (dofp79&nbsp;[at]&nbsp;hotmail&nbsp;[dot]&nbsp;com) </noscript>
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Doniman F. Peña Parra – Bewerbung für Dataport
+  </footer>
+
+  <!-- Menü‑Script (öffnet Burger-Menü) -->
+  <script src="assets/js/menu.js"></script>
+</body>
+</html>
+
+  <!-- ===== Lightbox ===== -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button type="button" id="lightboxClose" aria-label="Schließen">✕</button>
+    <img id="lightboxImg" src="" alt="Vergrößertes Bild" />
+  </div>
+</body>
+</html>
