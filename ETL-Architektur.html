@@ -131,21 +131,22 @@
                     <li>Mailversand (outlook_mail.py): Sendet den erstellten Report per E-Mail über die M365-API an Stakeholder.</li>
                   </ul>
                 </li>
-                <li><strong>Zuweisung &amp; Prüfung:</strong>
+                <li><strong>Kommunikation</strong>
                   <ul>
-                    <li>Workflow leitet Incident an zuständigen Support weiter.</li>
+                    <li>Outlook Mail-Client (M365 API): Empfänger erhalten die Report-Daten per E-Mail.</li>
                   </ul>
                 </li>
-                <li><strong>Bearbeitung &amp; Lösung:</strong>
+                <li><strong>Fileserver & Infrastruktur</strong>
                   <ul>
-                    <li>Support löst Incident oder eskaliert.</li>
-                    <li>Lösung wird dokumentiert.</li>
+                    <li>Rohdatenverzeichnis (raw/): Hier landet die CSV-Datei, die das Python-Skript exportiert.</li>
+                    <li>Transformationskomponente (clean_transform.py): Liest die Rohdaten ein, bereinigt sie (z. B. entfernt Dubletten, füllt leere Felder, optional Pseudonymisierung).</li>
+                    <li>Bereinigte Daten (clean/): Ablage der aufbereiteten CSV-Dateien.</li>
                   </ul>
                 </li>
-                <li><strong>Benachrichtigung:</strong>
+                <li><strong>Power BI Desktop</strong>
                   <ul>
-                    <li>User wird über Mail - Gateway informiert.</li>
-                    <li>Status jederzeit im Portal einsehbar.</li>
+                    <li>Reporting-Vorlage (ITSM_Monatsreport.pbix): Eine vorbereitete Power-BI-Vorlage zieht die bereinigten Daten.</li>
+                    <li>Funktion:</li>
                   </ul>
                 </li>
                 <li><strong>Abschluss:</strong>
