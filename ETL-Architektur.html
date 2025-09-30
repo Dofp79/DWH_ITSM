@@ -115,19 +115,20 @@
 
           <div class="card-body">
             <div class="text-block">
-              <h3>Incident Management – Standardablauf</h3>
-              <p>Ein Incident (INC) durchläuft standardisiert folgende Schritte:</p>
+              <h3>Erklärung des Diagramms</h3>
+              <p>ITSM-Reporting und Komponenten:</p>
               <ol>
-                <li><strong>Incident - Erstellung:</strong>
+                <li><strong>Auslöser - Prozessmanager (Visual Studio Code):</strong>
                   <ul>
-                    <li>User meldet Problem über Selfservice - Portal.</li>
+                    <li>Ein Mitarbeiter startet einmal im Monat das Python-Skript.</li>
                     <li>Portal sendet Anfrage verschlüsselt an ITSM.</li>
                   </ul>
                 </li>
-                <li><strong>Ticket - Anlage:</strong>
+                <li><strong>VS Code + Python-Skript führt drei wichtige Komponenten aus:</strong>
                   <ul>
-                    <li>Appserver validiert Daten.</li>
-                    <li>Ticket im DB - Cluster gespeichert (inkl. INC - ID).</li>
+                    <li>GUI-Automation (pyautogui, opencv): Steuert das ITSM-Tool über die Oberfläche, klickt automatisch, erkennt Bildschirmelemente. </li>
+                    <li>CSV-Exporter (csv_export.py): Exportiert die gefundenen Daten in eine strukturierte CSV-Datei mit Zeitstempel im Dateinamen.</li>
+                    <li>Mailversand (outlook_mail.py): Sendet den erstellten Report per E-Mail über die M365-API an Stakeholder.</li>
                   </ul>
                 </li>
                 <li><strong>Zuweisung &amp; Prüfung:</strong>
