@@ -222,10 +222,16 @@
           <td style="border: 1px solid var(--separator); padding: 8px;">Sichert die Datenqualität und stellt sicher, dass nur konsistente Daten ins Reporting gelangen.</td>
         </tr>
         <tr>
-          <td style="border: 1px solid var(--separator); padding: 8px;">DB - Cluster (Primary/Replica)</td>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Zentrale Datenbank mit Redundanz</td>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Speicherung von Tickets, Usern, CMDB, Knowledge</td>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Herzstück: Speicherung und Verfügbarkeit der INCs</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Bereinigte Daten (clean/)</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Ablage der transformierten Daten.</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Stellt bereinigte CSV-Dateien bereit.</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Bietet die geprüfte Grundlage für BI-Analysen und Dashboards.</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Power BI Desktop + Reporting-Vorlage (ITSM_Monatsreport.pbix)</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Visualisierungstool, das auf die bereinigten Daten zugreift.</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Lädt die Daten, wendet das Datenmodell an und erstellt Dashboards und Reports.</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Generiert Kennzahlen (KPIs) wie Incidents, MTTR oder SLA-Einhaltung für Management und Controlling.</td>
         </tr>
       </tbody>
     </table>
