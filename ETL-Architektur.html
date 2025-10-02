@@ -177,7 +177,7 @@
 <section class="section" id="vergleich">
   <div class="sec-head">
     <span class="sec-dot" aria-hidden="true"></span>
-    <h2 class="sec-title">ITSM-Komponenten im Vergleich</h2>
+    <h2 class="sec-title">ETL-Komponenten im Vergleich</h2>
   </div>
 
   <div class="center-wrap" style="overflow-x:auto;">
@@ -186,37 +186,37 @@
         <tr style="background: var(--light-gray); border-top: 2px solid var(--separator);">
           <th style="padding: 10px; border: 1px solid var(--separator); text-align: left;">Komponente</th>
           <th style="padding: 10px; border: 1px solid var(--separator); text-align: left;">Beschreibung</th>
-          <th style="padding: 10px; border: 1px solid var(--separator); text-align: left;">Funktion im ITSM</th>
-          <th style="padding: 10px; border: 1px solid var(--separator); text-align: left;">Rolle im Incident Management</th>
+          <th style="padding: 10px; border: 1px solid var(--separator); text-align: left;">Funktion</th>
+          <th style="padding: 10px; border: 1px solid var(--separator); text-align: left;">Rolle im Measurement & Reporting</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td style="border: 1px solid var(--separator); padding: 8px;">User (Selfservice-Portal)</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">GUI-Automation (pyautogui, opencv)</td>
           <td style="border: 1px solid var(--separator); padding: 8px;">Endanwender:innen, die Incidents melden oder Status prüfen</td>
           <td style="border: 1px solid var(--separator); padding: 8px;">Zugriff via HTTPS</td>
           <td style="border: 1px solid var(--separator); padding: 8px;">Erstellt Tickets, prüft Status, empfängt Updates</td>
         </tr>
         <tr>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Load Balancer (HA)</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">CSV-Exporter (csv_export.py)</td>
           <td style="border: 1px solid var(--separator); padding: 8px;">Verteilt eingehenden Traffic auf Web-Gateways</td>
           <td style="border: 1px solid var(--separator); padding: 8px;">Hochverfügbarkeit (Active/Passive)</td>
           <td style="border: 1px solid var(--separator); padding: 8px;">Gewährleistet Erreichbarkeit des Portals</td>
         </tr>
         <tr>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Web-Gateway / Reverse Proxy</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Mailversand (outlook_mail.py)</td>
           <td style="border: 1px solid var(--separator); padding: 8px;">Sicherheits- und Zugriffskomponente in der DMZ</td>
           <td style="border: 1px solid var(--separator); padding: 8px;">HTTPS - Terminierung, TLS, Routing</td>
           <td style="border: 1px solid var(--separator); padding: 8px;">Filtert Anfragen, schützt interne Systeme</td>
         </tr>
         <tr>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Portal - Frontend (HTML/JS/CSS)</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Rohdatenverzeichnis (raw/)</td>
           <td style="border: 1px solid var(--separator); padding: 8px;">UI für den User im Browser</td>
           <td style="border: 1px solid var(--separator); padding: 8px;">Darstellung der ITSM - Oberfläche</td>
           <td style="border: 1px solid var(--separator); padding: 8px;">Erfassung & Anzeige von Incident - Daten</td>
         </tr>
         <tr>
-          <td style="border: 1px solid var(--separator); padding: 8px;">ITSM - App - Cluster</td>
+          <td style="border: 1px solid var(--separator); padding: 8px;">Transformationskomponente (clean_transform.py)</td>
           <td style="border: 1px solid var(--separator); padding: 8px;">Applikationsschicht mit mehreren Servern</td>
           <td style="border: 1px solid var(--separator); padding: 8px;">Ausführung von ITSM-Workflows, Ticketmanagement</td>
           <td style="border: 1px solid var(--separator); padding: 8px;">Validierung, Ticketanlage, Eskalation, Workflows</td>
