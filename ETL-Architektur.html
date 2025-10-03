@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -12,19 +13,69 @@
 
   <!-- Seiten-spezifische Ergänzungen -->
   <style>
-    .callout h4 { margin:0; color:var(--headline); font-weight:700; }
-    .center-wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--padx); }
-    .centered { text-align:center; }
-    .centered .card { margin-left:auto; margin-right:auto; }
-    .card img[data-full] {
-      display:block; width:100%; height:auto; object-fit:contain;
-      cursor:zoom-in; margin: 0 auto;
+    .callout h4 {
+      margin: 0;
+      color: var(--headline);
+      font-weight: 700;
     }
-    .grid-1-centered { display:grid; grid-template-columns:1fr; justify-items:center; gap:18px; }
-    .grid-1-centered .card { width:min(100%, 1024px); }
-    .media-actions { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; padding:12px 16px 0; }
-    .btn { background:var(--brand-primary); color:#fff; border:0; border-radius:10px; padding:10px 16px; font-weight:700; text-decoration:none; display:inline-block; }
-    .btn:hover { background:var(--brand-accent); }
+
+    .center-wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 var(--padx);
+    }
+
+    .centered {
+      text-align: center;
+    }
+
+    .centered .card {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .card img[data-full] {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      cursor: zoom-in;
+      margin: 0 auto;
+    }
+
+    .grid-1-centered {
+      display: grid;
+      grid-template-columns: 1fr;
+      justify-items: center;
+      gap: 18px;
+    }
+
+    .grid-1-centered .card {
+      width: min(100%, 1024px);
+    }
+
+    .media-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 12px 16px 0;
+    }
+
+    .btn {
+      background: var(--brand-primary);
+      color: #fff;
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background: var(--brand-accent);
+    }
   </style>
 </head>
 
@@ -57,7 +108,8 @@
   <section class="hero">
     <div class="hero-inner">
       <h1 class="headline">ETL-Prozesse als Rückgrat eines Data Warehouses</h1>
-      <p class="subhead">ITSM - KPI-System - Komponente · Beschreibung · Komponentenfunktion · Measurement & Reporting</p>
+      <p class="subhead">ITSM - KPI-System - Komponente · Beschreibung · Komponentenfunktion · Measurement & Reporting
+      </p>
     </div>
   </section>
 
@@ -65,51 +117,65 @@
   <main id="projekte">
 
     <!-- Aufgabenbeschreibung -->
-    <section class="section" id="aufgabe"> 
-      <div class="sec-head"> 
-        <span class="sec-dot" aria-hidden="true"></span> 
-        <h2 class="sec-title"><strong>ETL-Prozesse (Extract – Transform – Load)</strong></h2> 
-      </div> 
-      <div class="text-block"> 
+    <section class="section" id="aufgabe">
+      <div class="sec-head">
+        <span class="sec-dot" aria-hidden="true"></span>
+        <h2 class="sec-title"><strong>ETL-Prozesse (Extract – Transform – Load)</strong></h2>
+      </div>
+      <div class="text-block">
         <h4>ETL-Prozesse sind das Rückgrat eines Data Warehouses</h4>
-<p class="lead">
-  <strong>Ein <mark>Data Warehouse (DWH)</mark></strong> bildet die zentrale Datenbasis für Analysen, Reporting und Business Intelligence. 
-  Damit es seine Funktion als „Single Source of Truth“ (SSOT) erfüllen kann, benötigt es verlässliche Mechanismen, die Daten aus 
-  unterschiedlichen Quellen konsolidieren und in eine konsistente, analysierbare Form überführen. Genau diese Rolle übernehmen 
-  <mark>ETL-Prozesse</mark> (Extract – Transform – Load).
-</p>
+        <p class="lead">
+          <strong>Ein <mark>Data Warehouse (DWH)</mark></strong> bildet die zentrale Datenbasis für Analysen, Reporting
+          und Business Intelligence.
+          Damit es seine Funktion als „Single Source of Truth“ (SSOT) erfüllen kann, benötigt es verlässliche
+          Mechanismen, die Daten aus
+          unterschiedlichen Quellen konsolidieren und in eine konsistente, analysierbare Form überführen. Genau diese
+          Rolle übernehmen
+          <mark>ETL-Prozesse</mark> (Extract – Transform – Load).
+        </p>
 
-<p class="lead"> 
-  Im <strong><mark>IT-Service-Management</mark> (ITSM)</strong> ist die zuverlässige Bereitstellung von Daten die Grundlage für Steuerung, 
-  Transparenz und kontinuierliche Verbesserung. Da ITSM viele Disziplinen umfasst – etwa Incident-, Change-, Problem- und Service Level Management – 
-  entstehen große Mengen an Daten. Ohne zentrale Harmonisierung führt dies schnell zu widersprüchlichen Informationen. 
-</p> 
+        <p class="lead">
+          Im <strong><mark>IT-Service-Management</mark> (ITSM)</strong> ist die zuverlässige Bereitstellung von Daten
+          die Grundlage für Steuerung,
+          Transparenz und kontinuierliche Verbesserung. Da ITSM viele Disziplinen umfasst – etwa Incident-, Change-,
+          Problem- und Service Level Management –
+          entstehen große Mengen an Daten. Ohne zentrale Harmonisierung führt dies schnell zu widersprüchlichen
+          Informationen.
+        </p>
 
-<p class="lead"> 
-  Die „Single Source of Truth“ (SSOT) gewährleistet, dass alle Beteiligten – vom Service Desk über das Delivery Management bis 
-  hin zu den <mark>Stakeholdern</mark> – mit denselben konsistenten Daten arbeiten. Diese wird durch <mark>ETL-Prozesse</mark> im 
-  <mark>DWH</mark> aufbereitet, konsolidiert und nach einheitlichen Regeln bereitgestellt. 
-</p>
+        <p class="lead">
+          Die „Single Source of Truth“ (SSOT) gewährleistet, dass alle Beteiligten – vom Service Desk über das Delivery
+          Management bis
+          hin zu den <mark>Stakeholdern</mark> – mit denselben konsistenten Daten arbeiten. Diese wird durch
+          <mark>ETL-Prozesse</mark> im
+          <mark>DWH</mark> aufbereitet, konsolidiert und nach einheitlichen Regeln bereitgestellt.
+        </p>
 
-<h4>Extract – Datenintegration</h4>
-<p class="lead"> 
-  Im ersten Schritt werden Daten aus heterogenen Quellen wie operativen IT-Systemen, Datenbanken, APIs oder externen Dateien entnommen. 
-  <mark>ETL</mark> sorgt dafür, dass diese Daten unabhängig von ihrer Struktur oder Herkunft zentral verfügbar gemacht werden. 
-</p>
+        <h4>Extract – Datenintegration</h4>
+        <p class="lead">
+          Im ersten Schritt werden Daten aus heterogenen Quellen wie operativen IT-Systemen, Datenbanken, APIs oder
+          externen Dateien entnommen.
+          <mark>ETL</mark> sorgt dafür, dass diese Daten unabhängig von ihrer Struktur oder Herkunft zentral verfügbar
+          gemacht werden.
+        </p>
 
-<h4>Transform – Datenaufbereitung</h4>
-<p class="lead"> 
-  Die Transformation ist der zentrale Qualitätsfilter. Hier werden Daten bereinigt, harmonisiert und mit geschäftsrelevanten Regeln angereichert. 
-  Typische Aufgaben sind Dublettenprüfung, Formatvereinheitlichung, Pseudonymisierung sowie die Berechnung von <mark>KPI</mark>. 
-  Dieser Schritt stellt sicher, dass im <mark>DWH</mark> nur konsistente Informationen zur Verfügung stehen.
-</p>
+        <h4>Transform – Datenaufbereitung</h4>
+        <p class="lead">
+          Die Transformation ist der zentrale Qualitätsfilter. Hier werden Daten bereinigt, harmonisiert und mit
+          geschäftsrelevanten Regeln angereichert.
+          Typische Aufgaben sind Dublettenprüfung, Formatvereinheitlichung, Pseudonymisierung sowie die Berechnung von
+          <mark>KPI</mark>.
+          Dieser Schritt stellt sicher, dass im <mark>DWH</mark> nur konsistente Informationen zur Verfügung stehen.
+        </p>
 
-<h4>Load – Datenbereitstellung</h4>
-<p class="lead"> 
-  Im letzten Schritt werden die aufbereiteten Daten in das <mark>DWH</mark> geladen. Dies kann periodisch im Batch-Verfahren oder nahezu in Echtzeit erfolgen. 
-  Das Ergebnis ist eine leistungsfähige Datenbasis, die für Reporting-Werkzeuge wie Power BI oder Tableau unmittelbar nutzbar ist.
-</p>  
-      </div> 
+        <h4>Load – Datenbereitstellung</h4>
+        <p class="lead">
+          Im letzten Schritt werden die aufbereiteten Daten in das <mark>DWH</mark> geladen. Dies kann periodisch im
+          Batch-Verfahren oder nahezu in Echtzeit erfolgen.
+          Das Ergebnis ist eine leistungsfähige Datenbasis, die für Reporting-Werkzeuge wie Power BI oder Tableau
+          unmittelbar nutzbar ist.
+        </p>
+      </div>
     </section>
 
     <!-- Architektur / Diagramm -->
@@ -121,12 +187,8 @@
 
       <div class="center-wrap">
         <article class="card">
-          <img class="diagram"
-               src="assets/img/ETL_Komponendiagramm_1.0.0.png"
-               alt="ETL-Prozess Komponentendiagramm"
-               loading="lazy"
-               decoding="async"
-               data-full="assets/img/ETL_Komponendiagramm_1.0.0.png" />
+          <img class="diagram" src="assets/img/ETL_Komponendiagramm_1.0.0.png" alt="ETL-Prozess Komponentendiagramm"
+            loading="lazy" decoding="async" data-full="assets/img/ETL_Komponendiagramm_1.0.0.png" />
 
           <div class="card-body">
             <div class="text-block">
@@ -141,9 +203,12 @@
                 </li>
                 <li><strong>VS Code + Python-Skript führt drei wichtige Komponenten aus:</strong>
                   <ul>
-                    <li>GUI-Automation (pyautogui, opencv): Steuert das ITSM-Tool über die Oberfläche, klickt automatisch, erkennt Bildschirmelemente. </li>
-                    <li>CSV-Exporter (csv_export.py): Exportiert die gefundenen Daten in eine strukturierte CSV-Datei mit Zeitstempel im Dateinamen.</li>
-                    <li>Mailversand (outlook_mail.py): Sendet den erstellten Report per E-Mail über die M365-API an Stakeholder.</li>
+                    <li>GUI-Automation (pyautogui, opencv): Steuert das ITSM-Tool über die Oberfläche, klickt
+                      automatisch, erkennt Bildschirmelemente. </li>
+                    <li>CSV-Exporter (csv_export.py): Exportiert die gefundenen Daten in eine strukturierte CSV-Datei
+                      mit Zeitstempel im Dateinamen.</li>
+                    <li>Mailversand (outlook_mail.py): Sendet den erstellten Report per E-Mail über die M365-API an
+                      Stakeholder.</li>
                   </ul>
                 </li>
                 <li><strong>Kommunikation</strong>
@@ -154,13 +219,15 @@
                 <li><strong>Fileserver & Infrastruktur</strong>
                   <ul>
                     <li>Rohdatenverzeichnis (raw/): Hier landet die CSV-Datei, die das Python-Skript exportiert.</li>
-                    <li>Transformationskomponente (clean_transform.py): Liest die Rohdaten ein, bereinigt sie (z. B. entfernt Dubletten, füllt leere Felder, optional Pseudonymisierung).</li>
+                    <li>Transformationskomponente (clean_transform.py): Liest die Rohdaten ein, bereinigt sie (z. B.
+                      entfernt Dubletten, füllt leere Felder, optional Pseudonymisierung).</li>
                     <li>Bereinigte Daten (clean/): Ablage der aufbereiteten CSV-Dateien.</li>
                   </ul>
                 </li>
                 <li><strong>Power BI Desktop</strong>
                   <ul>
-                    <li>Reporting-Vorlage (ITSM_Monatsreport.pbix): Eine vorbereitete Power-BI-Vorlage zieht die bereinigten Daten.</li>
+                    <li>Reporting-Vorlage (ITSM_Monatsreport.pbix): Eine vorbereitete Power-BI-Vorlage zieht die
+                      bereinigten Daten.</li>
                     <li>Funktion:
                       <ul>
                         <li>Die pbix-Datei enthält das Datenmodell (KPIs, Filter, Visualisierungen).</li>
@@ -168,8 +235,8 @@
                         <li>Ergebnis sind Reports & Dashboards mit Kennzahlen.
                           <ul>
                             <li>Beispiele: Anzahl Incidents, MTTR (Mean Time to Repair), Teamzuordnungen.</li>
-                           </ul>
-                          </li>
+                          </ul>
+                        </li>
                       </ul>
                     </li>
                   </ul>
@@ -177,7 +244,8 @@
                 <li><strong>Ergebnis</strong>
                   <ul>
                     <li>Output: Reporting-KPIs für Service- & Delivery-Management.</li>
-                    <li>Stakeholder erhalten sowohl automatisierte Mails als auch interaktive Dashboards in Power BI.</li>
+                    <li>Stakeholder erhalten sowohl automatisierte Mails als auch interaktive Dashboards in Power BI.
+                    </li>
                   </ul>
                 </li>
               </ol>
@@ -187,74 +255,93 @@
       </div>
     </section>
   </main>
-  
-<!-- ===== Vergleichstabelle ITSM-Komponenten ===== -->
-<section class="section" id="vergleich">
-  <div class="sec-head">
-    <span class="sec-dot" aria-hidden="true"></span>
-    <h2 class="sec-title">ETL-Komponenten im Vergleich</h2>
-  </div>
 
-  <div class="center-wrap" style="overflow-x:auto;">
-    <table class="itsm-table" style="width:100%; border-collapse: collapse; font-size: 0.95rem;">
-      <thead>
-        <tr style="background: var(--light-gray); border-top: 2px solid var(--separator);">
-          <th style="padding: 10px; border: 1px solid var(--separator); text-align: left;">Komponente</th>
-          <th style="padding: 10px; border: 1px solid var(--separator); text-align: left;">Beschreibung</th>
-          <th style="padding: 10px; border: 1px solid var(--separator); text-align: left;">Funktion</th>
-          <th style="padding: 10px; border: 1px solid var(--separator); text-align: left;">Rolle im Measurement & Reporting</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="border: 1px solid var(--separator); padding: 8px;">GUI-Automation (pyautogui, opencv)</td>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Automatisiert die Interaktion mit dem ITSM-Tool über die grafische Oberfläche.</td>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Steuert Klicks und erkennt Bildschirmelemente, um die benötigten Daten zu extrahieren.</td>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Ermöglicht die zuverlässige Datenerfassung aus Systemen ohne direkte Schnittstellen.</td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid var(--separator); padding: 8px;">CSV-Exporter (csv_export.py)</td>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Exportiert die extrahierten Daten in strukturierter Form als CSV-Datei.</td>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Erzeugt Rohdatendateien mit Zeitstempeln im Dateinamen.</td>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Stellt eine einheitliche Datenbasis bereit, die für spätere Analysen verwendet wird.</td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Mailversand (outlook_mail.py)</td>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Versendet Reports per E-Mail über die M365-API an Stakeholder.</td>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Automatisierter Versand der Ergebnisse.</td>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Sichert die direkte Informationsweitergabe an Verantwortliche und Entscheidungsträger.</td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Rohdatenverzeichnis (raw/)</td>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Speicherort für die vom Exporter erzeugten Rohdaten.</td>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Hält unbereinigte CSV-Dateien bereit.</td>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Dient als Eingangsquelle für Transformationen und Nachvollziehbarkeit der Datenherkunft.</td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Transformationskomponente (clean_transform.py)</td>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Bereinigt und transformiert Rohdaten.</td>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Entfernt Dubletten, füllt leere Felder und pseudonymisiert Daten bei Bedarf.</td>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Sichert die Datenqualität und stellt sicher, dass nur konsistente Daten ins Reporting gelangen.</td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Bereinigte Daten (clean/)</td>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Ablage der transformierten Daten.</td>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Stellt bereinigte CSV-Dateien bereit.</td>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Bietet die geprüfte Grundlage für BI-Analysen und Dashboards.</td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Power BI Desktop + Reporting-Vorlage (ITSM_Monatsreport.pbix)</td>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Visualisierungstool, das auf die bereinigten Daten zugreift.</td>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Lädt die Daten, wendet das Datenmodell an und erstellt Dashboards und Reports.</td>
-          <td style="border: 1px solid var(--separator); padding: 8px;">Generiert Kennzahlen (KPIs) wie Incidents, MTTR oder SLA-Einhaltung für Management und Controlling.</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
+  <!-- ===== Vergleichstabelle ITSM-Komponenten ===== -->
+  <section class="section" id="vergleich">
+    <div class="sec-head">
+      <span class="sec-dot" aria-hidden="true"></span>
+      <h2 class="sec-title">ETL-Komponenten im Vergleich</h2>
+    </div>
+
+    <div class="center-wrap" style="overflow-x:auto;">
+      <table class="itsm-table" style="width:100%; border-collapse: collapse; font-size: 0.95rem;">
+        <thead>
+          <tr style="background: var(--light-gray); border-top: 2px solid var(--separator);">
+            <th style="padding: 10px; border: 1px solid var(--separator); text-align: left;">Komponente</th>
+            <th style="padding: 10px; border: 1px solid var(--separator); text-align: left;">Beschreibung</th>
+            <th style="padding: 10px; border: 1px solid var(--separator); text-align: left;">Funktion</th>
+            <th style="padding: 10px; border: 1px solid var(--separator); text-align: left;">Rolle im Measurement &
+              Reporting</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="border: 1px solid var(--separator); padding: 8px;">GUI-Automation (pyautogui, opencv)</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Automatisiert die Interaktion mit dem
+              ITSM-Tool über die grafische Oberfläche.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Steuert Klicks und erkennt Bildschirmelemente,
+              um die benötigten Daten zu extrahieren.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Ermöglicht die zuverlässige Datenerfassung aus
+              Systemen ohne direkte Schnittstellen.</td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid var(--separator); padding: 8px;">CSV-Exporter (csv_export.py)</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Exportiert die extrahierten Daten in
+              strukturierter Form als CSV-Datei.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Erzeugt Rohdatendateien mit Zeitstempeln im
+              Dateinamen.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Stellt eine einheitliche Datenbasis bereit,
+              die für spätere Analysen verwendet wird.</td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Mailversand (outlook_mail.py)</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Versendet Reports per E-Mail über die M365-API
+              an Stakeholder.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Automatisierter Versand der Ergebnisse.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Sichert die direkte Informationsweitergabe an
+              Verantwortliche und Entscheidungsträger.</td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Rohdatenverzeichnis (raw/)</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Speicherort für die vom Exporter erzeugten
+              Rohdaten.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Hält unbereinigte CSV-Dateien bereit.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Dient als Eingangsquelle für Transformationen
+              und Nachvollziehbarkeit der Datenherkunft.</td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Transformationskomponente (clean_transform.py)
+            </td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Bereinigt und transformiert Rohdaten.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Entfernt Dubletten, füllt leere Felder und
+              pseudonymisiert Daten bei Bedarf.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Sichert die Datenqualität und stellt sicher,
+              dass nur konsistente Daten ins Reporting gelangen.</td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Bereinigte Daten (clean/)</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Ablage der transformierten Daten.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Stellt bereinigte CSV-Dateien bereit.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Bietet die geprüfte Grundlage für BI-Analysen
+              und Dashboards.</td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Power BI Desktop + Reporting-Vorlage
+              (ITSM_Monatsreport.pbix)</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Visualisierungstool, das auf die bereinigten
+              Daten zugreift.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Lädt die Daten, wendet das Datenmodell an und
+              erstellt Dashboards und Reports.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Generiert Kennzahlen (KPIs) wie Incidents,
+              MTTR oder SLA-Einhaltung für Management und Controlling.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
 
-<!-- Kontakt (global, immer vor dem Footer) -->
+  <!-- Kontakt (global, immer vor dem Footer) -->
   <section class="contact-block" aria-labelledby="kontaktTitle">
     <div class="contact-inner">
       <h2 id="kontaktTitle" class="contact-title">Kontakt</h2>
@@ -262,11 +349,8 @@
 
       <!-- Spam-sicher: Text + href werden per site.js gesetzt -->
       <p class="contact-email">
-        <a id="contactEmail"
-           data-email-user="dofp79"
-           data-email-domain="hotmail.com"
-           href="#"
-           rel="nofollow">E‑Mail anzeigen</a>
+        <a id="contactEmail" data-email-user="dofp79" data-email-domain="hotmail.com" href="#" rel="nofollow">E‑Mail
+          anzeigen</a>
         <noscript> (dofp79&nbsp;[at]&nbsp;hotmail&nbsp;[dot]&nbsp;com) </noscript>
       </p>
     </div>
@@ -279,12 +363,14 @@
   <!-- Menü‑Script (öffnet Burger-Menü) -->
   <script src="assets/js/menu.js"></script>
 </body>
+
 </html>
 
-  <!-- ===== Lightbox ===== -->
-  <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button type="button" id="lightboxClose" aria-label="Schließen">✕</button>
-    <img id="lightboxImg" src="" alt="Vergrößertes Bild" />
-  </div>
+<!-- ===== Lightbox ===== -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button type="button" id="lightboxClose" aria-label="Schließen">✕</button>
+  <img id="lightboxImg" src="" alt="Vergrößertes Bild" />
+</div>
 </body>
+
 </html>
