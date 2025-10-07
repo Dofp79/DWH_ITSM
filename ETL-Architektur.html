@@ -381,82 +381,67 @@
   </section>
 
    <!-- Architektur / Diagramm -->
-    <section class="section" id="rz-diagramm">
-      <div class="sec-head">
-        <span class="sec-dot"></span>
-        <h2 class="sec-title">ITSM-Reporting und ETL-Prozess mit DWH Komponentendiagramm</h2>
-      </div>
+<div class="card-body">
+  <div class="text-block">
+    <h3>Kontext des Diagramms</h3>
+    <p>ITSM-Reporting und ETL-Komponenten mit Data-Warehouse-Ablage:</p>
+    <ol>
+      <li><strong>Client-Umgebung – Datenerfassung (Extract)</strong>
+        <ul>
+          <li>Ein Prozessmanager startet einmal im Monat das Python-Skript (via Visual Studio Code).</li>
+          <li>Das Skript holt die benötigten ITSM-Daten automatisiert aus der Oberfläche.</li>
+        </ul>
+      </li>
 
-      <div class="center-wrap">
-        <article class="card">
-          <img class="diagram" src="assets/img/ITSM_Reporting_ETL_Mit_DWH_1.0.0.png" alt="ITSM_Reporting_ETL_Mit_DWH_1.0.0.png"
-            loading="lazy" decoding="async" data-full="assets/img/ITSM_Reporting_ETL_Mit_DWH_1.0.0.png" />
+      <li><strong>VS Code + Python-Skript (drei zentrale Module)</strong>
+        <ul>
+          <li><strong>GUI-Automation (pyautogui, opencv):</strong> Steuert die ITSM-Web-GUI, führt Klicksequenzen aus, erkennt Elemente.</li>
+          <li><strong>CSV-Exporter (csv_export.py):</strong> Schreibt strukturierte Rohdatensätze (inkl. Zeitstempel) für das Laden ins DWH.</li>
+          <li><strong>Mailversand (outlook_mail.py):</strong> Versendet Ergebnisberichte automatisiert über die M365-API an Stakeholder.</li>
+        </ul>
+      </li>
 
-          <div class="card-body">
-            <div class="text-block">
-              <h3>Erklärung des Diagramms</h3>
-              <p>ITSM-Reporting und Komponenten:</p>
-              <ol>
-                <li><strong>Auslöser - Prozessmanager (Visual Studio Code):</strong>
-                  <ul>
-                    <li>Ein Mitarbeiter startet einmal im Monat das Python-Skript.</li>
-                    <li>Portal sendet Anfrage verschlüsselt an ITSM.</li>
-                  </ul>
-                </li>
-                <li><strong>VS Code + Python-Skript führt drei wichtige Komponenten aus:</strong>
-                  <ul>
-                    <li>GUI-Automation (pyautogui, opencv): Steuert das ITSM-Tool über die Oberfläche, klickt
-                      automatisch, erkennt Bildschirmelemente. </li>
-                    <li>CSV-Exporter (csv_export.py): Exportiert die gefundenen Daten in eine strukturierte CSV-Datei
-                      mit Zeitstempel im Dateinamen.</li>
-                    <li>Mailversand (outlook_mail.py): Sendet den erstellten Report per E-Mail über die M365-API an
-                      Stakeholder.</li>
-                  </ul>
-                </li>
-                <li><strong>Kommunikation</strong>
-                  <ul>
-                    <li>Outlook Mail-Client (M365 API): Empfänger erhalten die Report-Daten per E-Mail.</li>
-                  </ul>
-                </li>
-                <li><strong>Fileserver & Infrastruktur</strong>
-                  <ul>
-                    <li>Rohdatenverzeichnis (raw/): Hier landet die CSV-Datei, die das Python-Skript exportiert.</li>
-                    <li>Transformationskomponente (clean_transform.py): Liest die Rohdaten ein, bereinigt sie (z. B.
-                      entfernt Dubletten, füllt leere Felder, optional Pseudonymisierung).</li>
-                    <li>Bereinigte Daten (clean/): Ablage der aufbereiteten CSV-Dateien.</li>
-                  </ul>
-                </li>
-                <li><strong>Power BI Desktop</strong>
-                  <ul>
-                    <li>Reporting-Vorlage (ITSM_Monatsreport.pbix): Eine vorbereitete Power-BI-Vorlage zieht die
-                      bereinigten Daten.</li>
-                    <li>Funktion:
-                      <ul>
-                        <li>Die pbix-Datei enthält das Datenmodell (KPIs, Filter, Visualisierungen).</li>
-                        <li>Power BI vergleicht die neuen Daten mit Vorversionen.</li>
-                        <li>Ergebnis sind Reports & Dashboards mit Kennzahlen.
-                          <ul>
-                            <li>Beispiele: Anzahl Incidents, MTTR (Mean Time to Repair), Teamzuordnungen.</li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li><strong>Ergebnis</strong>
-                  <ul>
-                    <li>Output: Reporting-KPIs für Service- & Delivery-Management.</li>
-                    <li>Stakeholder erhalten sowohl automatisierte Mails als auch interaktive Dashboards in Power BI.
-                    </li>
-                  </ul>
-                </li>
-              </ol>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-  </main>
+      <li><strong>Kommunikation</strong>
+        <ul>
+          <li><strong>Outlook Mail-Client (M365 API):</strong> Empfänger erhalten die Reportdaten bzw. Benachrichtigungen per E-Mail.</li>
+        </ul>
+      </li>
+
+      <li><strong>Data Warehouse (Transform & Load)</strong>
+        <ul>
+          <li><strong>Staging-Bereich (Rohdaten):</strong> Aufnahme der exportierten CSV-Rohdaten; ETL-Insert.</li>
+          <li><strong>Core Layer (bereinigte Daten):</strong> Validierung, Dublettenentfernung, Format-Harmonisierung, optionale Pseudonymisierung.</li>
+          <li><strong>Data Marts (Reporting Layer):</strong> Themen-/Fachbereichsbezogene Aggregation und Modellierung für schnelle Analysen.</li>
+        </ul>
+      </li>
+
+      <li><strong>Power BI Desktop</strong>
+        <ul>
+          <li><strong>Reporting-Vorlage (ITSM_Monatsreport.pbix):</strong> Enthält Datenmodell, KPIs, Filter und Visualisierungen.</li>
+          <li><strong>Funktion:</strong>
+            <ul>
+              <li>Verbindet sich per SQL/ODBC mit dem Data Warehouse (meist Data Mart).</li>
+              <li>Lädt die aktuellen, bereinigten Daten und vergleicht sie mit Vorperioden.</li>
+              <li>Ergebnis sind interaktive Reports &amp; Dashboards mit Kennzahlen:
+                <ul>
+                  <li>z. B. Anzahl Incidents, MTTR (Mean Time to Repair), SLA-Erfüllung, Teamzuordnungen.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+      <li><strong>Ergebnis</strong>
+        <ul>
+          <li><strong>Output:</strong> Konsistente Reporting-KPIs für Service- &amp; Delivery-Management auf Basis einer Single Source of Truth (DWH).</li>
+          <li>Stakeholder erhalten automatische E-Mails und haben Zugriff auf Power-BI-Dashboards für datenbasierte Entscheidungen.</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+</div>
+
 
   <!-- ===== Vergleichstabelle ITSM-Komponenten ===== -->
   <section class="section" id="vergleich">
