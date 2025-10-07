@@ -78,7 +78,7 @@
     }
   </style>
 </head>
-  
+
 <body>
   <!-- ===== Header ===== -->
   <header class="site-header">
@@ -380,82 +380,83 @@
     </div>
   </section>
 
-   <!-- Architektur / Diagramm -->
-    <section class="section" id="rz-diagramm">
-      <div class="sec-head">
-        <span class="sec-dot"></span>
-        <h2 class="sec-title">ITSM-Reporting und ETL-Prozess mit DWH Komponentendiagramm</h2>
-      </div>
+  <!-- Architektur / Diagramm -->
+  <section class="section" id="rz-diagramm">
+    <div class="sec-head">
+      <span class="sec-dot"></span>
+      <h2 class="sec-title">ITSM-Reporting und ETL-Prozess mit DWH Komponentendiagramm</h2>
+    </div>
 
-      <div class="center-wrap">
-        <article class="card">
-          <img class="diagram" src="assets/img/ITSM_Reporting_ETL_Mit_DWH_1.0.0.png" alt="ITSM_Reporting_ETL_Mit_DWH_1.0.0.png"
-            loading="lazy" decoding="async" data-full="assets/img/ITSM_Reporting_ETL_Mit_DWH_1.0.0.png" />
+    <div class="center-wrap">
+      <article class="card">
+        <img class="diagram" src="assets/img/ITSM_Reporting_ETL_Mit_DWH_1.0.0.png"
+          alt="ITSM_Reporting_ETL_Mit_DWH_1.0.0.png" loading="lazy" decoding="async"
+          data-full="assets/img/ITSM_Reporting_ETL_Mit_DWH_1.0.0.png" />
 
-          <div class="card-body">
-            <div class="text-block">
-              <h3>Erklärung des Diagramms</h3>
-              <p>ITSM-Reporting und Komponenten:</p>
-              <ol>
-                <li><strong>Auslöser - Prozessmanager (Visual Studio Code):</strong>
-                  <ul>
-                    <li>Ein Mitarbeiter startet einmal im Monat das Python-Skript.</li>
-                    <li>Portal sendet Anfrage verschlüsselt an ITSM.</li>
-                  </ul>
-                </li>
-                <li><strong>VS Code + Python-Skript führt drei wichtige Komponenten aus:</strong>
-                  <ul>
-                    <li>GUI-Automation (pyautogui, opencv): Steuert das ITSM-Tool über die Oberfläche, klickt
-                      automatisch, erkennt Bildschirmelemente. </li>
-                    <li>CSV-Exporter (csv_export.py): Exportiert die gefundenen Daten in eine strukturierte CSV-Datei
-                      mit Zeitstempel im Dateinamen.</li>
-                    <li>Mailversand (outlook_mail.py): Sendet den erstellten Report per E-Mail über die M365-API an
-                      Stakeholder.</li>
-                  </ul>
-                </li>
-                <li><strong>Kommunikation</strong>
-                  <ul>
-                    <li>Outlook Mail-Client (M365 API): Empfänger erhalten die Report-Daten per E-Mail.</li>
-                  </ul>
-                </li>
-                <li><strong>Fileserver & Infrastruktur</strong>
-                  <ul>
-                    <li>Rohdatenverzeichnis (raw/): Hier landet die CSV-Datei, die das Python-Skript exportiert.</li>
-                    <li>Transformationskomponente (clean_transform.py): Liest die Rohdaten ein, bereinigt sie (z. B.
-                      entfernt Dubletten, füllt leere Felder, optional Pseudonymisierung).</li>
-                    <li>Bereinigte Daten (clean/): Ablage der aufbereiteten CSV-Dateien.</li>
-                  </ul>
-                </li>
-                <li><strong>Power BI Desktop</strong>
-                  <ul>
-                    <li>Reporting-Vorlage (ITSM_Monatsreport.pbix): Eine vorbereitete Power-BI-Vorlage zieht die
-                      bereinigten Daten.</li>
-                    <li>Funktion:
-                      <ul>
-                        <li>Die pbix-Datei enthält das Datenmodell (KPIs, Filter, Visualisierungen).</li>
-                        <li>Power BI vergleicht die neuen Daten mit Vorversionen.</li>
-                        <li>Ergebnis sind Reports & Dashboards mit Kennzahlen.
-                          <ul>
-                            <li>Beispiele: Anzahl Incidents, MTTR (Mean Time to Repair), Teamzuordnungen.</li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li><strong>Ergebnis</strong>
-                  <ul>
-                    <li>Output: Reporting-KPIs für Service- & Delivery-Management.</li>
-                    <li>Stakeholder erhalten sowohl automatisierte Mails als auch interaktive Dashboards in Power BI.
-                    </li>
-                  </ul>
-                </li>
-              </ol>
-            </div>
+        <div class="card-body">
+          <div class="text-block">
+            <h3>Erklärung des Diagramms</h3>
+            <p>ITSM-Reporting und Komponenten:</p>
+            <ol>
+              <li><strong>Auslöser - Prozessmanager (Visual Studio Code):</strong>
+                <ul>
+                  <li>Ein Mitarbeiter startet einmal im Monat das Python-Skript.</li>
+                  <li>Portal sendet Anfrage verschlüsselt an ITSM.</li>
+                </ul>
+              </li>
+              <li><strong>VS Code + Python-Skript führt drei wichtige Komponenten aus:</strong>
+                <ul>
+                  <li>GUI-Automation (pyautogui, opencv): Steuert das ITSM-Tool über die Oberfläche, klickt
+                    automatisch, erkennt Bildschirmelemente. </li>
+                  <li>CSV-Exporter (csv_export.py): Exportiert die gefundenen Daten in eine strukturierte CSV-Datei
+                    mit Zeitstempel im Dateinamen.</li>
+                  <li>Mailversand (outlook_mail.py): Sendet den erstellten Report per E-Mail über die M365-API an
+                    Stakeholder.</li>
+                </ul>
+              </li>
+              <li><strong>Kommunikation</strong>
+                <ul>
+                  <li>Outlook Mail-Client (M365 API): Empfänger erhalten die Report-Daten per E-Mail.</li>
+                </ul>
+              </li>
+              <li><strong>Fileserver & Infrastruktur</strong>
+                <ul>
+                  <li>Rohdatenverzeichnis (raw/): Hier landet die CSV-Datei, die das Python-Skript exportiert.</li>
+                  <li>Transformationskomponente (clean_transform.py): Liest die Rohdaten ein, bereinigt sie (z. B.
+                    entfernt Dubletten, füllt leere Felder, optional Pseudonymisierung).</li>
+                  <li>Bereinigte Daten (clean/): Ablage der aufbereiteten CSV-Dateien.</li>
+                </ul>
+              </li>
+              <li><strong>Power BI Desktop</strong>
+                <ul>
+                  <li>Reporting-Vorlage (ITSM_Monatsreport.pbix): Eine vorbereitete Power-BI-Vorlage zieht die
+                    bereinigten Daten.</li>
+                  <li>Funktion:
+                    <ul>
+                      <li>Die pbix-Datei enthält das Datenmodell (KPIs, Filter, Visualisierungen).</li>
+                      <li>Power BI vergleicht die neuen Daten mit Vorversionen.</li>
+                      <li>Ergebnis sind Reports & Dashboards mit Kennzahlen.
+                        <ul>
+                          <li>Beispiele: Anzahl Incidents, MTTR (Mean Time to Repair), Teamzuordnungen.</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><strong>Ergebnis</strong>
+                <ul>
+                  <li>Output: Reporting-KPIs für Service- & Delivery-Management.</li>
+                  <li>Stakeholder erhalten sowohl automatisierte Mails als auch interaktive Dashboards in Power BI.
+                  </li>
+                </ul>
+              </li>
+            </ol>
           </div>
-        </article>
-      </div>
-    </section>
+        </div>
+      </article>
+    </div>
+  </section>
   </main>
 
   <!-- ===== Vergleichstabelle ITSM-Komponenten ===== -->
@@ -477,68 +478,104 @@
           </tr>
         </thead>
         <tbody>
+
+          <tr>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Prozessmanager (Visual Studio Code)</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Startet und überwacht den ETL-Prozess manuell
+              oder automatisiert.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Löst monatlich den Datenextraktionsprozess
+              aus.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Gewährleistet die regelmäßige Aktualisierung
+              der Reporting-Datenbasis.</td>
+          </tr>
+
           <tr>
             <td style="border: 1px solid var(--separator); padding: 8px;">GUI-Automation (pyautogui, opencv)</td>
             <td style="border: 1px solid var(--separator); padding: 8px;">Automatisiert die Interaktion mit dem
-              ITSM-Tool über die grafische Oberfläche.</td>
-            <td style="border: 1px solid var(--separator); padding: 8px;">Steuert Klicks und erkennt Bildschirmelemente,
-              um die benötigten Daten zu extrahieren.</td>
-            <td style="border: 1px solid var(--separator); padding: 8px;">Ermöglicht die zuverlässige Datenerfassung aus
-              Systemen ohne direkte Schnittstellen.</td>
+              ITSM-Tool über die Benutzeroberfläche.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Führt Klicks, Navigation und Datenerfassung
+              durch.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Sichert eine fehlerfreie und konsistente
+              Datenerfassung aus ITSM-Systemen ohne API.</td>
           </tr>
+
           <tr>
             <td style="border: 1px solid var(--separator); padding: 8px;">CSV-Exporter (csv_export.py)</td>
-            <td style="border: 1px solid var(--separator); padding: 8px;">Exportiert die extrahierten Daten in
-              strukturierter Form als CSV-Datei.</td>
-            <td style="border: 1px solid var(--separator); padding: 8px;">Erzeugt Rohdatendateien mit Zeitstempeln im
-              Dateinamen.</td>
-            <td style="border: 1px solid var(--separator); padding: 8px;">Stellt eine einheitliche Datenbasis bereit,
-              die für spätere Analysen verwendet wird.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Exportiert die erfassten ITSM-Daten als
+              CSV-Dateien.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Erzeugt strukturierte Rohdaten inklusive
+              Zeitstempel.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Erstellt eine standardisierte Datengrundlage
+              für den Ladevorgang ins DWH.</td>
           </tr>
+
           <tr>
             <td style="border: 1px solid var(--separator); padding: 8px;">Mailversand (outlook_mail.py)</td>
-            <td style="border: 1px solid var(--separator); padding: 8px;">Versendet Reports per E-Mail über die M365-API
-              an Stakeholder.</td>
-            <td style="border: 1px solid var(--separator); padding: 8px;">Automatisierter Versand der Ergebnisse.</td>
-            <td style="border: 1px solid var(--separator); padding: 8px;">Sichert die direkte Informationsweitergabe an
-              Verantwortliche und Entscheidungsträger.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Versendet automatisch Berichte oder
+              Benachrichtigungen an Stakeholder.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Nutzt M365-API für den automatischen Versand
+              nach Abschluss des ETL-Prozesses.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Ermöglicht transparente Kommunikation und
+              Ergebnisweitergabe.</td>
           </tr>
+
           <tr>
-            <td style="border: 1px solid var(--separator); padding: 8px;">Rohdatenverzeichnis (raw/)</td>
-            <td style="border: 1px solid var(--separator); padding: 8px;">Speicherort für die vom Exporter erzeugten
-              Rohdaten.</td>
-            <td style="border: 1px solid var(--separator); padding: 8px;">Hält unbereinigte CSV-Dateien bereit.</td>
-            <td style="border: 1px solid var(--separator); padding: 8px;">Dient als Eingangsquelle für Transformationen
-              und Nachvollziehbarkeit der Datenherkunft.</td>
-          </tr>
-          <tr>
-            <td style="border: 1px solid var(--separator); padding: 8px;">Transformationskomponente (clean_transform.py)
+            <td style="border: 1px solid var(--separator); padding: 8px;">Data Warehouse – Staging-Bereich (Rohdaten)
             </td>
-            <td style="border: 1px solid var(--separator); padding: 8px;">Bereinigt und transformiert Rohdaten.</td>
-            <td style="border: 1px solid var(--separator); padding: 8px;">Entfernt Dubletten, füllt leere Felder und
-              pseudonymisiert Daten bei Bedarf.</td>
-            <td style="border: 1px solid var(--separator); padding: 8px;">Sichert die Datenqualität und stellt sicher,
-              dass nur konsistente Daten ins Reporting gelangen.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Erste Schicht im DWH zur Aufnahme der
+              CSV-Rohdaten aus der Client-Umgebung.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Lädt Daten ungeprüft ein (ETL-Insert) und
+              bereitet sie für die Transformation vor.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Dient als temporärer Speicher zur
+              Sicherstellung der Nachvollziehbarkeit.</td>
           </tr>
+
           <tr>
-            <td style="border: 1px solid var(--separator); padding: 8px;">Bereinigte Daten (clean/)</td>
-            <td style="border: 1px solid var(--separator); padding: 8px;">Ablage der transformierten Daten.</td>
-            <td style="border: 1px solid var(--separator); padding: 8px;">Stellt bereinigte CSV-Dateien bereit.</td>
-            <td style="border: 1px solid var(--separator); padding: 8px;">Bietet die geprüfte Grundlage für BI-Analysen
-              und Dashboards.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Data Warehouse – Core Layer (bereinigte Daten)
+            </td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Zweite Schicht im DWH, die Datenvalidierung
+              und Bereinigung übernimmt.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Entfernt Dubletten, prüft Formate,
+              harmonisiert Werte, pseudonymisiert sensible Daten.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Sichert die Datenqualität und schafft eine
+              konsistente Grundlage für Analysen.</td>
           </tr>
+
+          <tr>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Data Warehouse – Data Marts (Reporting Layer)
+            </td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Dritte Schicht im DWH mit aggregierten und
+              thematisch aufbereiteten Daten.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Bündelt Daten nach Fachgebieten (z. B.
+              Incidents, Servicezeiten, Teams).</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Ermöglicht performantes Reporting und
+              zielgerichtete KPI-Analysen in Power BI.</td>
+          </tr>
+
           <tr>
             <td style="border: 1px solid var(--separator); padding: 8px;">Power BI Desktop + Reporting-Vorlage
               (ITSM_Monatsreport.pbix)</td>
-            <td style="border: 1px solid var(--separator); padding: 8px;">Visualisierungstool, das auf die bereinigten
-              Daten zugreift.</td>
-            <td style="border: 1px solid var(--separator); padding: 8px;">Lädt die Daten, wendet das Datenmodell an und
-              erstellt Dashboards und Reports.</td>
-            <td style="border: 1px solid var(--separator); padding: 8px;">Generiert Kennzahlen (KPIs) wie Incidents,
-              MTTR oder SLA-Einhaltung für Management und Controlling.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Visualisierungstool, das direkt auf die Data
+              Marts im DWH zugreift.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Lädt Daten über SQL/ODBC, wendet das Modell an
+              und erstellt Dashboards.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Generiert zentrale KPIs wie Incident-Anzahl,
+              MTTR oder SLA-Quote für Managemententscheidungen.</td>
           </tr>
+
+          <tr>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Outlook Mail-Client (M365 API)</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">E-Mail-System zur automatischen Zustellung von
+              Reports.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Versendet die Power-BI- oder CSV-Berichte an
+              Empfängergruppen.</td>
+            <td style="border: 1px solid var(--separator); padding: 8px;">Sichert die Kommunikation der Ergebnisse und
+              fördert datengestützte Entscheidungen.</td>
+          </tr>
+
         </tbody>
       </table>
+
     </div>
   </section>
 
